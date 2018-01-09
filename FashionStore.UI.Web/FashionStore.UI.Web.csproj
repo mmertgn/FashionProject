@@ -1,0 +1,891 @@
+﻿<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.2.1.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.2.1.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{14EF19E0-3C44-41E0-BD7D-B4471EC20E4C}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FashionStore.UI.Web</RootNamespace>
+    <AssemblyName>FashionStore.UI.Web</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TypeScriptToolsVersion>2.5</TypeScriptToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Unity.Abstractions, Version=3.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.Abstractions.3.0.0\lib\net45\Unity.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Container, Version=5.5.0.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.Container.5.5.0\lib\net45\Unity.Container.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Mvc, Version=5.0.11.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.Mvc.5.0.11\lib\net45\Unity.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebActivatorEx.2.2.0\lib\net40\WebActivatorEx.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Web.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Webpages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Deployment">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Webpages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Webpages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AdminTemplate\HtmlDosyalari\400.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\403.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\404.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\500.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\503.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\animation.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\basic-table.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\blank.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\bootstrap-switch.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\bootstrap-tables.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\bootstrap.html" />
+    <Content Include="AdminTemplate\bootstrap\dist\css\bootstrap.min.css" />
+    <Content Include="AdminTemplate\bootstrap\dist\js\bootstrap-3.3.7.min.js" />
+    <Content Include="AdminTemplate\bootstrap\dist\js\bootstrap.min.js" />
+    <Content Include="AdminTemplate\bootstrap\dist\js\tether.min.js" />
+    <Content Include="AdminTemplate\HtmlDosyalari\buttons.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\calendar.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\cards.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\carousel.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\chart-js.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\chat.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\compose.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\contact-detail.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\contact.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\contact2.html" />
+    <Content Include="AdminTemplate\css\animate.css" />
+    <Content Include="AdminTemplate\css\colors\blue.css" />
+    <Content Include="AdminTemplate\css\colors\default.css" />
+    <Content Include="AdminTemplate\css\colors\gray.css" />
+    <Content Include="AdminTemplate\css\colors\green.css" />
+    <Content Include="AdminTemplate\css\colors\megna.css" />
+    <Content Include="AdminTemplate\css\colors\purple.css" />
+    <Content Include="AdminTemplate\css\spinners.css" />
+    <Content Include="AdminTemplate\css\style.css" />
+    <Content Include="AdminTemplate\HtmlDosyalari\custom-scroll.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\data-table.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\date-paginator.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\documentation.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\editable-tables.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\extra-charts.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\faq.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\flot.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\fontawesome.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\foo-tables.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\form-advanced.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\form-basic.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\form-bootstrap-wysihtml5.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\form-dropzone.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\form-float-input.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\form-img-cropper.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\form-layout.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\form-mask.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\form-material-elements.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\form-pickers.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\form-summernote.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\form-tinymce-wysihtml5.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\form-typehead.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\form-upload.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\form-validation.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\form-wizard.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\form-xeditable.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\gallery.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\grid.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\icheck-control.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\inbox-detail.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\inbox.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\index.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\invoice.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\jsgrid.html" />
+    <Content Include="AdminTemplate\js\cbpFWTabs.js" />
+    <Content Include="AdminTemplate\js\chat.js" />
+    <Content Include="AdminTemplate\js\custom.min.js" />
+    <Content Include="AdminTemplate\js\dashboard1.js" />
+    <Content Include="AdminTemplate\js\flot-data.js" />
+    <Content Include="AdminTemplate\js\footable-init.js" />
+    <Content Include="AdminTemplate\js\jasny-bootstrap.js" />
+    <Content Include="AdminTemplate\js\jquery.PrintArea.js" />
+    <Content Include="AdminTemplate\js\jquery.slimscroll.js" />
+    <Content Include="AdminTemplate\js\jsgrid-init.js" />
+    <Content Include="AdminTemplate\js\mask.js" />
+    <Content Include="AdminTemplate\js\morris-data.js" />
+    <Content Include="AdminTemplate\js\toastr.js" />
+    <Content Include="AdminTemplate\js\validator.js" />
+    <Content Include="AdminTemplate\js\waves.js" />
+    <Content Include="AdminTemplate\js\widget.js" />
+    <Content Include="AdminTemplate\HtmlDosyalari\knob-chart.html" />
+    <Content Include="AdminTemplate\less\icons\font-awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="AdminTemplate\less\icons\simple-line-icons\fonts\Simple-Line-Icons.svg" />
+    <Content Include="AdminTemplate\less\icons\themify-icons\fonts\themify.svg" />
+    <Content Include="AdminTemplate\HtmlDosyalari\lightbox.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\linea-icon.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\list-style.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\lock-screen.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\login.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\login2.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\map-google.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\map-vector.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\modals.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\morris-chart.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\nestable.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\notification.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\panel-draggable.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\panel-ui-block.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\panels-wells.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\peity-chart.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\portlet-draggable.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\pricing.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\product-cart.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\product-checkout.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\product-detail.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\product-edit.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\product-orders.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\products.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\profile.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\progressbars.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\range-slider.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\recoverpw.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\register.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\register2.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\register3.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\responsive-tables.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\ribbons.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\search-result.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\session-idle-timeout.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\session-timeout.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\simple-line.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\sparkline-chart.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\starter-page.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\steps.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\sweatalert.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\tab-stylish.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\table-layouts.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\tabs.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\themifyicon.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\timeline-horizontal.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\timeline.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\tooltip-stylish.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\treeview.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\typography.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\user-cards.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\utility-classes.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\weather.html" />
+    <Content Include="AdminTemplate\HtmlDosyalari\widgets.html" />
+    <Content Include="AdminTemplate\plugins\bower_components\blockUI\jquery.blockUI.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\bootstrap-datepicker\bootstrap-datepicker.min.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\bootstrap-datepicker\bootstrap-datepicker.min.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\bootstrap-daterangepicker\daterangepicker.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\bootstrap-daterangepicker\daterangepicker.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\bootstrap-extension\css\bootstrap-extension.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\bootstrap-extension\js\bootstrap-extension.min.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\bootstrap-rtl-master\dist\css\bootstrap-rtl.min.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\bootstrap-rtl-master\dist\js\bootstrap-rtl.min.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\bootstrap-select\bootstrap-select.min.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\bootstrap-select\bootstrap-select.min.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\bootstrap-switch\bootstrap-switch.min.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\bootstrap-switch\bootstrap-switch.min.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\bootstrap-table\dist\bootstrap-table.ints.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\bootstrap-table\dist\bootstrap-table.min.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\bootstrap-table\dist\bootstrap-table.min.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\bootstrap-tagsinput\dist\bootstrap-tagsinput.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\bootstrap-tagsinput\dist\bootstrap-tagsinput.min.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\bootstrap-touchspin\dist\jquery.bootstrap-touchspin.min.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\bootstrap-touchspin\dist\jquery.bootstrap-touchspin.min.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\bootstrap-treeview-master\dist\bootstrap-treeview-init.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\bootstrap-treeview-master\dist\bootstrap-treeview.min.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\calendar\dist\cal-init.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\calendar\dist\fullcalendar.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\calendar\dist\fullcalendar.min.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\calendar\jquery-ui.min.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\Chart.js\Chart.min.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\Chart.js\chartjs.init.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\clockpicker\dist\jquery-clockpicker.min.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\clockpicker\dist\jquery-clockpicker.min.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\counterup\jquery.counterup.min.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\cropper\cropper-init.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\cropper\cropper.min.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\cropper\cropper.min.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\css-chart\css-chart.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\custom-select\custom-select.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\custom-select\custom-select.min.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\custom-select\select2.png" />
+    <Content Include="AdminTemplate\plugins\bower_components\datatables\dataTables.bootstrap.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\datatables\jquery.dataTables.min.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\datatables\jquery.dataTables.min.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\datatables\sort_asc.png" />
+    <Content Include="AdminTemplate\plugins\bower_components\datatables\sort_asc_disabled.png" />
+    <Content Include="AdminTemplate\plugins\bower_components\datatables\sort_both.png" />
+    <Content Include="AdminTemplate\plugins\bower_components\datatables\sort_desc.png" />
+    <Content Include="AdminTemplate\plugins\bower_components\datatables\sort_desc_disabled.png" />
+    <Content Include="AdminTemplate\plugins\bower_components\date-paginator\bootstrap-datepaginator.min.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\date-paginator\moment.min.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\dropify\dist\css\dropify.min.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\dropify\dist\js\dropify.min.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\dropzone-master\dist\dropzone.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\dropzone-master\dist\dropzone.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\fancybox\ekko-lightbox.min.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\fancybox\ekko-lightbox.min.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\flot.tooltip\js\jquery.flot.tooltip.min.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\flot\excanvas.min.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\flot\jquery.flot.crosshair.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\flot\jquery.flot.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\flot\jquery.flot.pie.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\flot\jquery.flot.resize.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\flot\jquery.flot.stack.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\flot\jquery.flot.time.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\footable\css\footable.core.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\footable\js\footable.all.min.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\gallery\css\animated-masonry-gallery.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\gallery\js\animated-masonry-gallery.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\gallery\js\jquery.isotope.min.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\gmaps\gmaps.min.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\gmaps\jquery.gmaps.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\gridstack\gridstack.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\gridstack\gridstack.jQueryUI.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\gridstack\gridstack.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\horizontal-timeline\css\horizontal-timeline.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\horizontal-timeline\img\cd-arrow.svg" />
+    <Content Include="AdminTemplate\plugins\bower_components\horizontal-timeline\js\horizontal-timeline.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\html5-editor\bootstrap-wysihtml5.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\html5-editor\bootstrap-wysihtml5.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\html5-editor\wysihtml5-0.3.0.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\icheck.init.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\icheck.min.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\all.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\flat\aero.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\flat\aero.png" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\flat\aero_2x.png" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\flat\blue.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\flat\blue.png" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\flat\blue_2x.png" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\flat\flat.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\flat\flat.png" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\flat\flat_2x.png" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\flat\green.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\flat\green.png" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\flat\green_2x.png" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\flat\grey.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\flat\grey.png" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\flat\grey_2x.png" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\flat\orange.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\flat\orange.png" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\flat\orange_2x.png" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\flat\pink.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\flat\pink.png" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\flat\pink_2x.png" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\flat\purple.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\flat\purple.png" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\flat\purple_2x.png" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\flat\red.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\flat\red.png" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\flat\red_2x.png" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\flat\yellow.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\flat\yellow.png" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\flat\yellow_2x.png" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\flat\_all.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\futurico\futurico.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\futurico\futurico.png" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\futurico\futurico_2x.png" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\line\aero.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\line\blue.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\line\green.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\line\grey.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\line\line.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\line\line.png" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\line\line_2x.png" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\line\orange.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\line\pink.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\line\purple.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\line\red.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\line\yellow.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\line\_all.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\minimal\aero.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\minimal\aero.png" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\minimal\aero_2x.png" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\minimal\blue.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\minimal\blue.png" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\minimal\blue_2x.png" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\minimal\green.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\minimal\green.png" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\minimal\green_2x.png" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\minimal\grey.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\minimal\grey.png" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\minimal\grey_2x.png" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\minimal\minimal.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\minimal\minimal.png" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\minimal\minimal_2x.png" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\minimal\orange.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\minimal\orange.png" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\minimal\orange_2x.png" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\minimal\pink.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\minimal\pink.png" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\minimal\pink_2x.png" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\minimal\purple.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\minimal\purple.png" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\minimal\purple_2x.png" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\minimal\red.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\minimal\red.png" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\minimal\red_2x.png" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\minimal\yellow.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\minimal\yellow.png" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\minimal\yellow_2x.png" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\minimal\_all.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\polaris\polaris.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\polaris\polaris.png" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\polaris\polaris_2x.png" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\square\aero.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\square\aero.png" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\square\aero_2x.png" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\square\blue.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\square\blue.png" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\square\blue_2x.png" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\square\green.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\square\green.png" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\square\green_2x.png" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\square\grey.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\square\grey.png" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\square\grey_2x.png" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\square\orange.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\square\orange.png" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\square\orange_2x.png" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\square\pink.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\square\pink.png" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\square\pink_2x.png" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\square\purple.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\square\purple.png" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\square\purple_2x.png" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\square\red.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\square\red.png" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\square\red_2x.png" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\square\square.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\square\square.png" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\square\square_2x.png" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\square\yellow.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\square\yellow.png" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\square\yellow_2x.png" />
+    <Content Include="AdminTemplate\plugins\bower_components\icheck\skins\square\_all.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\ion-rangeslider\css\ion.rangeSlider.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\ion-rangeslider\css\ion.rangeSlider.skinModern.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\ion-rangeslider\css\ion.rangeSlider.skinSimple.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\ion-rangeslider\img\sprite-skin-modern.png" />
+    <Content Include="AdminTemplate\plugins\bower_components\ion-rangeslider\img\sprite-skin-simple.png" />
+    <Content Include="AdminTemplate\plugins\bower_components\ion-rangeslider\js\ion-rangeSlider\ion.rangeSlider-init.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\ion-rangeslider\js\ion-rangeSlider\ion.rangeSlider.min.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\jquery-asColorPicker-master\css\asColorPicker.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\jquery-asColorPicker-master\dist\jquery-asColorPicker.min.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\jquery-asColorPicker-master\images\alpha.png" />
+    <Content Include="AdminTemplate\plugins\bower_components\jquery-asColorPicker-master\images\hue.png" />
+    <Content Include="AdminTemplate\plugins\bower_components\jquery-asColorPicker-master\images\saturation.png" />
+    <Content Include="AdminTemplate\plugins\bower_components\jquery-asColorPicker-master\images\transparent.png" />
+    <Content Include="AdminTemplate\plugins\bower_components\jquery-asColorPicker-master\libs\jquery-asColor.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\jquery-asColorPicker-master\libs\jquery-asGradient.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\jquery-datatables-editable\datatables.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\jquery-datatables-editable\jquery.dataTables.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\jquery-sparkline\jquery.charts-sparkline.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\jquery-sparkline\jquery.sparkline.min.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\jquery-wizard-master\css\wizard.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\jquery-wizard-master\dist\jquery-wizard.min.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\jquery-wizard-master\libs\formvalidation\bootstrap.min.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\jquery-wizard-master\libs\formvalidation\formValidation.min.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\jquery-wizard-master\libs\formvalidation\formValidation.min.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\jquery.easy-pie-chart\dist\jquery.easypiechart.min.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\jquery.easy-pie-chart\easy-pie-chart.init.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\jqueryui\images\ui-icons_444444_256x240.png" />
+    <Content Include="AdminTemplate\plugins\bower_components\jqueryui\images\ui-icons_555555_256x240.png" />
+    <Content Include="AdminTemplate\plugins\bower_components\jqueryui\images\ui-icons_777620_256x240.png" />
+    <Content Include="AdminTemplate\plugins\bower_components\jqueryui\images\ui-icons_777777_256x240.png" />
+    <Content Include="AdminTemplate\plugins\bower_components\jqueryui\images\ui-icons_cc0000_256x240.png" />
+    <Content Include="AdminTemplate\plugins\bower_components\jqueryui\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="AdminTemplate\plugins\bower_components\jqueryui\jquery-ui.min.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\jqueryui\jquery-ui.min.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\jquery\dist\jquery.min.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\jsgrid\db.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\jsgrid\dist\jsgrid-theme.min.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\jsgrid\dist\jsgrid.min.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\jsgrid\dist\jsgrid.min.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\knob\jquery.knob.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\lobipanel\dist\css\lobipanel.min.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\lobipanel\dist\js\lobipanel.min.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\Magnific-Popup-master\dist\jquery.magnific-popup-init.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\Magnific-Popup-master\dist\jquery.magnific-popup.min.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\Magnific-Popup-master\dist\magnific-popup.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\moment\moment.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\morrisjs\morris.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\morrisjs\morris.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\multiselect\css\multi-select.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\multiselect\img\switch.png" />
+    <Content Include="AdminTemplate\plugins\bower_components\multiselect\js\jquery.multi-select.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\nestable\jquery.nestable.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\nestable\nestable.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\owl.carousel\owl.carousel.min.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\owl.carousel\owl.carousel.min.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\owl.carousel\owl.custom.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\owl.carousel\owl.theme.default.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\peity\jquery.peity.init.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\peity\jquery.peity.min.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\prism\prism.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\prism\prism.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\raphael\raphael-min.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\register-steps\jquery.easing.min.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\register-steps\register-init.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\register-steps\steps.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\session-timeout\idle\jquery.idletimeout.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\session-timeout\idle\jquery.idletimer.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\session-timeout\idle\session-timeout-idle-init.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\session-timeout\jquery.sessionTimeout.min.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\session-timeout\session-timeout-init.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\sidebar-nav\dist\sidebar-nav.min.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\sidebar-nav\dist\sidebar-nav.min.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\skycons\skycons.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\styleswitcher\jQuery.style.switcher.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\summernote\dist\summernote.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\summernote\dist\summernote.min.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\sweetalert\jquery.sweet-alert.custom.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\sweetalert\sweetalert.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\sweetalert\sweetalert.min.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\switchery\dist\switchery.min.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\switchery\dist\switchery.min.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\tablesaw-master\dist\tablesaw-init.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\tablesaw-master\dist\tablesaw.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\tablesaw-master\dist\tablesaw.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\timepicker\bootstrap-timepicker.min.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\timepicker\bootstrap-timepicker.min.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\tiny-editable\mindmup-editabletable.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\tiny-editable\numeric-input-example.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\tinymce\tinymce.min.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\toast-master\css\jquery.toast.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\toast-master\js\jquery.toast.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\typeahead.js-master\dist\typeahead-init.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\typeahead.js-master\dist\typeahead.bundle.min.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\typeahead.js-master\dist\typehead-min.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\vectormap\jquery-jvectormap-2.0.2.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\vectormap\jquery-jvectormap-2.0.2.min.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\vectormap\jquery-jvectormap-au-mill.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\vectormap\jquery-jvectormap-in-mill.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\vectormap\jquery-jvectormap-uk-mill-en.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\vectormap\jquery-jvectormap-us-aea-en.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\vectormap\jquery-jvectormap-world-mill-en.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\vectormap\jvectormap.custom.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\waypoints\lib\jquery.waypoints.js" />
+    <Content Include="AdminTemplate\plugins\bower_components\x-editable\dist\bootstrap3-editable\css\bootstrap-editable.css" />
+    <Content Include="AdminTemplate\plugins\bower_components\x-editable\dist\bootstrap3-editable\img\clear.png" />
+    <Content Include="AdminTemplate\plugins\bower_components\x-editable\dist\bootstrap3-editable\img\loading.gif" />
+    <Content Include="AdminTemplate\plugins\bower_components\x-editable\dist\bootstrap3-editable\js\bootstrap-editable.min.js" />
+    <Content Include="AdminTemplate\plugins\images\alert.png" />
+    <Content Include="AdminTemplate\plugins\images\alert2.png" />
+    <Content Include="AdminTemplate\plugins\images\alert3.png" />
+    <Content Include="AdminTemplate\plugins\images\alert4.png" />
+    <Content Include="AdminTemplate\plugins\images\alert5.png" />
+    <Content Include="AdminTemplate\plugins\images\alert6.png" />
+    <Content Include="AdminTemplate\plugins\images\alert7.png" />
+    <Content Include="AdminTemplate\plugins\images\assets\landscape1.jpg" />
+    <Content Include="AdminTemplate\plugins\images\assets\landscape10.jpg" />
+    <Content Include="AdminTemplate\plugins\images\assets\landscape11.jpg" />
+    <Content Include="AdminTemplate\plugins\images\assets\landscape12.jpg" />
+    <Content Include="AdminTemplate\plugins\images\assets\landscape13.jpg" />
+    <Content Include="AdminTemplate\plugins\images\assets\landscape14.jpg" />
+    <Content Include="AdminTemplate\plugins\images\assets\landscape15.jpg" />
+    <Content Include="AdminTemplate\plugins\images\assets\landscape16.jpg" />
+    <Content Include="AdminTemplate\plugins\images\assets\landscape17.jpg" />
+    <Content Include="AdminTemplate\plugins\images\assets\landscape18.jpg" />
+    <Content Include="AdminTemplate\plugins\images\assets\landscape2.jpg" />
+    <Content Include="AdminTemplate\plugins\images\assets\landscape3.jpg" />
+    <Content Include="AdminTemplate\plugins\images\assets\landscape4.jpg" />
+    <Content Include="AdminTemplate\plugins\images\assets\landscape5.jpg" />
+    <Content Include="AdminTemplate\plugins\images\assets\landscape6.jpg" />
+    <Content Include="AdminTemplate\plugins\images\assets\landscape7.jpg" />
+    <Content Include="AdminTemplate\plugins\images\assets\landscape8.jpg" />
+    <Content Include="AdminTemplate\plugins\images\assets\landscape9.jpg" />
+    <Content Include="AdminTemplate\plugins\images\assets\studio1.jpg" />
+    <Content Include="AdminTemplate\plugins\images\assets\studio10.jpg" />
+    <Content Include="AdminTemplate\plugins\images\assets\studio11.jpg" />
+    <Content Include="AdminTemplate\plugins\images\assets\studio12.jpg" />
+    <Content Include="AdminTemplate\plugins\images\assets\studio13.jpg" />
+    <Content Include="AdminTemplate\plugins\images\assets\studio14.jpg" />
+    <Content Include="AdminTemplate\plugins\images\assets\studio15.jpg" />
+    <Content Include="AdminTemplate\plugins\images\assets\studio16.jpg" />
+    <Content Include="AdminTemplate\plugins\images\assets\studio17.jpg" />
+    <Content Include="AdminTemplate\plugins\images\assets\studio18.jpg" />
+    <Content Include="AdminTemplate\plugins\images\assets\studio19.jpg" />
+    <Content Include="AdminTemplate\plugins\images\assets\studio2.jpg" />
+    <Content Include="AdminTemplate\plugins\images\assets\studio20.jpg" />
+    <Content Include="AdminTemplate\plugins\images\assets\studio21.jpg" />
+    <Content Include="AdminTemplate\plugins\images\assets\studio22.jpg" />
+    <Content Include="AdminTemplate\plugins\images\assets\studio23.jpg" />
+    <Content Include="AdminTemplate\plugins\images\assets\studio24.jpg" />
+    <Content Include="AdminTemplate\plugins\images\assets\studio25.jpg" />
+    <Content Include="AdminTemplate\plugins\images\assets\studio26.jpg" />
+    <Content Include="AdminTemplate\plugins\images\assets\studio27.jpg" />
+    <Content Include="AdminTemplate\plugins\images\assets\studio3.jpg" />
+    <Content Include="AdminTemplate\plugins\images\assets\studio4.jpg" />
+    <Content Include="AdminTemplate\plugins\images\assets\studio5.jpg" />
+    <Content Include="AdminTemplate\plugins\images\assets\studio6.jpg" />
+    <Content Include="AdminTemplate\plugins\images\assets\studio7.jpg" />
+    <Content Include="AdminTemplate\plugins\images\assets\studio8.jpg" />
+    <Content Include="AdminTemplate\plugins\images\assets\studio9.jpg" />
+    <Content Include="AdminTemplate\plugins\images\big\c1.jpg" />
+    <Content Include="AdminTemplate\plugins\images\big\c2.jpg" />
+    <Content Include="AdminTemplate\plugins\images\big\c3.jpg" />
+    <Content Include="AdminTemplate\plugins\images\big\c4.jpg" />
+    <Content Include="AdminTemplate\plugins\images\big\circle.jpg" />
+    <Content Include="AdminTemplate\plugins\images\big\d2.jpg" />
+    <Content Include="AdminTemplate\plugins\images\big\img1.jpg" />
+    <Content Include="AdminTemplate\plugins\images\big\img2.jpg" />
+    <Content Include="AdminTemplate\plugins\images\big\img3.jpg" />
+    <Content Include="AdminTemplate\plugins\images\big\img4.jpg" />
+    <Content Include="AdminTemplate\plugins\images\big\img5.jpg" />
+    <Content Include="AdminTemplate\plugins\images\big\img6.jpg" />
+    <Content Include="AdminTemplate\plugins\images\busy.gif" />
+    <Content Include="AdminTemplate\plugins\images\cards\1.jpg" />
+    <Content Include="AdminTemplate\plugins\images\cards\2.jpg" />
+    <Content Include="AdminTemplate\plugins\images\cards\3.jpg" />
+    <Content Include="AdminTemplate\plugins\images\cards\4.jpg" />
+    <Content Include="AdminTemplate\plugins\images\cards\5.jpg" />
+    <Content Include="AdminTemplate\plugins\images\cards\6.jpg" />
+    <Content Include="AdminTemplate\plugins\images\cards\7.jpg" />
+    <Content Include="AdminTemplate\plugins\images\chair.jpg" />
+    <Content Include="AdminTemplate\plugins\images\chair2.jpg" />
+    <Content Include="AdminTemplate\plugins\images\chair3.jpg" />
+    <Content Include="AdminTemplate\plugins\images\chair4.jpg" />
+    <Content Include="AdminTemplate\plugins\images\docs\sidebar.jpg" />
+    <Content Include="AdminTemplate\plugins\images\docs\template-structure.jpg" />
+    <Content Include="AdminTemplate\plugins\images\elite-header.jpg" />
+    <Content Include="AdminTemplate\plugins\images\elite-l-sdebar.jpg" />
+    <Content Include="AdminTemplate\plugins\images\eliteadmin-logo-dark.png" />
+    <Content Include="AdminTemplate\plugins\images\eliteadmin-logo.png" />
+    <Content Include="AdminTemplate\plugins\images\eliteadmin-small-logo.png" />
+    <Content Include="AdminTemplate\plugins\images\eliteadmin-small-text.png" />
+    <Content Include="AdminTemplate\plugins\images\eliteadmin-text-dark.png" />
+    <Content Include="AdminTemplate\plugins\images\eliteadmin-text.png" />
+    <Content Include="AdminTemplate\plugins\images\error-bg.jpg" />
+    <Content Include="AdminTemplate\plugins\images\favicon.png" />
+    <Content Include="AdminTemplate\plugins\images\folder-structure1.jpg" />
+    <Content Include="AdminTemplate\plugins\images\folder-structure2.jpg" />
+    <Content Include="AdminTemplate\plugins\images\heading-bg\slide1.jpg" />
+    <Content Include="AdminTemplate\plugins\images\heading-bg\slide2.jpg" />
+    <Content Include="AdminTemplate\plugins\images\heading-bg\slide3.jpg" />
+    <Content Include="AdminTemplate\plugins\images\heading-bg\slide4.jpg" />
+    <Content Include="AdminTemplate\plugins\images\heading-bg\slide6.jpg" />
+    <Content Include="AdminTemplate\plugins\images\heading-title-bg.jpg" />
+    <Content Include="AdminTemplate\plugins\images\img1.jpg" />
+    <Content Include="AdminTemplate\plugins\images\img2.jpg" />
+    <Content Include="AdminTemplate\plugins\images\img3.jpg" />
+    <Content Include="AdminTemplate\plugins\images\large\img1.jpg" />
+    <Content Include="AdminTemplate\plugins\images\large\img2.jpg" />
+    <Content Include="AdminTemplate\plugins\images\large\img3.jpg" />
+    <Content Include="AdminTemplate\plugins\images\large\img4.jpg" />
+    <Content Include="AdminTemplate\plugins\images\large\img5.jpg" />
+    <Content Include="AdminTemplate\plugins\images\large\img6.jpg" />
+    <Content Include="AdminTemplate\plugins\images\login-register.jpg" />
+    <Content Include="AdminTemplate\plugins\images\model.png" />
+    <Content Include="AdminTemplate\plugins\images\model2.png" />
+    <Content Include="AdminTemplate\plugins\images\model3.png" />
+    <Content Include="AdminTemplate\plugins\images\music\alb1.jpg" />
+    <Content Include="AdminTemplate\plugins\images\music\alb2.jpg" />
+    <Content Include="AdminTemplate\plugins\images\music\alb6.jpg" />
+    <Content Include="AdminTemplate\plugins\images\music\alb7.jpg" />
+    <Content Include="AdminTemplate\plugins\images\music\alb8.jpg" />
+    <Content Include="AdminTemplate\plugins\images\music\alb9.jpg" />
+    <Content Include="AdminTemplate\plugins\images\music\vd1.jpg" />
+    <Content Include="AdminTemplate\plugins\images\music\vd10.jpg" />
+    <Content Include="AdminTemplate\plugins\images\music\vd11.jpg" />
+    <Content Include="AdminTemplate\plugins\images\music\vd12.jpg" />
+    <Content Include="AdminTemplate\plugins\images\music\vd13.jpg" />
+    <Content Include="AdminTemplate\plugins\images\music\vd14.jpg" />
+    <Content Include="AdminTemplate\plugins\images\music\vd2.jpg" />
+    <Content Include="AdminTemplate\plugins\images\music\vd3.jpg" />
+    <Content Include="AdminTemplate\plugins\images\music\vd4.jpg" />
+    <Content Include="AdminTemplate\plugins\images\music\vd5.jpg" />
+    <Content Include="AdminTemplate\plugins\images\music\vd6.jpg" />
+    <Content Include="AdminTemplate\plugins\images\music\vd7.jpg" />
+    <Content Include="AdminTemplate\plugins\images\music\vd8.jpg" />
+    <Content Include="AdminTemplate\plugins\images\music\vd9.jpg" />
+    <Content Include="AdminTemplate\plugins\images\news\gradiant-bg.png" />
+    <Content Include="AdminTemplate\plugins\images\news\slide1.jpg" />
+    <Content Include="AdminTemplate\plugins\images\news\slide6.jpg" />
+    <Content Include="AdminTemplate\plugins\images\profile-menu.png" />
+    <Content Include="AdminTemplate\plugins\images\property\heart.png" />
+    <Content Include="AdminTemplate\plugins\images\property\pro-bath.png" />
+    <Content Include="AdminTemplate\plugins\images\property\pro-bed.png" />
+    <Content Include="AdminTemplate\plugins\images\property\pro-garage.png" />
+    <Content Include="AdminTemplate\plugins\images\property\prop1.jpeg" />
+    <Content Include="AdminTemplate\plugins\images\property\prop2.jpeg" />
+    <Content Include="AdminTemplate\plugins\images\property\prop3.jpeg" />
+    <Content Include="AdminTemplate\plugins\images\property\prop4.jpeg" />
+    <Content Include="AdminTemplate\plugins\images\property\prop5.jpg" />
+    <Content Include="AdminTemplate\plugins\images\property\prop6.jpg" />
+    <Content Include="AdminTemplate\plugins\images\property\prop7.jpg" />
+    <Content Include="AdminTemplate\plugins\images\property\prop8.jpg" />
+    <Content Include="AdminTemplate\plugins\images\tooltip\Euclid.png" />
+    <Content Include="AdminTemplate\plugins\images\tooltip\shape1.svg" />
+    <Content Include="AdminTemplate\plugins\images\tooltip\tooltip1.svg" />
+    <Content Include="AdminTemplate\plugins\images\users\1.jpg" />
+    <Content Include="AdminTemplate\plugins\images\users\2.jpg" />
+    <Content Include="AdminTemplate\plugins\images\users\3.jpg" />
+    <Content Include="AdminTemplate\plugins\images\users\4.jpg" />
+    <Content Include="AdminTemplate\plugins\images\users\5.jpg" />
+    <Content Include="AdminTemplate\plugins\images\users\6.jpg" />
+    <Content Include="AdminTemplate\plugins\images\users\7.jpg" />
+    <Content Include="AdminTemplate\plugins\images\users\8.jpg" />
+    <Content Include="AdminTemplate\plugins\images\users\agent.jpg" />
+    <Content Include="AdminTemplate\plugins\images\users\agent2.jpg" />
+    <Content Include="AdminTemplate\plugins\images\users\arijit.jpg" />
+    <Content Include="AdminTemplate\plugins\images\users\d1.jpg" />
+    <Content Include="AdminTemplate\plugins\images\users\d2.jpg" />
+    <Content Include="AdminTemplate\plugins\images\users\d3.jpg" />
+    <Content Include="AdminTemplate\plugins\images\users\d4.jpg" />
+    <Content Include="AdminTemplate\plugins\images\users\d5.jpg" />
+    <Content Include="AdminTemplate\plugins\images\users\genu.jpg" />
+    <Content Include="AdminTemplate\plugins\images\users\govinda.jpg" />
+    <Content Include="AdminTemplate\plugins\images\users\hritik.jpg" />
+    <Content Include="AdminTemplate\plugins\images\users\john.jpg" />
+    <Content Include="AdminTemplate\plugins\images\users\pawandeep.jpg" />
+    <Content Include="AdminTemplate\plugins\images\users\ritesh.jpg" />
+    <Content Include="AdminTemplate\plugins\images\users\salman.jpg" />
+    <Content Include="AdminTemplate\plugins\images\users\sonu.jpg" />
+    <Content Include="AdminTemplate\plugins\images\users\varun.jpg" />
+    <Content Include="Global.asax" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\UnityConfig.cs" />
+    <Compile Include="App_Start\UnityMvcActivator.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
+    <Compile Include="Areas\Admin\Models\LoginModel.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\web.config" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\Shared\_LayoutAdmin.cshtml" />
+    <Content Include="AdminTemplate\less\icons\font-awesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="AdminTemplate\less\icons\font-awesome\fonts\fontawesome-webfont.eot_%2523iefix" />
+    <Content Include="AdminTemplate\less\icons\font-awesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="AdminTemplate\less\icons\font-awesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="AdminTemplate\less\icons\font-awesome\fonts\fontawesome-webfont.woff2" />
+    <Content Include="AdminTemplate\less\icons\linea-icons\fonts\linea-arrows-10.eot" />
+    <Content Include="AdminTemplate\less\icons\linea-icons\fonts\linea-arrows-10.eot_%2523iefix" />
+    <Content Include="AdminTemplate\less\icons\linea-icons\fonts\linea-arrows-10.ttf" />
+    <Content Include="AdminTemplate\less\icons\linea-icons\fonts\linea-arrows-10.woff" />
+    <Content Include="AdminTemplate\less\icons\linea-icons\fonts\linea-basic-10.eot" />
+    <Content Include="AdminTemplate\less\icons\linea-icons\fonts\linea-basic-10.eot_%2523iefix" />
+    <Content Include="AdminTemplate\less\icons\linea-icons\fonts\linea-basic-10.ttf" />
+    <Content Include="AdminTemplate\less\icons\linea-icons\fonts\linea-basic-10.woff" />
+    <Content Include="AdminTemplate\less\icons\linea-icons\fonts\linea-basic-elaboration-10.eot" />
+    <Content Include="AdminTemplate\less\icons\linea-icons\fonts\linea-basic-elaboration-10.eot_%2523iefix" />
+    <Content Include="AdminTemplate\less\icons\linea-icons\fonts\linea-basic-elaboration-10.ttf" />
+    <Content Include="AdminTemplate\less\icons\linea-icons\fonts\linea-basic-elaboration-10.woff" />
+    <Content Include="AdminTemplate\less\icons\linea-icons\fonts\linea-ecommerce-10.eot" />
+    <Content Include="AdminTemplate\less\icons\linea-icons\fonts\linea-ecommerce-10.eot_%2523iefix" />
+    <Content Include="AdminTemplate\less\icons\linea-icons\fonts\linea-ecommerce-10.ttf" />
+    <Content Include="AdminTemplate\less\icons\linea-icons\fonts\linea-ecommerce-10.woff" />
+    <Content Include="AdminTemplate\less\icons\linea-icons\fonts\linea-music-10.eot" />
+    <Content Include="AdminTemplate\less\icons\linea-icons\fonts\linea-music-10.eot_%2523iefix" />
+    <Content Include="AdminTemplate\less\icons\linea-icons\fonts\linea-music-10.ttf" />
+    <Content Include="AdminTemplate\less\icons\linea-icons\fonts\linea-music-10.woff" />
+    <Content Include="AdminTemplate\less\icons\linea-icons\fonts\linea-software-10.eot" />
+    <Content Include="AdminTemplate\less\icons\linea-icons\fonts\linea-software-10.eot_%2523iefix" />
+    <Content Include="AdminTemplate\less\icons\linea-icons\fonts\linea-software-10.ttf" />
+    <Content Include="AdminTemplate\less\icons\linea-icons\fonts\linea-software-10.woff" />
+    <Content Include="AdminTemplate\less\icons\linea-icons\fonts\linea-weather-10.eot" />
+    <Content Include="AdminTemplate\less\icons\linea-icons\fonts\linea-weather-10.eot_%2523iefix" />
+    <Content Include="AdminTemplate\less\icons\linea-icons\fonts\linea-weather-10.ttf" />
+    <Content Include="AdminTemplate\less\icons\linea-icons\fonts\linea-weather-10.woff" />
+    <Content Include="AdminTemplate\less\icons\simple-line-icons\fonts\Simple-Line-Icons.eot" />
+    <Content Include="AdminTemplate\less\icons\simple-line-icons\fonts\Simple-Line-Icons.eot_" />
+    <Content Include="AdminTemplate\less\icons\simple-line-icons\fonts\Simple-Line-Icons.ttf" />
+    <Content Include="AdminTemplate\less\icons\simple-line-icons\fonts\Simple-Line-Icons.woff" />
+    <Content Include="AdminTemplate\less\icons\simple-line-icons\fonts\Simple-Line-Icons.woff2" />
+    <Content Include="AdminTemplate\less\icons\themify-icons\fonts\themify %282%29.eot" />
+    <Content Include="AdminTemplate\less\icons\themify-icons\fonts\themify.eot" />
+    <Content Include="AdminTemplate\less\icons\themify-icons\fonts\themify.ttf" />
+    <Content Include="AdminTemplate\less\icons\themify-icons\fonts\themify.woff" />
+    <Content Include="AdminTemplate\less\icons\weather-icons\font\weathericons-regular-webfont.eot" />
+    <Content Include="AdminTemplate\less\icons\weather-icons\font\weathericons-regular-webfont.eot_%2523iefix" />
+    <Content Include="AdminTemplate\less\icons\weather-icons\font\weathericons-regular-webfont.ttf" />
+    <Content Include="AdminTemplate\less\icons\weather-icons\font\weathericons-regular-webfont.woff" />
+    <Content Include="AdminTemplate\less\icons\weather-icons\font\weathericons-regular-webfont.woff2" />
+    <Content Include="AdminTemplate\plugins\bower_components\bootstrap-extension\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="AdminTemplate\plugins\bower_components\bootstrap-extension\fonts\glyphicons-halflings-regular.eot_%2523iefix" />
+    <Content Include="AdminTemplate\plugins\bower_components\bootstrap-extension\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="AdminTemplate\plugins\bower_components\bootstrap-extension\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="AdminTemplate\plugins\bower_components\bootstrap-extension\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="AdminTemplate\plugins\bower_components\bootstrap-rtl-master\dist\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="AdminTemplate\plugins\bower_components\bootstrap-rtl-master\dist\fonts\glyphicons-halflings-regular.eot_%2523iefix" />
+    <Content Include="AdminTemplate\plugins\bower_components\bootstrap-rtl-master\dist\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="AdminTemplate\plugins\bower_components\bootstrap-rtl-master\dist\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="AdminTemplate\plugins\bower_components\bootstrap-rtl-master\dist\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="AdminTemplate\plugins\bower_components\dropify\dist\fonts\dropify.eot" />
+    <Content Include="AdminTemplate\plugins\bower_components\dropify\dist\fonts\dropify.ttf" />
+    <Content Include="AdminTemplate\plugins\bower_components\dropify\dist\fonts\dropify.woff" />
+    <Content Include="AdminTemplate\plugins\bower_components\footable\css\fonts\footable.eot" />
+    <Content Include="AdminTemplate\plugins\bower_components\footable\css\fonts\footable.eot_%2523iefix" />
+    <Content Include="AdminTemplate\plugins\bower_components\footable\css\fonts\footable.ttf" />
+    <Content Include="AdminTemplate\plugins\bower_components\footable\css\fonts\footable.woff" />
+    <Content Include="AdminTemplate\plugins\bower_components\summernote\dist\font\summernote.eot_%2523iefix" />
+    <Content Include="AdminTemplate\plugins\bower_components\summernote\dist\font\summernote.eot_ad8d7e2d177d2473aecd9b35d16211fb" />
+    <Content Include="AdminTemplate\plugins\bower_components\summernote\dist\font\summernote.ttf_ad8d7e2d177d2473aecd9b35d16211fb" />
+    <Content Include="AdminTemplate\plugins\bower_components\summernote\dist\font\summernote.woff_ad8d7e2d177d2473aecd9b35d16211fb" />
+    <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Account\Login.cshtml" />
+    <None Include="packages.config" />
+    <Content Include="Views\Shared\_LayoutHome.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FashionStore.DAL\FashionStore.DAL.csproj">
+      <Project>{0F568DA8-C6C7-40E4-9B30-ED4083E86C35}</Project>
+      <Name>FashionStore.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FashionStore.Entity\FashionStore.Entity.csproj">
+      <Project>{9FBE41A4-73E7-4629-B34C-327C999E2851}</Project>
+      <Name>FashionStore.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FashionStore.Repository\FashionStore.Repository.csproj">
+      <Project>{255A7963-FBE7-4903-B008-C911EDD21EB9}</Project>
+      <Name>FashionStore.Repository</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>2912</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:2912/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.2.1.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.2.1.0\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

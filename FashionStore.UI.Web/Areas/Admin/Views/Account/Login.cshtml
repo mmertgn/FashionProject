@@ -1,0 +1,105 @@
+﻿
+@{
+    Layout = null;
+}
+@model FashionStore.UI.Web.Areas.Admin.Models.LoginModel
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" type="image/png" sizes="16x16" href="/AdminTemplate/plugins/images/favicon.png">
+    <title>Elite Admin - is a responsive admin template</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="/AdminTemplate/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/AdminTemplate/plugins/bower_components/bootstrap-extension/css/bootstrap-extension.css" rel="stylesheet">
+    <!-- animation CSS -->
+    <link href="/AdminTemplate/css/animate.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="/AdminTemplate/css/style.css" rel="stylesheet">
+    <!-- color CSS -->
+    <link href="/AdminTemplate/css/colors/default.css" id="theme" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="cssload-speeding-wheel"></div>
+    </div>
+    <section id="wrapper" class="login-register">
+        <div class="login-box">
+            <div class="white-box">
+                @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { id = "loginform", @class = "form-horizontal form-material" }))
+                {
+                    if (ViewBag.FormResult != null)
+                    {
+                        <div class="alert alert-primary" role="alert">
+                            @ViewBag.FormResult
+                        </div>
+                    }
+
+                    @Html.AntiForgeryToken()
+                    <h3 class="box-title m-b-20">Yönetici Paneli Girişi</h3>
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            @Html.TextBoxFor(x => x.Email, new { @class = "form-control", @placeholder = "E-Mail Adresi", @type = "email" })
+                            @Html.ValidationMessageFor(x => x.Email)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            @Html.TextBoxFor(x => x.Password, new { @class = "form-control", @placeholder = "Şifre", @type = "password" })
+                            @Html.ValidationMessageFor(x => x.Password)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <div class="checkbox checkbox-primary pull-left p-t-0">
+                                <input id="checkbox-signup" type="checkbox" name="RememberMe" value="true">
+                                <label for="checkbox-signup"> Beni Hatırla </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group text-center m-t-20">
+                        <div class="col-xs-12">
+                            <input type="submit" class="btn btn-info btn-lg btn-block text-uppercase waves-effect waves-light" value="Giriş Yap" />
+                        </div>
+                    </div>
+                }
+
+
+            </div>
+        </div>
+    </section>
+    <!-- jQuery -->
+    <script src="/AdminTemplate/plugins/bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/AdminTemplate/bootstrap/dist/js/tether.min.js"></script>
+    <script src="/AdminTemplate/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/AdminTemplate/plugins/bower_components/bootstrap-extension/js/bootstrap-extension.min.js"></script>
+    <!-- Menu Plugin JavaScript -->
+    <script src="/AdminTemplate/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js"></script>
+    <!--slimscroll JavaScript -->
+    <script src="/AdminTemplate/js/jquery.slimscroll.js"></script>
+    <!--Wave Effects -->
+    <script src="/AdminTemplate/js/waves.js"></script>
+    <!-- Custom Theme JavaScript -->
+    <script src="/AdminTemplate/js/custom.min.js"></script>
+    <!-- Sparkline chart JavaScript -->
+    <script src="/AdminTemplate/plugins/bower_components/jquery-sparkline/jquery.sparkline.min.js"></script>
+    <script src="/AdminTemplate/plugins/bower_components/jquery-sparkline/jquery.charts-sparkline.js"></script>
+    <!--Style Switcher -->
+    <script src="/AdminTemplate/plugins/bower_components/styleswitcher/jQuery.style.switcher.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,8 @@
+[
+  {
+    "outputFileName": "Controllers/common.min.js",
+    "inputFiles": [
+      "Controllers/common.js"
+    ]
+  }
+]

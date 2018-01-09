@@ -1,14 +1,17 @@
-﻿namespace FashionStore.Entity.Entities
+﻿using System.Collections.Generic;
+
+namespace FashionStore.Entity.Entities
 {
     public class Picture : EntityBase
     {
         public int Id { get; set; }
-        public int ProductId { get; set; }
         public string PicturePath { get; set; }
         public string SeoFileName { get; set; }
         public string AltAttribute { get; set; }
         public string TitleAttribute { get; set; }
 
-        public virtual Product Product { get; set; }
+        public virtual ICollection<ProductPicture> ProductPictures { get; set; }
+        public virtual ICollection<CategoryPicture> CategoryPictures { get; set; }
+        public virtual ICollection<CustomerPicture> CustomerPictures { get; set; }
     }
 }

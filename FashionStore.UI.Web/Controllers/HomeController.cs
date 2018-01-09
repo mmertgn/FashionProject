@@ -4,17 +4,22 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using FashionStore.Entity.Entities;
+using FashionStore.Repository.Repositories.Abstracts;
 
 namespace FashionStore.UI.Web.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
+        public HomeController(IUnitOfWork unitOfWork) : base(unitOfWork)
+        {
+        }
         // GET: Home
         public ActionResult Index()
         {
-            var Musteri = new Address();
             //Musteri
             return View();
         }
+
+
     }
 }

@@ -26,7 +26,9 @@ namespace FashionStore.Entity.Entities
 
         public virtual ICollection<ProductReview> ProductReviews { get; set; }
         public virtual ICollection<CustomerLogin> CustomerLogins { get; set; }
-        
-
+        public virtual ICollection<ShoppingCart> ShoppingCarts { get; set; }
+        public virtual ICollection<Order> Orders { get; set; }
+        public virtual ICollection<Log> Logs { get; set; }
+        public virtual ICollection<CustomerPicture> CustomerPictures { get; set; }
     }
 }

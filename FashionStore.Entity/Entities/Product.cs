@@ -33,8 +33,12 @@ namespace FashionStore.Entity.Entities
         public DateTime? UpdateTime { get; set; }
 
         public virtual ICollection<ProductReview> ProductReviews { get; set; }
-        public virtual ICollection<Picture> Pictures { get; set; }
+
+        public virtual ICollection<ProductPicture> ProductPictures { get; set; }
+        public virtual ICollection<ShoppingCart> ShoppingCarts { get; set; }
+
         public virtual Category Category { get; set; }
 
+        public ICollection<OrderItem> OrderItems { get; set; }
     }
 }

@@ -51,12 +51,22 @@
     <Compile Include="ORM\EntityFramework\Context\ProjectContext.cs" />
     <Compile Include="ORM\EntityFramework\Mappings\Adresses\AddressMap.cs" />
     <Compile Include="ORM\EntityFramework\Mappings\Categories\CategoryMap.cs" />
+    <Compile Include="ORM\EntityFramework\Mappings\Categories\CategoryPictureMap.cs" />
     <Compile Include="ORM\EntityFramework\Mappings\Customers\CustomerLoginMap.cs" />
     <Compile Include="ORM\EntityFramework\Mappings\Customers\CustomerMap.cs" />
+    <Compile Include="ORM\EntityFramework\Mappings\Customers\CustomerPictureMap.cs" />
     <Compile Include="ORM\EntityFramework\Mappings\Customers\CustomerRoleMap.cs" />
+    <Compile Include="ORM\EntityFramework\Mappings\EmailAccounts\EmailAccountMap.cs" />
+    <Compile Include="ORM\EntityFramework\Mappings\Logs\LogMap.cs" />
+    <Compile Include="ORM\EntityFramework\Mappings\Orders\OrderItemMap.cs" />
+    <Compile Include="ORM\EntityFramework\Mappings\Orders\OrderMap.cs" />
     <Compile Include="ORM\EntityFramework\Mappings\Pictures\PictureMap.cs" />
+    <Compile Include="ORM\EntityFramework\Mappings\Products\ProductPictureMap.cs" />
     <Compile Include="ORM\EntityFramework\Mappings\Products\ProductMap.cs" />
     <Compile Include="ORM\EntityFramework\Mappings\ProductReviews\ProductReviewMap.cs" />
+    <Compile Include="ORM\EntityFramework\Mappings\Settings\SettingMap.cs" />
+    <Compile Include="ORM\EntityFramework\Mappings\Shipments\ShipmentMap.cs" />
+    <Compile Include="ORM\EntityFramework\Mappings\ShoppingCarts\ShoppingCartMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -3,6 +3,8 @@ using FashionStore.Repository.Repositories.Abstracts;
 using FashionStore.Repository.Repositories.Concretes;
 using System;
 using System.Data.Entity;
+using FashionStore_BLL.Services.Abstracts;
+using FashionStore_BLL.Services.Concretes;
 using Unity;
 
 namespace FashionStore.UI.Web
@@ -47,6 +49,7 @@ namespace FashionStore.UI.Web
             // container.RegisterType<IProductRepository, ProductRepository>();
             container.RegisterType<DbContext, ProjectContext>();
             container.RegisterType<IUnitOfWork, UnitOfWork>();
+            container.RegisterType<IEncryptor, Md5HashProvider>();
         }
     }
 }

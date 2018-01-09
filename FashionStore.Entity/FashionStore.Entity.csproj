@@ -49,13 +49,23 @@
   <ItemGroup>
     <Compile Include="Entities\Address.cs" />
     <Compile Include="Entities\Category.cs" />
+    <Compile Include="Entities\CategoryPicture.cs" />
     <Compile Include="Entities\Customer.cs" />
+    <Compile Include="Entities\CustomerPicture.cs" />
+    <Compile Include="Entities\EmailAccount.cs" />
     <Compile Include="Entities\EntityBase.cs" />
+    <Compile Include="Entities\Log.cs" />
+    <Compile Include="Entities\Order.cs" />
+    <Compile Include="Entities\OrderItem.cs" />
     <Compile Include="Entities\Picture.cs" />
+    <Compile Include="Entities\ProductPicture.cs" />
     <Compile Include="Entities\Product.cs" />
     <Compile Include="Entities\ProductReview.cs" />
     <Compile Include="Entities\CustomerLogin.cs" />
     <Compile Include="Entities\CustomerRole.cs" />
+    <Compile Include="Entities\Setting.cs" />
+    <Compile Include="Entities\Shipment.cs" />
+    <Compile Include="Entities\ShoppingCart.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -832,6 +832,10 @@
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\FashionStore-BLL\FashionStore.BLL.csproj">
+      <Project>{78BD5733-703B-48C7-B63D-FABEE1C7A51C}</Project>
+      <Name>FashionStore.BLL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FashionStore.DAL\FashionStore.DAL.csproj">
       <Project>{0F568DA8-C6C7-40E4-9B30-ED4083E86C35}</Project>
       <Name>FashionStore.DAL</Name>

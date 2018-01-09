@@ -43,11 +43,6 @@ namespace FashionStore.DAL.ORM.EntityFramework.Mappings.Categories
                             .IsOptional()
                             .HasColumnName("ÜstKategoriId");
 
-            Property(x => x.PicturePath)
-                .IsOptional()
-                .IsUnicode()
-                .HasColumnName("KategoriResimi");
-
             Property(x => x.ShowOnHomePage)
                 .HasColumnName("AnasayfadaGöster");
 

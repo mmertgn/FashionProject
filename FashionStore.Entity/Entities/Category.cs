@@ -12,7 +12,6 @@ namespace FashionStore.Entity.Entities
         public string MetaDescription { get; set; }
         public string MetaTitle { get; set; }
         public int? ParentCategoryId { get; set; }
-        public string PicturePath { get; set; }
         public bool ShowOnHomePage { get; set; }
         public bool ShowOnTopMenu { get; set; }
         public bool Deleted { get; set; }
@@ -23,5 +22,6 @@ namespace FashionStore.Entity.Entities
         public virtual Category ParentCategory { get; set; }
         public virtual ICollection<Category> ChildCategories { get; set; }
         public virtual ICollection<Product> Products { get; set; }
+        public virtual ICollection<CategoryPicture> CategoryPictures { get; set; }
     }
 }

@@ -3,7 +3,7 @@
     Layout = null;
 }
 @model FashionStore.UI.Web.Areas.Admin.Models.LoginModel
-
+@using System.Web.Optimization
 <!DOCTYPE html>
 <html lang="tr">
 <head>
@@ -14,17 +14,11 @@
     <meta name="author" content="">
     <link rel="icon" type="image/png" sizes="16x16" href="/AdminTemplate/plugins/images/favicon.png">
     <title>Elite Admin - is a responsive admin template</title>
-    <!-- Bootstrap Core CSS -->
-    <link href="/AdminTemplate/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/AdminTemplate/plugins/bower_components/bootstrap-extension/css/bootstrap-extension.css" rel="stylesheet">
-    <!-- animation CSS -->
-    <link href="/AdminTemplate/css/animate.css" rel="stylesheet">
+    @Styles.Render("~/bundles/adminstyles")
     <!-- Custom CSS -->
-    <link href="/AdminTemplate/css/style.css" rel="stylesheet">
+    <link href="~/AdminTemplate/css/style.min.css" rel="stylesheet" />
     <!-- color CSS -->
-    <link href="/AdminTemplate/css/colors/default.css" id="theme" rel="stylesheet">
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <link href="~/AdminTemplate/css/colors/default.min.css" rel="stylesheet" />
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -81,25 +75,7 @@
             </div>
         </div>
     </section>
-    <!-- jQuery -->
-    <script src="/AdminTemplate/plugins/bower_components/jquery/dist/jquery.min.js"></script>
-    <!-- Bootstrap Core JavaScript -->
-    <script src="/AdminTemplate/bootstrap/dist/js/tether.min.js"></script>
-    <script src="/AdminTemplate/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="/AdminTemplate/plugins/bower_components/bootstrap-extension/js/bootstrap-extension.min.js"></script>
-    <!-- Menu Plugin JavaScript -->
-    <script src="/AdminTemplate/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js"></script>
-    <!--slimscroll JavaScript -->
-    <script src="/AdminTemplate/js/jquery.slimscroll.js"></script>
-    <!--Wave Effects -->
-    <script src="/AdminTemplate/js/waves.js"></script>
-    <!-- Custom Theme JavaScript -->
-    <script src="/AdminTemplate/js/custom.min.js"></script>
-    <!-- Sparkline chart JavaScript -->
-    <script src="/AdminTemplate/plugins/bower_components/jquery-sparkline/jquery.sparkline.min.js"></script>
-    <script src="/AdminTemplate/plugins/bower_components/jquery-sparkline/jquery.charts-sparkline.js"></script>
-    <!--Style Switcher -->
-    <script src="/AdminTemplate/plugins/bower_components/styleswitcher/jQuery.style.switcher.js"></script>
+    @Scripts.Render("~/bundles/adminscripts")
 </body>
 </html>
 

@@ -49,7 +49,7 @@ namespace FashionStore.UI.Web
             // container.RegisterType<IProductRepository, ProductRepository>();
             container.RegisterType<DbContext, ProjectContext>();
             container.RegisterType<IUnitOfWork, UnitOfWork>();
-            container.RegisterType<IEncryptor, Md5HashProvider>();
+            container.RegisterType<IEncryptor, Md5HashProvider>("MD5");
         }
     }
 }

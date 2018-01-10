@@ -1,4 +1,5 @@
-﻿using FashionStore.UI.Web.Areas.Admin.Models;
+﻿using System.Web.Helpers;
+using FashionStore.UI.Web.Areas.Admin.Models;
 using System.Web.Mvc;
 using System.Web.Security;
 using FashionStore.Repository.Repositories.Abstracts;
@@ -11,7 +12,7 @@ namespace FashionStore.UI.Web.Areas.Admin.Controllers
     public class AccountController : BaseController
     {
         private readonly IEncryptor _encryptor;
-        public AccountController(IUnitOfWork unitOfWork, IEncryptor encryptor) : base(unitOfWork)
+        public AccountController(IUnitOfWork unitOfWork, [Dependency("MD5")]IEncryptor encryptor) : base(unitOfWork)
         {
             _encryptor = encryptor;
         }
@@ -29,7 +30,9 @@ namespace FashionStore.UI.Web.Areas.Admin.Controllers
         public ActionResult Login(LoginModel model)
         {
             if (!ModelState.IsValid) return View();
+            //string hash = Crypto.Hash(model.Password,algorithm:"md5");
             model.Password = _encryptor.Hash(model.Password);
+            
             if (model.Email == "test@test.com" && model.Password == "58099067CC0E2E309060E94D3ECEA332")
             {
                 FormsAuthentication.SetAuthCookie("test@test.com", model.RememberMe);
@@ -41,17 +44,6 @@ namespace FashionStore.UI.Web.Areas.Admin.Controllers
                 return View();
             }
         }
-
-        //public ActionResult Register()
-        //{
-        //    return View();
-        //}
-
-        //[HttpPost, ValidateAntiForgeryToken]
-        //public ActionResult Register(RegisterModel model)
-        //{
-        //    return View();
-        //}
 
         public RedirectResult Logout()
         {

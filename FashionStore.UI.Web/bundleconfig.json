@@ -4,5 +4,25 @@
     "inputFiles": [
       "Controllers/common.js"
     ]
+  },
+  {
+    "outputFileName": "AdminTemplate/css/style.min.css",
+    "inputFiles": [
+      "AdminTemplate/css/style.css"
+    ]
+  },
+  {
+    "outputFileName": "AdminTemplate/css/style-animate-spinners-minbundle.css",
+    "inputFiles": [
+      "AdminTemplate/css/style.css",
+      "AdminTemplate/css/spinners.css",
+      "AdminTemplate/css/animate.css"
+    ]
+  },
+  {
+    "outputFileName": "AdminTemplate/css/colors/default.min.css",
+    "inputFiles": [
+      "AdminTemplate/css/colors/default.css"
+    ]
   }
 ]

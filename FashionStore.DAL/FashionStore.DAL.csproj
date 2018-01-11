@@ -65,6 +65,7 @@
     <Compile Include="ORM\EntityFramework\Mappings\Products\ProductMap.cs" />
     <Compile Include="ORM\EntityFramework\Mappings\ProductReviews\ProductReviewMap.cs" />
     <Compile Include="ORM\EntityFramework\Mappings\Settings\SettingMap.cs" />
+    <Compile Include="ORM\EntityFramework\Mappings\Settings\AdminMenuBarMap.cs" />
     <Compile Include="ORM\EntityFramework\Mappings\Shipments\ShipmentMap.cs" />
     <Compile Include="ORM\EntityFramework\Mappings\ShoppingCarts\ShoppingCartMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

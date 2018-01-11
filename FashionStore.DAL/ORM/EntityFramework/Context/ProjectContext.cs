@@ -41,8 +41,9 @@ namespace FashionStore.DAL.ORM.EntityFramework.Context
         public DbSet<EmailAccount> EmailAccounts { get; set; }
         public DbSet<Log> Logs { get; set; }
         public DbSet<CustomerPicture> CustomerPictures { get; set; } 
+        public DbSet<AdminMenuBar> AdminMenuBars { get; set; }
         #endregion
-        
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             #region Mapping
@@ -64,6 +65,7 @@ namespace FashionStore.DAL.ORM.EntityFramework.Context
             modelBuilder.Configurations.Add(new EmailAccountMap());
             modelBuilder.Configurations.Add(new LogMap());
             modelBuilder.Configurations.Add(new CustomerPictureMap());
+            modelBuilder.Configurations.Add(new AdminMenuBarMap());
             modelBuilder.Conventions.Add(new PluralizingTableNameConvention());
             #endregion
         }

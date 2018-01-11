@@ -13,11 +13,16 @@ namespace FashionStore.DAL.ORM.EntityFramework.Mappings.Customers
             Property(x=>x.Id)
                 .HasColumnName("MüşteriId");
 
-            Property(u => u.Username)
+            Property(u => u.Name)
                 .IsRequired()
                 .IsUnicode()
                 .HasMaxLength(50)
-                .HasColumnName("Kullanıcı Adı");
+                .HasColumnName("Ad");
+            Property(u => u.Surname)
+                .IsRequired()
+                .IsUnicode()
+                .HasMaxLength(50)
+                .HasColumnName("Soyad");
 
             Property(u => u.Email)
                 .IsRequired()

@@ -1,7 +1,9 @@
-﻿using System.Web.Helpers;
+﻿using System.Linq;
+using System.Web.Helpers;
 using FashionStore.UI.Web.Areas.Admin.Models;
 using System.Web.Mvc;
 using System.Web.Security;
+using FashionStore.Entity.Entities;
 using FashionStore.Repository.Repositories.Abstracts;
 using FashionStore.UI.Web.Controllers;
 using FashionStore_BLL.Services.Abstracts;
@@ -29,13 +31,14 @@ namespace FashionStore.UI.Web.Areas.Admin.Controllers
         [HttpPost, ValidateAntiForgeryToken]
         public ActionResult Login(LoginModel model)
         {
-            if (!ModelState.IsValid) return View();
             //string hash = Crypto.Hash(model.Password,algorithm:"md5");
+            if (!ModelState.IsValid) return View();
             model.Password = _encryptor.Hash(model.Password);
+            var customer = _unitOfWork.GetRepo<Customer>().Where(x => x.Email == model.Email && x.Password == model.Password).FirstOrDefault();
             
-            if (model.Email == "test@test.com" && model.Password == "58099067CC0E2E309060E94D3ECEA332")
+            if (customer != null)
             {
-                FormsAuthentication.SetAuthCookie("test@test.com", model.RememberMe);
+                FormsAuthentication.SetAuthCookie(customer.Email, model.RememberMe);
                 return Redirect("/Admin");
             }
             else

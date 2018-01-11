@@ -66,6 +66,7 @@
     <Compile Include="Entities\Setting.cs" />
     <Compile Include="Entities\Shipment.cs" />
     <Compile Include="Entities\ShoppingCart.cs" />
+    <Compile Include="Entities\AdminMenuBar.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

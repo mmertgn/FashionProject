@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using FashionStore.Entity.Entities;
 using FashionStore.Repository.Repositories.Abstracts;
 using FashionStore.UI.Web.Controllers;
 using FashionStore_BLL.Services.Abstracts;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace FashionStore.UI.Web.Areas.Admin.Controllers
 {
@@ -18,9 +16,20 @@ namespace FashionStore.UI.Web.Areas.Admin.Controllers
         }
         public ActionResult Index()
         {
+            ViewBag.SirketAdi = "Elsa Giyim";
             return View();
         }
 
-        
+        public PartialViewResult UserProfile()
+        {
+            var customerModel = _unitOfWork.GetRepo<CustomerPicture>().Where(x => x.Customer.Email == HttpContext.User.Identity.Name).FirstOrDefault();
+            return PartialView("_PartialUserProfile",customerModel);
+        }
+        public PartialViewResult Sidebar()
+        {
+            var model = _unitOfWork.GetRepo<AdminMenuBar>().Where(x=>x.ParentSidebarId==null).ToList();
+            return PartialView("_PartialSidebar",model);
+        }
+
     }
 }

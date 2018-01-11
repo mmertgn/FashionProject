@@ -744,6 +744,7 @@
     <Content Include="AdminTemplate\plugins\images\users\sonu.jpg" />
     <Content Include="AdminTemplate\plugins\images\users\varun.jpg" />
     <Content Include="Global.asax" />
+    <Content Include="Uploads\profilmert.jpg" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -836,6 +837,8 @@
     <Content Include="AdminTemplate\plugins\bower_components\summernote\dist\font\summernote.woff_ad8d7e2d177d2473aecd9b35d16211fb" />
     <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Account\Login.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_PartialUserProfile.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_PartialSidebar.cshtml" />
     <None Include="bundleconfig.json" />
     <None Include="packages.config" />
     <Content Include="Views\Shared\_LayoutHome.cshtml" />
@@ -855,6 +858,10 @@
     <ProjectReference Include="..\FashionStore-BLL\FashionStore.BLL.csproj">
       <Project>{78BD5733-703B-48C7-B63D-FABEE1C7A51C}</Project>
       <Name>FashionStore.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FashionStore.Core\FashionStore.Core.csproj">
+      <Project>{9B59BA4A-80B7-4C22-93D8-B8BF836C8718}</Project>
+      <Name>FashionStore.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\FashionStore.DAL\FashionStore.DAL.csproj">
       <Project>{0F568DA8-C6C7-40E4-9B30-ED4083E86C35}</Project>

@@ -1,0 +1,122 @@
+﻿@using FashionStore.Entity.Entities
+@model List<AdminMenuBar>
+
+<li class="nav-small-cap">--- Menu</li>
+
+@foreach (var menu in Model)
+{
+
+    if (menu.ChildSidebars.Count > 0)
+    {
+        <li>
+            <a href="@menu.ControllerActionName" class="waves-effect"><i data-icon="@menu.DataIcon" class="@menu.IconPath"></i> <span class="hide-menu">@menu.Name<span class="fa arrow"></span></span></a>
+            <ul class="nav nav-second-level">
+                @foreach (var childSidebar in menu.ChildSidebars)
+                {
+                    <li>
+                        <a href="@childSidebar.ControllerActionName">@childSidebar.Name</a>
+                    </li>
+                }
+            </ul>
+        </li>
+    }
+    else
+    {
+        <li>
+            <a href="@menu.ControllerActionName" class="waves-effect"><i data-icon="@menu.DataIcon" class="@menu.IconPath"></i> <span class="hide-menu">@menu.Name</span></a>
+        </li>
+    }
+}
+@*<li>
+    <a href="/Admin" class="waves-effect"><i data-icon="Z" class="linea-icon linea-basic fa-fw"></i> <span class="hide-menu">Dashboard</span></a>
+</li>
+<li>
+    <a href="#" class="waves-effect"><i data-icon="B" class="linea-icon linea-ecommerce fa-fw"></i> <span class="hide-menu">Siparişler<span class="fa arrow"></span></span></a>
+    <ul class="nav nav-second-level">
+        <li>
+            <a href="#">Ödeme Onayı Bekleyen Siparişler</a>
+        </li>
+        <li>
+            <a href="#">Gelen Siparişler</a>
+        </li>
+        <li>
+            <a href="#">Gönderilen Siparişler</a>
+        </li>
+    </ul>
+</li>
+<li>
+    <a href="#" class="waves-effect"><i data-icon="i" class="linea-icon linea-ecommerce fa-fw"></i> <span class="hide-menu">Ürünler<span class="fa arrow"></span></span></a>
+    <ul class="nav nav-second-level">
+        <li>
+            <a href="#">Ürün Yönetimi</a>
+        </li>
+        <li>
+            <a href="#">Kategori Yönetimi</a>
+        </li>
+    </ul>
+</li>
+<li>
+    <a href="#" class="waves-effect"><i class="ti-user"></i> <span class="hide-menu">Kullanıcılar<span class="fa arrow"></span></span></a>
+    <ul class="nav nav-second-level">
+        <li>
+            <a href="#">Kullanıcı Yönetimi</a>
+        </li>
+        <li>
+            <a href="#">Profilim</a>
+        </li>
+    </ul>
+</li>
+<li>
+    <a href="#" class="waves-effect"><i class="ti-settings"></i> <span class="hide-menu">Ayarlar<span class="fa arrow"></span></span></a>
+    <ul class="nav nav-second-level">
+        <li>
+            <a href="#">Genel Ayarlar</a>
+        </li>
+        <li>
+            <a href="#">E-Posta Ayarları</a>
+        </li>
+        <li>
+            <a href="#">Sosyal Medya Ayarları</a>
+        </li>
+    </ul>
+</li>
+<li>
+    <a href="#" class="waves-effect"><i data-icon="&#xe00b;" class="linea-icon linea-basic fa-fw"></i> <span class="hide-menu">İçerik<span class="fa arrow"></span></span></a>
+    <ul class="nav nav-second-level">
+        <li>
+            <a href="#">İçerik Sayfaları</a>
+        </li>
+        <li>
+            <a href="#">Sıkça Sorulan Sorular</a>
+        </li>
+        <li>
+            <a href="#">Galeri Kategorileri</a>
+        </li>
+        <li>
+            <a href="#">Galeri Resimleri</a>
+        </li>
+        <li>
+            <a href="#">Site Yorumları</a>
+        </li>
+    </ul>
+</li>
+<li>
+    <a href="#" class="waves-effect"><i data-icon="U" class="linea-icon linea-ecommerce fa-fw"></i> <span class="hide-menu">İstatistikler<span class="fa arrow"></span></span></a>
+    <ul class="nav nav-second-level">
+        <li>
+            <a href="#">Aylık Sipariş (Adet)</a>
+        </li>
+        <li>
+            <a href="#">Aylık Sipariş (Ciro)</a>
+        </li>
+        <li>
+            <a href="#">Aylık Sipariş (Kar)</a>
+        </li>
+        <li>
+            <a href="#">Kategoriler</a>
+        </li>
+        <li>
+            <a href="#">Ürünler</a>
+        </li>
+    </ul>
+</li>*@

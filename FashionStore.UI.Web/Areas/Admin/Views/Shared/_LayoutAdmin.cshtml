@@ -99,20 +99,9 @@
         <!-- Left navbar-header -->
         <div class="navbar-default sidebar" role="navigation">
             <div class="sidebar-nav navbar-collapse slimscrollsidebar">
-                <div class="user-profile">
-                    <div class="dropdown user-pro-body">
-                        <div><img src="/AdminTemplate/plugins/images/users/varun.jpg" alt="user-img" class="img-circle"></div>
-                        <a href="#" class="dropdown-toggle u-dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">M. Mert Gün <span class="caret"></span></a>
-                        <ul class="dropdown-menu animated flipInY">
-                            <li><a href="#"><i class="ti-user"></i> Profil</a></li>
-                            <li><a href="#"><i class="ti-email"></i> Gelen Kutusu</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#"><i class="ti-settings"></i> Hesap Ayarları</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="/Admin/Account/Logout"><i class="fa fa-power-off"></i> Çıkış Yap</a></li>
-                        </ul>
-                    </div>
-                </div>
+                @{
+                    Html.RenderAction("UserProfile","Home");
+                }
                 <ul class="nav" id="side-menu">
                     <li class="sidebar-search hidden-sm hidden-md hidden-lg">
                         <!-- input-group -->
@@ -124,24 +113,9 @@
                         </div>
                         <!-- /input-group -->
                     </li>
-                    <li class="nav-small-cap">--- Menu</li>
-                    <li>
-                        <a href="#" class="waves-effect"><i data-icon="&#xe008;" class="linea-icon linea-basic fa-fw"></i> <span class="hide-menu">Sample Pages<span class="fa arrow"></span><span class="label label-rouded label-purple pull-right">30</span></span></a>
-                        <ul class="nav nav-second-level">
-                            <li><a href="starter-page.html">Starter Page</a></li>
-                            <li>
-                                <a href="javascript:void(0)" class="waves-effect">Email Templates<span class="fa arrow"></span></a>
-                                <ul class="nav nav-third-level">
-                                    <li> <a href="../email-templates/basic.html">Basic</a></li>
-                                    <li> <a href="../email-templates/alert.html">Alert</a></li>
-                                    <li> <a href="../email-templates/billing.html">Billing</a></li>
-                                    <li> <a href="../email-templates/password-reset.html">Reset Pwd</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-
-
+                    @{
+                        Html.RenderAction("Sidebar","Home");
+                    }
                 </ul>
             </div>
         </div>

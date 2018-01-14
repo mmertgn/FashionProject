@@ -79,6 +79,7 @@
     <Compile Include="Services\Abstracts\IEncryptor.cs" />
     <Compile Include="Services\Concretes\Md5HashProvider.cs" />
     <Compile Include="Services\Validations\CustomerLoginValidator.cs" />
+    <Compile Include="Services\Validations\ProfilUpdateValidator.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -86,9 +87,17 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\FashionStore.Core\FashionStore.Core.csproj">
+      <Project>{9B59BA4A-80B7-4C22-93D8-B8BF836C8718}</Project>
+      <Name>FashionStore.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FashionStore.Entity\FashionStore.Entity.csproj">
       <Project>{9FBE41A4-73E7-4629-B34C-327C999E2851}</Project>
       <Name>FashionStore.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FashionStore.Repository\FashionStore.Repository.csproj">
+      <Project>{255A7963-FBE7-4903-B008-C911EDD21EB9}</Project>
+      <Name>FashionStore.Repository</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

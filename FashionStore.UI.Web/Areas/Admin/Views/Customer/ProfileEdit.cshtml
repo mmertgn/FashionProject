@@ -24,8 +24,8 @@
             <div class="white-box">
                 <h2 class="box-title m-b-0">Profil Düzenle</h2>
                 <hr />
-                <div class="tab-pane active" id="settings">
-                    @using (Html.BeginForm("ProfileEdit", "Customer", FormMethod.Post, new { @class = "form-horizontal form-material", @enctype="multipart/form-data" }))
+                <div class="tab-pane active">
+                    @using (Html.BeginForm("ProfileEdit", "Customer", FormMethod.Post, new { @class = "form-horizontal form-material", @enctype = "multipart/form-data" }))
                     {
                         @Html.AntiForgeryToken()
                         <div class="form-group">
@@ -61,20 +61,19 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label class="col-md-12"> Profil Resmi</label>
+                                    <blockquote id="uploadvalidate" style="display: none">Profil resminiz başarıyla güncellendi.</blockquote>
                                     <div class="product-img">
-                                        <img src="/Uploads/@Model.Picture.PicturePath" alt="@Model.Picture.AltAttribute" title="@Model.Picture.TitleAttribute">
-                                        <div class="pro-img-overlay"> <a href="javascript:void(0)" class="bg-danger"><i class="ti-trash"></i></a></div>
-                                        <div class="fileupload btn btn-info waves-effect waves-light">
+                                        <img src="/Uploads/@Model.Picture.PicturePath" alt="@Model.Picture.AltAttribute" title="@Model.Picture.TitleAttribute" id="profilephoto">
+                                        <br />
+                                        <div class="pro-img-overlay"> <a id="profilphotosil" onclick="DeletePhoto()" class="bg-danger"><i class="ti-trash"></i></a></div>
+                                        <div class="fileupload btn btn-info waves-effect waves-light" style="margin-top: 10px;">
                                             <span><i class="ion-upload m-r-5"></i>Profil Resmi Yükle</span>
-                                            <input type="file" class="upload" name="@Model.Picture.PicturePath">
+                                            <input onchange="Save()" type="file" class="upload" name="profilphoto" id="profilphoto">
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
-
-                        
                         <div class="form-group">
                             <div class="col-sm-12">
                                 <button type="submit" class="btn btn-success">Profili Güncelle</button>
@@ -88,3 +87,43 @@
     <!-- /.row -->
 </div>
 
+@section scripts
+{
+    <script>
+        function Save() {
+            var formData = new FormData();
+            var totalFiles = document.getElementById("profilphoto").files.length;
+            for (var i = 0; i < totalFiles; i++) {
+                var file = document.getElementById("profilphoto").files[i];
+                formData.append("profilphoto", file);
+            }
+            $.ajax({
+                type: "POST",
+                url: '/Customer/ProfilPhotoUpload',
+                data: formData,
+                dataType: 'json',
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    $("img#profilephoto").attr("src", "/Uploads/" + response);
+                    $("#uploadvalidate").fadeIn();
+                    $('#uploadvalidate').delay(5000).fadeOut();
+                }
+            });
+        }
+        function DeletePhoto() {
+            $.ajax({
+                type: "GET",
+                url: '/Customer/ProfilPhotoDelete',
+                dataType: 'json',
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    $("img#profilephoto").attr("src", "/Uploads/" + response);
+                    $("#uploadvalidate").fadeIn();
+                    $('#uploadvalidate').delay(5000).fadeOut();
+                }
+            });
+        }
+    </script>
+}

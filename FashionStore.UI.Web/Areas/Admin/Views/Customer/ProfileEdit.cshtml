@@ -1,0 +1,90 @@
+﻿
+@{
+    ViewBag.Title = "Profil";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+@model FashionStore.Entity.Entities.CustomerPicture
+
+<div class="container-fluid">
+    <div class="row bg-title">
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+            <h4 class="page-title">Profilim</h4>
+        </div>
+        <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+            <ol class="breadcrumb">
+                <li><a href="Admin/Home">Dashboard</a></li>
+                <li class="active">Profilim</li>
+            </ol>
+        </div>
+    </div>
+    <!-- /.row -->
+    <!-- .row -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="white-box">
+                <h2 class="box-title m-b-0">Profil Düzenle</h2>
+                <hr />
+                <div class="tab-pane active" id="settings">
+                    @using (Html.BeginForm("ProfileEdit", "Customer", FormMethod.Post, new { @class = "form-horizontal form-material", @enctype="multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="form-group">
+                            <div class="col-md-9">
+                                <div class="form-group">
+                                    <label class="col-md-12">Ad</label>
+                                    <div class="col-md-12">
+                                        @Html.TextBoxFor(x => x.Customer.Name, new { @class = "form-control form-control-line" })
+                                        @Html.ValidationMessageFor(x => x.Customer.Name)
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12">Soyad</label>
+                                    <div class="col-md-9">
+                                        @Html.TextBoxFor(x => x.Customer.Surname, new { @class = "form-control form-control-line" })
+                                        @Html.ValidationMessageFor(x => x.Customer.Surname)
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="example-email" class="col-md-12">Email</label>
+                                    <div class="col-md-12">
+                                        @Html.TextBoxFor(x => x.Customer.Email, new { id = "example-email", @class = "form-control form-control-line", @type = "email" })
+                                        @Html.ValidationMessageFor(x => x.Customer.Email)
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12">Şifre</label>
+                                    <div class="col-md-12">
+                                        @Html.Password("Customer.Password", null, new { @class = "form-control form-control-line" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="col-md-12"> Profil Resmi</label>
+                                    <div class="product-img">
+                                        <img src="/Uploads/@Model.Picture.PicturePath" alt="@Model.Picture.AltAttribute" title="@Model.Picture.TitleAttribute">
+                                        <div class="pro-img-overlay"> <a href="javascript:void(0)" class="bg-danger"><i class="ti-trash"></i></a></div>
+                                        <div class="fileupload btn btn-info waves-effect waves-light">
+                                            <span><i class="ion-upload m-r-5"></i>Profil Resmi Yükle</span>
+                                            <input type="file" class="upload" name="@Model.Picture.PicturePath">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <button type="submit" class="btn btn-success">Profili Güncelle</button>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.row -->
+</div>
+

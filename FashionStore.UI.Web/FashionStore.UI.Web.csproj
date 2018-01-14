@@ -753,6 +753,7 @@
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\UnityMvcActivator.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\CustomerController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
     <Compile Include="Areas\Admin\Models\LoginModel.cs" />
@@ -839,6 +840,8 @@
     <Content Include="Areas\Admin\Views\Account\Login.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_PartialUserProfile.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_PartialSidebar.cshtml" />
+    <Content Include="Areas\Admin\Views\Customer\List.cshtml" />
+    <Content Include="Areas\Admin\Views\Customer\ProfileEdit.cshtml" />
     <None Include="bundleconfig.json" />
     <None Include="packages.config" />
     <Content Include="Views\Shared\_LayoutHome.cshtml" />

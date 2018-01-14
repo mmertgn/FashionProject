@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Web.Helpers;
 using FashionStore.UI.Web.Areas.Admin.Models;
 using System.Web.Mvc;
@@ -23,7 +24,7 @@ namespace FashionStore.UI.Web.Areas.Admin.Controllers
         {
             if (HttpContext.User.Identity.IsAuthenticated)
             {
-                return Redirect("/admin");
+                return Redirect("/Admin/Home");
             }
             return View();
         }
@@ -34,12 +35,14 @@ namespace FashionStore.UI.Web.Areas.Admin.Controllers
             //string hash = Crypto.Hash(model.Password,algorithm:"md5");
             if (!ModelState.IsValid) return View();
             model.Password = _encryptor.Hash(model.Password);
-            var customer = _unitOfWork.GetRepo<Customer>().Where(x => x.Email == model.Email && x.Password == model.Password).FirstOrDefault();
-            
+            var customer = _unitOfWork.GetRepo<Customer>().Where(x => x.Email == model.Email && x.Password == model.Password && x.CustomerRole.Name != "Üye").FirstOrDefault();
+
             if (customer != null)
             {
                 FormsAuthentication.SetAuthCookie(customer.Email, model.RememberMe);
-                return Redirect("/Admin");
+                customer.LastLoginTime = DateTime.Now;
+                _unitOfWork.Commit();
+                return Redirect("/Admin/Home");
             }
             else
             {
@@ -54,6 +57,6 @@ namespace FashionStore.UI.Web.Areas.Admin.Controllers
             return Redirect("/Admin/Account/Login");
         }
 
-        
+
     }
 }

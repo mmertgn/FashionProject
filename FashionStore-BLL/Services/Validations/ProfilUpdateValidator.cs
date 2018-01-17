@@ -32,18 +32,5 @@ namespace FashionStore_BLL.Services.Validations
             return false;
         }
 
-        //private bool UniqueEmail(string email, int id)
-        //{
-        //    var model = _unitOfWork.GetRepo<Customer>().Where(x => x.Id != id && x.Email == email);
-        //    if (model != null)
-        //    {
-        //        return true;
-        //    }
-
-        //    return false;
-        //    //var dbEmail = _UnitOfWork.GetRepo<CustomerPicture>().Where(x => x.Customer.Email == o).SingleOrDefault();
-
-        //}
-
     }
 }

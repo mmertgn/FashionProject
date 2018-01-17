@@ -40,6 +40,12 @@
                             @ViewBag.FormResult
                         </div>
                     }
+                    if (TempData["isEmailChange"] !=null)
+                    {
+                        <div class="alert alert-danger" role="alert">
+                            @TempData["EmailChange"]
+                        </div>
+                    }
 
                     @Html.AntiForgeryToken()
                     <h3 class="box-title m-b-20">Yönetici Paneli Girişi</h3>

@@ -24,7 +24,20 @@
             <div class="white-box">
                 <h2 class="box-title m-b-0">Profil Düzenle</h2>
                 <a class="btn btn-primary waves-effect waves-light" data-toggle="modal" data-target="#responsive-modal" type="button"><span class="btn-label"><i class="fa fa-question-circle"></i></span>Parola Değiştir</a>
-                @*<div id="responsive-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                <hr />
+                <div>
+                    <div id="validation-result-success" class="alert alert-success" style="display: none"></div>
+                    @if (ViewBag.IsSuccess != null && ViewBag.IsSuccess == true)
+                    {
+                        <div class="alert alert-success">@ViewBag.Message</div>
+                    }
+                    else if (ViewBag.IsSuccess != null && ViewBag.IsSuccess == false)
+                    {
+                        <div class="alert alert-danger">@ViewBag.Message</div>
+                    }
+                </div>
+
+                <div id="responsive-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -37,13 +50,17 @@
                                     @Html.AntiForgeryToken()
                                     <div class="form-group">
                                         <label class="control-label">Parola</label>
-                                        @Html.PasswordFor(x => x.Password,new {@class="form-control"})
-                                        @Html.ValidationMessageFor(x => x.Password)
+                                        @Html.PasswordFor(x => x.PasswordChangeModel.Password, new { @class = "form-control" })
+                                        <div style="color:red;">
+                                            @Html.ValidationMessageFor(x => x.PasswordChangeModel.Password)
+                                        </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="control-label">Parola Tekrar</label>
-                                        @Html.PasswordFor(x => x.PasswordConfirm, new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(x => x.PasswordConfirm)
+                                        @Html.PasswordFor(x => x.PasswordChangeModel.PasswordConfirm, new { @class = "form-control" })
+                                        <div style="color:red;">
+                                            @Html.ValidationMessageFor(x => x.PasswordChangeModel.PasswordConfirm)
+                                        </div>
 
                                     </div>
                                     <div class="modal-footer">
@@ -54,10 +71,9 @@
                             </div>
                         </div>
                     </div>
-                </div>*@
-                <hr />
+                </div>
                 <div class="tab-pane active">
-                    @using (Html.BeginForm("ProfileEdit", "Customer", FormMethod.Post, new { @class = "form-horizontal form-material", @enctype = "multipart/form-data" }))
+                    @using (Html.BeginForm("ProfileEdit", "Customer", FormMethod.Post, new { @class = "form-horizontal form-material", @enctype = "multipart/form-data", @data_toggle = "validator" }))
                     {
                         @Html.AntiForgeryToken()
                         @Html.HiddenFor(x => x.CustomerPicture.Customer.Id)
@@ -67,21 +83,28 @@
                                     <label class="col-md-12">Ad</label>
                                     <div class="col-md-12">
                                         @Html.TextBoxFor(x => x.CustomerPicture.Customer.Name, new { @class = "form-control form-control-line" })
-                                        @Html.ValidationMessageFor(x => x.CustomerPicture.Customer.Name)
+                                        <div style="color:red;">
+                                            @Html.ValidationMessageFor(x => x.CustomerPicture.Customer.Name)
+                                        </div>
+
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-12">Soyad</label>
-                                    <div class="col-md-9">
+                                    <div class="col-md-12">
                                         @Html.TextBoxFor(x => x.CustomerPicture.Customer.Surname, new { @class = "form-control form-control-line" })
-                                        @Html.ValidationMessageFor(x => x.CustomerPicture.Customer.Surname)
+                                        <div style="color:red;">
+                                            @Html.ValidationMessageFor(x => x.CustomerPicture.Customer.Surname)
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-12">Email</label>
                                     <div class="col-md-12">
-                                        @*@Html.TextBoxFor(x => x.CustomerPicture.Customer.Email, new { @class = "form-control form-control-line", @type = "email" })
-                                        @Html.ValidationMessageFor(x => x.CustomerPicture.Customer.Email)*@
+                                        @Html.TextBoxFor(x => x.CustomerPicture.Customer.Email, new { @class = "form-control form-control-line", @type = "email" })
+                                        <div style="color:red;">
+                                            @Html.ValidationMessageFor(x => x.CustomerPicture.Customer.Email)
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -134,8 +157,9 @@
                 processData: false,
                 success: function (response) {
                     $("img#profilephoto").attr("src", "/Uploads/" + response);
-                    $("#uploadvalidate").fadeIn();
-                    $('#uploadvalidate').delay(5000).fadeOut();
+                    $("#validation-result-success").text("Profil resminiz başarıyla güncellendi.");
+                    $("#validation-result-success").fadeIn();
+                    $("#validation-result-success").delay(5000).fadeOut();
                 }
             });
         }
@@ -148,8 +172,9 @@
                 processData: false,
                 success: function (response) {
                     $("img#profilephoto").attr("src", "/Uploads/" + response);
-                    $("#uploadvalidate").fadeIn();
-                    $('#uploadvalidate').delay(5000).fadeOut();
+                    $("#validation-result-success").text("Profil resminiz başarıyla kaldırıldı.");
+                    $("#validation-result-success").fadeIn("slow");
+                    $("#validation-result-success").delay(5000).fadeOut();
                 }
             });
         }

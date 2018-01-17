@@ -12,10 +12,10 @@
         }
         <a href="#" class="dropdown-toggle u-dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">@(Model.Customer.Name + " " + Model.Customer.Surname)<span class="caret"></span></a>
         <ul class="dropdown-menu animated flipInY">
-            <li><a href="/Account/Profile/@Model.CustomerId"><i class="ti-user"></i> Profil</a></li>
-            <li><a href="/Account/MailBox/@Model.CustomerId"><i class="ti-email"></i> Gelen Kutusu</a></li>
+            <li><a href="/Admin/Customer/ProfileEdit"><i class="ti-user"></i> Profil</a></li>
+            <li><a href="/Admin/Account/MailBox/@Model.CustomerId"><i class="ti-email"></i> Gelen Kutusu</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="/Account/Settings/@Model.CustomerId"><i class="ti-settings"></i> Hesap Ayarları</a></li>
+            <li><a href="/Admin/Account/Settings/@Model.CustomerId"><i class="ti-settings"></i> Hesap Ayarları</a></li>
             <li role="separator" class="divider"></li>
             <li><a href="/Admin/Account/Logout"><i class="fa fa-power-off"></i> Çıkış Yap</a></li>
         </ul>

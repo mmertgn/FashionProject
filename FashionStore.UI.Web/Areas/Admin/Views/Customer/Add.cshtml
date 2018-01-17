@@ -1,0 +1,121 @@
+﻿@model FashionStore.Entity.Entities.Customer
+
+@{
+    ViewBag.Title = "Add";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row bg-title">
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+            <h4 class="page-title">Kullanıcı Ekle</h4>
+        </div>
+        <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+            <ol class="breadcrumb">
+                <li><a href="/Admin/Home">Dashboard</a></li>
+                <li><a href="/Admin/Customer/List">Kullanıcı Yönetimi</a></li>
+                <li class="active">Kullanıcı Ekle</li>
+            </ol>
+        </div>
+    </div>
+    <!-- /.row -->
+    <!-- .row -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="white-box">
+                <h2 class="box-title m-b-0">Kullanıcı Ekle</h2>
+                <hr />
+                <div>
+                    <div id="validation-result-success" class="alert alert-success" style="display: none"></div>
+                    @if (ViewBag.IsSuccess != null && ViewBag.IsSuccess == true)
+                    {
+                        <div class="alert alert-success">@ViewBag.Message</div>
+                    }
+                    else if (ViewBag.IsSuccess != null && ViewBag.IsSuccess == false)
+                    {
+                        <div class="alert alert-danger">@ViewBag.Message</div>
+                    }
+                </div>
+
+                <div class="tab-pane active">
+                    @using (Html.BeginForm("Add", "Customer", FormMethod.Post, new { @class = "form-horizontal form-material", @data_toggle = "validator" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="col-md-12">Ad</label>
+                                    <div class="col-md-12">
+                                        @Html.TextBoxFor(x => x.Name, new { @class = "form-control form-control-line" })
+                                        <div style="color:red;">
+                                            @Html.ValidationMessageFor(x => x.Name)
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12">Soyad</label>
+                                    <div class="col-md-12">
+                                        @Html.TextBoxFor(x => x.Surname, new { @class = "form-control form-control-line" })
+                                        <div style="color:red;">
+                                            @Html.ValidationMessageFor(x => x.Surname)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12">Email</label>
+                                    <div class="col-md-12">
+                                        @Html.TextBoxFor(x => x.Email, new { @class = "form-control form-control-line", @type = "email" })
+                                        <div style="color:red;">
+                                            @Html.ValidationMessageFor(x => x.Email)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12">Şifre</label>
+                                    <div class="col-md-12">
+                                        @Html.PasswordFor(x => x.Password, new { @class = "form-control form-control-line" })
+                                        <div style="color:red;">
+                                            @Html.ValidationMessageFor(x => x.Password)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12">Durum</label>
+                                    <div class="col-md-12">
+                                        @Html.DropDownListFor(x=>x.Active,ViewBag.isActive as SelectList,new{@class="form-control"})
+                                        <div style="color:red;">
+                                            @Html.ValidationMessageFor(x => x.Active)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12">Yetki</label>
+                                    <div class="col-md-12">
+                                        @Html.DropDownListFor(x=>x.CustomerRoleId, ViewBag.CustomerRoles as SelectList, new { @class = "form-control" })
+                                        <div style="color:red;">
+                                            @Html.ValidationMessageFor(x => x.CustomerRoleId)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <button type="submit" class="btn btn-success">Kullanıcı Ekle</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.row -->
+</div>
+
+@section scripts
+{
+   
+}
+

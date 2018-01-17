@@ -747,7 +747,7 @@
     <Content Include="AdminTemplate\plugins\images\users\sonu.jpg" />
     <Content Include="AdminTemplate\plugins\images\users\varun.jpg" />
     <Content Include="Global.asax" />
-    <Content Include="Uploads\profilmert.jpg" />
+    <Content Include="Uploads\defaultprofil.jpg" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -760,6 +760,7 @@
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
     <Compile Include="Areas\Admin\Models\LoginModel.cs" />
+    <Compile Include="Areas\Admin\Models\PasswordChangeModel.cs" />
     <Compile Include="Areas\Admin\Models\ProfileEditViewModel.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -846,6 +847,7 @@
     <Content Include="Areas\Admin\Views\Shared\_PartialSidebar.cshtml" />
     <Content Include="Areas\Admin\Views\Customer\List.cshtml" />
     <Content Include="Areas\Admin\Views\Customer\ProfileEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\Customer\Add.cshtml" />
     <None Include="bundleconfig.json" />
     <None Include="packages.config" />
     <Content Include="Views\Shared\_LayoutHome.cshtml" />

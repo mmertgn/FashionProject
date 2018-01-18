@@ -22,7 +22,7 @@ namespace FashionStore_BLL.Services.Validations
 
         private bool UniqueEmail(Customer customer, string email)
         {
-            var model = _unitOfWork.GetRepo<Customer>().Where(x => x.Id != customer.Id && x.Email == email).FirstOrDefault();
+            var model = _unitOfWork.GetRepo<Customer>().Where(x => x.Id != customer.Id && x.Email == email && x.Deleted == false).FirstOrDefault();
 
             if (model == null)
             {

@@ -78,9 +78,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Abstracts\ICustomerPictureService.cs" />
     <Compile Include="Services\Abstracts\IEncryptor.cs" />
+    <Compile Include="Services\Abstracts\IUploadService.cs" />
     <Compile Include="Services\Concretes\CustomerPictureService.cs" />
     <Compile Include="Services\Concretes\Md5HashProvider.cs" />
+    <Compile Include="Services\Concretes\PhotoUploadService.cs" />
+    <Compile Include="Services\Validations\AddressAddValidator.cs" />
     <Compile Include="Services\Validations\CustomerAddValidator.cs" />
+    <Compile Include="Services\Validations\CustomerEditValidator.cs" />
     <Compile Include="Services\Validations\CustomerLoginValidator.cs" />
     <Compile Include="Services\Validations\ProfilUpdateValidator.cs" />
   </ItemGroup>

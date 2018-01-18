@@ -1,0 +1,11 @@
+﻿<div>
+    <div id="validation-result-success" class="alert alert-success" style="display: none"></div>
+    @if (TempData["IsSuccess"] != null && (bool)TempData["IsSuccess"])
+    {
+        <div class="alert alert-success">@TempData["Message"]</div>
+    }
+    else if (TempData["IsSuccess"] != null && (bool)TempData["IsSuccess"] == false)
+    {
+        <div class="alert alert-danger">@TempData["Message"]</div>
+    }
+</div>

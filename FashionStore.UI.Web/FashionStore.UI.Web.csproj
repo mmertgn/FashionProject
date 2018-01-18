@@ -759,6 +759,7 @@
     <Compile Include="Areas\Admin\Controllers\CustomerController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
+    <Compile Include="Areas\Admin\Models\CustomerEditViewModel.cs" />
     <Compile Include="Areas\Admin\Models\LoginModel.cs" />
     <Compile Include="Areas\Admin\Models\PasswordChangeModel.cs" />
     <Compile Include="Areas\Admin\Models\ProfileEditViewModel.cs" />
@@ -848,6 +849,9 @@
     <Content Include="Areas\Admin\Views\Customer\List.cshtml" />
     <Content Include="Areas\Admin\Views\Customer\ProfileEdit.cshtml" />
     <Content Include="Areas\Admin\Views\Customer\Add.cshtml" />
+    <Content Include="Areas\Admin\Views\Customer\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_PartialValidationResult.cshtml" />
+    <Content Include="Areas\Admin\Views\Customer\AddressEdit.cshtml" />
     <None Include="bundleconfig.json" />
     <None Include="packages.config" />
     <Content Include="Views\Shared\_LayoutHome.cshtml" />

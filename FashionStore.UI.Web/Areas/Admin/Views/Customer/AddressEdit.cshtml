@@ -1,0 +1,140 @@
+﻿@model FashionStore.Entity.Entities.Address
+
+@{
+    ViewBag.Title = "AddressEdit";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row bg-title">
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+            <h4 class="page-title">Adres Bilgileri Düzenle - @Model.Customer.Name @Model.Customer.Surname</h4>
+        </div>
+        <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+            <ol class="breadcrumb">
+                <li><a href="Admin/Home">Dashboard</a></li>
+                <li><a href="/Admin/Customer/List">Kullanıcı Yönetimi</a></li>
+                <li><a href="/Admin/Customer/Edit/@Model.Customer.Id">Kullanıcı Düzenle</a></li>
+                <li class="active">Adres Düzenle</li>
+            </ol>
+        </div>
+    </div>
+    <!-- /.row -->
+    <!-- .row -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="white-box">
+                <h2 class="box-title m-b-0">Adres Bilgileri Düzenleme Formu</h2>
+                <hr />
+                @Html.Partial("_PartialValidationResult")
+                <div class="tab-pane active">
+                    @using (Html.BeginForm("AddressEdit", "Customer", FormMethod.Post, new { @class = "form-horizontal form-material", @data_toggle = "validator" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.HiddenFor(x => x.CustomerId)
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="col-md-12">Ad</label>
+                                    <div class="col-md-12">
+                                        @Html.TextBoxFor(x => x.FirstName, new { @class = "form-control form-control-line" })
+                                        <div style="color:red;">
+                                            @Html.ValidationMessageFor(x => x.FirstName)
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12">Soyad</label>
+                                    <div class="col-md-12">
+                                        @Html.TextBoxFor(x => x.LastName, new { @class = "form-control form-control-line" })
+                                        <div style="color:red;">
+                                            @Html.ValidationMessageFor(x => x.LastName)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12">Email</label>
+                                    <div class="col-md-12">
+                                        @Html.TextBoxFor(x => x.Email, new { @class = "form-control form-control-line", @type = "email" })
+                                        <div style="color: red;">
+                                            @Html.ValidationMessageFor(x => x.Email)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-6">
+                                        <label class="col-md-12">Telefon</label>
+                                        <div class="col-md-12">
+                                            @Html.TextBoxFor(x => x.PhoneNumber, new { @class = "form-control form-control-line" })
+                                            <div style="color:red;">
+                                                @Html.ValidationMessageFor(x => x.PhoneNumber)
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="col-md-12">Posta Kodu</label>
+                                        <div class="col-md-12">
+                                            @Html.TextBoxFor(x => x.PostalCode, new { @class = "form-control form-control-line" })
+                                            <div style="color: red;">
+                                                @Html.ValidationMessageFor(x => x.PostalCode)
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-6">
+                                        <label class="col-md-12">İl</label>
+                                        <div class="col-md-12">
+                                            @Html.TextBoxFor(x => x.Town, new { @class = "form-control form-control-line" })
+                                            <div style="color:red;">
+                                                @Html.ValidationMessageFor(x => x.Town)
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="col-md-12">İlçe</label>
+                                        <div class="col-md-12">
+                                            @Html.TextBoxFor(x => x.City, new { @class = "form-control form-control-line" })
+                                            <div style="color: red;">
+                                                @Html.ValidationMessageFor(x => x.City)
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12">Adres</label>
+                                    <div class="col-md-12">
+                                        @Html.TextAreaFor(x => x.Address1, new { @class = "form-control form-control-line" })
+                                        <div style="color: red;">
+                                            @Html.ValidationMessageFor(x => x.Address1)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12">Adres (Devam)</label>
+                                    <div class="col-md-12">
+                                        @Html.TextAreaFor(x => x.Address2, new { @class = "form-control form-control-line" })
+                                        <div style="color: red;">
+                                            @Html.ValidationMessageFor(x => x.Address2)
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <button type="submit" class="btn btn-success">Adresi Güncelle</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.row -->
+</div>
+

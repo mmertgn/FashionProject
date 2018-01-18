@@ -30,21 +30,16 @@ namespace FashionStore.DAL.ORM.EntityFramework.Mappings.Adresses
                 .IsUnicode()
                 .HasMaxLength(50)
                 .HasColumnName("Email");
-
-            Property(u => u.Company)
+            
+            Property(u => u.Town)
                 .IsRequired()
                 .IsUnicode()
-                .HasMaxLength(50)
-                .HasColumnName("Şirket Adı");
-
-            Property(u => u.CountryId)
-                .IsRequired()
-                .HasColumnName("ÜlkeId");
-            Property(u => u.StateId)
-                .IsRequired()
+                .HasMaxLength(30)
                 .HasColumnName("İl");
-            Property(u => u.CityId)
+            Property(u => u.City)
                 .IsRequired()
+                .IsUnicode()
+                .HasMaxLength(30)
                 .HasColumnName("İlçe");
 
             Property(u => u.Address1)

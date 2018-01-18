@@ -52,6 +52,7 @@ namespace FashionStore.UI.Web
             container.RegisterType<IEncryptor, Md5HashProvider>("MD5");
             container.RegisterType<ICustomerPictureService, CustomerPictureService>();
             container.RegisterType<ICustomerRepository, CustomerRepository>();
+            container.RegisterType<IUploadService, PhotoUploadService>("PhotoUpload");
         }
     }
 }

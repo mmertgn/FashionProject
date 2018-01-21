@@ -4,7 +4,10 @@
     ViewBag.Title = "Add";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
-
+@section styles
+{
+    <link href="/AdminTemplate/plugins/bower_components/bootstrap-datepicker/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css">
+}
 <div class="container-fluid">
     <div class="row bg-title">
         <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
@@ -80,10 +83,23 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-12">Doğum Tarihi</label>
+                                    <div class="col-md-4">
+                                        <div class="input-group">
+                                            @Html.TextBoxFor(x => x.DateOfBirth, new { @class = "form-control mydatepicker", @placeholder = "gg/aa/yyyy", Value = DateTime.Now.Date.ToShortDateString() })
+                                            <span class="input-group-addon"><i class="icon-calender"></i></span>
+                                        </div>
+                                        <div style="color: red;">
+                                            @Html.ValidationMessageFor(x => x.DateOfBirth)
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="form-group">
                                     <label class="col-md-12">Durum</label>
                                     <div class="col-md-12">
-                                        @Html.DropDownListFor(x=>x.Active,ViewBag.isActive as SelectList,new{@class="form-control"})
+                                        @Html.DropDownListFor(x => x.Active, ViewBag.isActive as SelectList, new { @class = "form-control" })
                                         <div style="color:red;">
                                             @Html.ValidationMessageFor(x => x.Active)
                                         </div>
@@ -92,7 +108,7 @@
                                 <div class="form-group">
                                     <label class="col-md-12">Yetki</label>
                                     <div class="col-md-12">
-                                        @Html.DropDownListFor(x=>x.CustomerRoleId, ViewBag.CustomerRoles as SelectList, new { @class = "form-control" })
+                                        @Html.DropDownListFor(x => x.CustomerRoleId, ViewBag.CustomerRoles as SelectList, new { @class = "form-control" })
                                         <div style="color:red;">
                                             @Html.ValidationMessageFor(x => x.CustomerRoleId)
                                         </div>
@@ -116,6 +132,44 @@
 
 @section scripts
 {
-   
+    <script src="/AdminTemplate/plugins/bower_components/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+    <script>
+        //Date Picker
+        
+        $.fn.datepicker.dates['tr'] = {
+            days: [ "Pazar","Pazartesi","Salı","Çarşamba","Perşembe","Cuma","Cumartesi" ],
+            daysShort: [ "Pz","Pt","Sa","Ça","Pe","Cu","Ct" ],
+            daysMin: [ "Pz","Pt","Sa","Ça","Pe","Cu","Ct" ],
+            months: [ "Ocak","Şubat","Mart","Nisan","Mayıs","Haziran",
+                "Temmuz","Ağustos","Eylül","Ekim","Kasım","Aralık" ],
+            monthsShort: [ "Oca","Şub","Mar","Nis","May","Haz",
+                "Tem","Ağu","Eyl","Eki","Kas","Ara" ],
+            today: "Bugün",
+            clear: "Temizle",
+            format: "dd/mm/yyyy",
+            titleFormat: "MM yyyy", /* Leverages same syntax as 'format' */
+            weekStart: 1
+        };
+
+        $('.mydatepicker, #datepicker').datepicker({
+            autoclose: true,
+            todayBtn: "linked",
+            language: "tr",
+            todayHighlight: true
+        });
+        jQuery('#datepicker-autoclose').datepicker({
+            autoclose: true,
+            todayHighlight: true
+        });
+
+        jQuery('#date-range').datepicker({
+            toggleActive: true
+        });
+        jQuery('#datepicker-inline').datepicker({
+
+            todayHighlight: true
+        });
+    </script>
+
 }
 

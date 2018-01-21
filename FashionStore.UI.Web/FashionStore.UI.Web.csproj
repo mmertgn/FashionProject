@@ -747,6 +747,7 @@
     <Content Include="AdminTemplate\plugins\images\users\sonu.jpg" />
     <Content Include="AdminTemplate\plugins\images\users\varun.jpg" />
     <Content Include="Global.asax" />
+    <Content Include="Uploads\defaultcategory.png" />
     <Content Include="Uploads\defaultprofil.jpg" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -756,9 +757,12 @@
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\UnityMvcActivator.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\CustomerController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SettingsController.cs" />
+    <Compile Include="Areas\Admin\Models\CustomerDetailViewModel.cs" />
     <Compile Include="Areas\Admin\Models\CustomerEditViewModel.cs" />
     <Compile Include="Areas\Admin\Models\LoginModel.cs" />
     <Compile Include="Areas\Admin\Models\PasswordChangeModel.cs" />
@@ -852,6 +856,14 @@
     <Content Include="Areas\Admin\Views\Customer\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_PartialValidationResult.cshtml" />
     <Content Include="Areas\Admin\Views\Customer\AddressEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\Customer\Detail.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\List.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\Add.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\Detail.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Settings\MenuList.cshtml" />
+    <Content Include="Areas\Admin\Views\Settings\MenuAdd.cshtml" />
+    <Content Include="Areas\Admin\Views\Settings\MenuEdit.cshtml" />
     <None Include="bundleconfig.json" />
     <None Include="packages.config" />
     <Content Include="Views\Shared\_LayoutHome.cshtml" />
@@ -865,6 +877,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="MainSite\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

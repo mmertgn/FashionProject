@@ -3,7 +3,7 @@
     <div class="dropdown user-pro-body">
         @if (@Model.Picture.PicturePath!=null)
         {
-            <div><img src="/Uploads/@Model.Picture.PicturePath" alt="user-img" class="img-circle"></div>
+            <div><img id="profilephoto" src="/Uploads/@Model.Picture.PicturePath" alt="user-img" class="img-circle"></div>
         }
         else
         {

@@ -8,6 +8,7 @@ namespace FashionStore.Entity.Entities
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
+        public string SeoUrl { get; set; }
         public string MetaKeywords { get; set; }
         public string MetaDescription { get; set; }
         public string MetaTitle { get; set; }
@@ -17,7 +18,7 @@ namespace FashionStore.Entity.Entities
         public bool Deleted { get; set; }
         public int DisplayOrder { get; set; }
         public DateTime CreateTime { get; set; }
-        public DateTime UpdateTime { get; set; }
+        public DateTime? UpdateTime { get; set; }
 
         public virtual Category ParentCategory { get; set; }
         public virtual ICollection<Category> ChildCategories { get; set; }

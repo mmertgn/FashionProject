@@ -7,11 +7,11 @@ using FashionStore_BLL.Services.Abstracts;
 
 namespace FashionStore_BLL.Services.Concretes
 {
-    public class CustomerPictureService : IPictureService
+    public class CategoryPictureService : IPictureService
     {
         public string GetDefaultImage()
         {
-            return "defaultprofil.jpg";
+            return "defaultcategory.png";
         }
     }
 }

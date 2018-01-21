@@ -1,19 +1,18 @@
 ﻿
+using FashionStore.Entity.Entities;
+using FashionStore.Repository.Repositories.Abstracts;
+using FashionStore.UI.Web.Areas.Admin.Models;
+using FashionStore.UI.Web.Controllers;
+using FashionStore_BLL.Services.Abstracts;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Web;
-using FashionStore.Repository.Repositories.Abstracts;
-using FashionStore.UI.Web.Controllers;
 using System.Web.Mvc;
-using System.Web.Routing;
 using System.Web.Security;
-using FashionStore.Entity.Entities;
-using FashionStore.UI.Web.Areas.Admin.Models;
-using FashionStore_BLL.Services.Abstracts;
-using FashionStore_BLL.Services.Validations;
-using FluentValidation.Results;
+using FashionStore_BLL.Validations;
+using FashionStore_BLL.Validations.CustomerValidations;
+using FashionStore_BLL.Validations.ProfilValidations;
 using Unity.Attributes;
 
 namespace FashionStore.UI.Web.Areas.Admin.Controllers
@@ -22,12 +21,12 @@ namespace FashionStore.UI.Web.Areas.Admin.Controllers
     public class CustomerController : BaseController
     {
         private readonly IEncryptor _encryptor;
-        private readonly ICustomerPictureService _customerPictureService;
+        private readonly IPictureService _customerPictureService;
         private readonly ICustomerRepository _customerRepository;
         private readonly IUploadService _uploadService;
         public CustomerController(IUnitOfWork unitOfWork,
             [Dependency("MD5")]IEncryptor encryptor,
-            ICustomerPictureService customerPictureService,
+            [Dependency("CustomerPicture")]IPictureService customerPictureService,
             ICustomerRepository customerRepository,
             [Dependency("PhotoUpload")]IUploadService uploadService) : base(unitOfWork)
         {
@@ -133,6 +132,7 @@ namespace FashionStore.UI.Web.Areas.Admin.Controllers
                 modelCustomer.Name = model.Customer.Name;
                 modelCustomer.Surname = model.Customer.Surname;
                 modelCustomer.Email = model.Customer.Email;
+                modelCustomer.DateOfBirth = model.Customer.DateOfBirth;
                 modelCustomer.Active = model.Customer.Active;
                 modelCustomer.CustomerRoleId = model.Customer.CustomerRoleId;
                 _unitOfWork.GetRepo<Customer>().Update(modelCustomer);
@@ -177,6 +177,18 @@ namespace FashionStore.UI.Web.Areas.Admin.Controllers
 
             return RedirectToAction("Edit", new { id = CustomerId });
         }
+        
+        public ActionResult Detail(int id)
+        {
+            var userModel = _unitOfWork.GetRepo<Customer>().Where(x => x.Id == id).FirstOrDefault();
+            var addressModel = _unitOfWork.GetRepo<Address>().Where(x => x.CustomerId == id);
+            var model = new CustomerDetailViewModel()
+            {
+                Customer = userModel,
+                Addresses = addressModel
+            };
+            return View(model);
+        }
 
         [HttpPost,ValidateAntiForgeryToken]
         public ActionResult AddressAdd(CustomerEditViewModel model)
@@ -198,7 +210,6 @@ namespace FashionStore.UI.Web.Areas.Admin.Controllers
 
             return RedirectToAction("Edit", new { id = model.Address.CustomerId });
         }
-
 
         public ActionResult AddressEdit(int id)
         {

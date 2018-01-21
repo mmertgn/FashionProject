@@ -1,0 +1,145 @@
+﻿
+@{
+    ViewBag.Title = "Kategori Ekle";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+@section styles
+{
+    <link href="~/AdminTemplate/plugins/bower_components/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css" rel="stylesheet">
+}
+@model FashionStore.Entity.Entities.Category
+<div class="container-fluid">
+    <div class="row bg-title">
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+            <h4 class="page-title">Kategori Ekle</h4>
+        </div>
+        <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+            <ol class="breadcrumb">
+                <li><a href="/Admin/Home">Dashboard</a></li>
+                <li><a href="/Admin/Category/List">Kategori Yönetimi</a></li>
+                <li class="active">Kategori Ekle</li>
+            </ol>
+        </div>
+    </div>
+    <!-- /.row -->
+    <!-- .row -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="white-box">
+                <h2 class="box-title m-b-0">Kategori Ekle</h2>
+                <hr />
+                @Html.Partial("_PartialValidationResult")
+
+                <div class="tab-pane active">
+                    @using (Html.BeginForm("Add", "Category", FormMethod.Post, new { @class = "form-horizontal form-material", @data_toggle = "validator" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="col-md-12">Kategori Adı</label>
+                                    <div class="col-md-12">
+                                        @Html.TextBoxFor(x => x.Name, new { @class = "form-control form-control-line" })
+                                        <div style="color:red;">
+                                            @Html.ValidationMessageFor(x => x.Name)
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12">Kategori Açıklaması</label>
+                                    <div class="col-md-12">
+                                        @Html.TextBoxFor(x => x.Description, new { @class = "form-control form-control-line" })
+                                        <div style="color:red;">
+                                            @Html.ValidationMessageFor(x => x.Description)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12">Üst Kategori</label>
+                                    <div class="col-md-12">
+                                        @Html.DropDownListFor(x => x.ParentCategoryId, ViewBag.Categories as SelectList, "Kategori Seçiniz.", new { @class = "form-control" })
+                                        <span class="help-block">Üst kategori boş bırakılabilir. Bu durumda kategoriniz 'Üst Kategori' olacaktır.</span>
+                                        <div style="color:red;">
+                                            @Html.ValidationMessageFor(x => x.ParentCategoryId)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12">Seo Keywords</label>
+                                    <div class="col-md-12">
+                                        @Html.TextBoxFor(x => x.MetaKeywords, new { @class = "form-control form-control-line" })
+                                        <div style="color:red;">
+                                            @Html.ValidationMessageFor(x => x.MetaKeywords)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12">Seo Açıklama</label>
+                                    <div class="col-md-12">
+                                        @Html.TextBoxFor(x => x.MetaDescription, new { @class = "form-control form-control-line" })
+                                        <div style="color:red;">
+                                            @Html.ValidationMessageFor(x => x.MetaDescription)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12">Seo Başlık</label>
+                                    <div class="col-md-12">
+                                        @Html.TextBoxFor(x => x.MetaTitle, new { @class = "form-control form-control-line" })
+                                        <div style="color:red;">
+                                            @Html.ValidationMessageFor(x => x.MetaTitle)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12">Anasayfada Görüntülenme Durumu</label>
+                                    <div class="col-md-12">
+                                        @Html.DropDownListFor(x => x.ShowOnHomePage, ViewBag.isActive as SelectList, new { @class = "form-control" })
+                                        <div style="color:red;">
+                                            @Html.ValidationMessageFor(x => x.ShowOnHomePage)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12">Üst Menüde Görüntülenme Durumu</label>
+                                    <div class="col-md-12">
+                                        @Html.DropDownListFor(x => x.ShowOnTopMenu, ViewBag.isActive as SelectList, new { @class = "form-control" })
+                                        <div style="color:red;">
+                                            @Html.ValidationMessageFor(x => x.ShowOnTopMenu)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12">Görüntülenme Sırası</label>
+                                    <div class="col-md-3">
+                                        @Html.TextBoxFor(x => x.DisplayOrder, new { @class = "form-control form-control-line", @data_bts_button_down_class="btn btn-default btn-outline", @data_bts_button_up_class = "btn btn-default btn-outline",id="tch3",Value=1,style="text-align:center;"  })
+                                        <div style="color:red;">
+                                            @Html.ValidationMessageFor(x => x.DisplayOrder)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <button type="submit" class="btn btn-success">Kategori Ekle</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.row -->
+</div>
+@section scripts
+{
+    <script src="~/AdminTemplate/plugins/bower_components/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js" type="text/javascript"></script>
+    <script>
+        //Bootstrap-TouchSpin
+        $("input[id='tch3']").TouchSpin();
+        
+    </script>
+}

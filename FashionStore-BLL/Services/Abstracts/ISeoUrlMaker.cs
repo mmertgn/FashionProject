@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace FashionStore_BLL.Services.Abstracts
 {
-    public interface ICustomerPictureService
+    public interface ISeoUrlMaker
     {
-        string GetDefaultImage();
+        string MakeSlug(string input);
     }
 }

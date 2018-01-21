@@ -1,0 +1,220 @@
+﻿
+@{
+    ViewBag.Title = "Kullanıcı Bilgileri - " + Model.Customer.Name +" "+Model.Customer.Surname;
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+@model FashionStore.UI.Web.Areas.Admin.Models.CustomerDetailViewModel
+<div class="container-fluid">
+    <div class="row bg-title">
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+            <h4 class="page-title">Kullanıcı Bilgileri - @Model.Customer.Name @Model.Customer.Surname</h4>
+        </div>
+        <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+            <ol class="breadcrumb">
+                <li><a href="/Admin/Home">Dashboard</a></li>
+                <li><a href="/Admin/Customer/List">Kullanıcı Yönetimi</a></li>
+                <li class="active">Kullanıcı Detay</li>
+            </ol>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-info">
+                <div class="panel-heading"> Kullanıcı Bilgileri</div>
+                <div class="panel-wrapper collapse in" aria-expanded="true">
+                    <div class="panel-body">
+                        <div class="form-body">
+                            <h3 class="box-title">Kullanıcı</h3>
+                            <hr class="m-t-0 m-b-40">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Ad:</label>
+                                        <div class="col-md-9">
+                                            <p class="form-control-static"> @Model.Customer.Name </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Soyad:</label>
+                                        <div class="col-md-9">
+                                            <p class="form-control-static"> @Model.Customer.Surname </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                            </div>
+                            <!--/row-->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Email:</label>
+                                        <div class="col-md-9">
+                                            <p class="form-control-static"> @Model.Customer.Email </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Doğum Tarihi:</label>
+                                        <div class="col-md-9">
+                                            <p class="form-control-static"> @Model.Customer.DateOfBirth.ToShortDateString() </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                            </div>
+                            <!--/row-->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Yetki:</label>
+                                        <div class="col-md-9">
+                                            <p class="form-control-static"> @Model.Customer.CustomerRole.Name </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Durum:</label>
+                                        <div class="col-md-9">
+                                            <p class="form-control-static"> @Model.Customer.Active </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                            </div>
+                            <!--/row-->
+                            <br />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-warning">
+                <div class="panel-heading"> Kullanıcı Adres Bilgileri</div>
+                <div class="panel-wrapper collapse in" aria-expanded="true">
+                    <div class="panel-body">
+                        <div class="form-body">
+
+                            @{
+                                int count = 0;
+                            }
+                            @foreach (var adres in Model.Addresses)
+                            {
+                                <h3 class="box-title">Kullanıcı Adresleri - @(count = 1 + count)</h3>
+                                <hr class="m-t-0 m-b-40">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3">Ad:</label>
+                                            <div class="col-md-9">
+                                                <p class="form-control-static"> @adres.FirstName </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3">Soyad:</label>
+                                            <div class="col-md-9">
+                                                <p class="form-control-static"> @adres.LastName </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <!--/span-->
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3">Email:</label>
+                                            <div class="col-md-9">
+                                                <p class="form-control-static"> @adres.Email </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3">Telefon:</label>
+                                            <div class="col-md-9">
+                                                <p class="form-control-static"> @adres.PhoneNumber</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!--/span-->
+                                </div>
+                                <!--/row-->
+                                <div class="row">
+                                    <!--/span-->
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3">İl:</label>
+                                            <div class="col-md-9">
+                                                <p class="form-control-static"> @adres.Town </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3">İlçe:</label>
+                                            <div class="col-md-9">
+                                                <p class="form-control-static"> @adres.City </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3">Adres:</label>
+                                            <div class="col-md-9">
+                                                <p class="form-control-static"> @adres.Address1 </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3">Posta Kodu:</label>
+                                            <div class="col-md-9">
+                                                <p class="form-control-static"> @adres.PostalCode </p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3">Adres (Devam):</label>
+                                            <div class="col-md-9">
+                                                <p class="form-control-static"> @adres.Address2 </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br /><br />
+                            }
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+        </div>
+
+    </div>
+</div>

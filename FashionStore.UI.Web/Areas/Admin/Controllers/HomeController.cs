@@ -27,7 +27,7 @@ namespace FashionStore.UI.Web.Areas.Admin.Controllers
         }
         public PartialViewResult Sidebar()
         {
-            var model = _unitOfWork.GetRepo<AdminMenuBar>().Where(x=>x.ParentSidebarId==null).ToList();
+            var model = _unitOfWork.GetRepo<AdminMenuBar>().Where(x=>x.ParentSidebarId==null).OrderBy(x=>x.DisplayOrder).ToList();
             return PartialView("_PartialSidebar",model);
         }
 

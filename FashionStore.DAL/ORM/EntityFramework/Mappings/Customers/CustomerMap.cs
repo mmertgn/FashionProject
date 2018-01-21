@@ -38,6 +38,9 @@ namespace FashionStore.DAL.ORM.EntityFramework.Mappings.Customers
             Property(u => u.Active)
                 .HasColumnName("Durum");
 
+            Property(u => u.DateOfBirth)
+                .HasColumnName("Doğum Tarihi");
+
             Property(u => u.Deleted)
                 .HasColumnName("SilindiMi");
 

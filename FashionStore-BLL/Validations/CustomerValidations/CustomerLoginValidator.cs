@@ -1,7 +1,7 @@
 ﻿using FashionStore.Entity.Entities;
 using FluentValidation;
 
-namespace FashionStore_BLL.Services.Validations
+namespace FashionStore_BLL.Validations.CustomerValidations
 {
     public class CustomerLoginValidator : AbstractValidator<Customer>
     {

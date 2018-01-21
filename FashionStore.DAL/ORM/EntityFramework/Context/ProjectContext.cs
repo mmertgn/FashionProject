@@ -46,6 +46,7 @@ namespace FashionStore.DAL.ORM.EntityFramework.Context
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+        
             #region Mapping
             modelBuilder.Configurations.Add(new CustomerMap());
             modelBuilder.Configurations.Add(new CustomerRoleMap());

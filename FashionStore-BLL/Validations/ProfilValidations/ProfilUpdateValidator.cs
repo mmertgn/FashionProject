@@ -3,7 +3,7 @@ using FashionStore.Entity.Entities;
 using FashionStore.Repository.Repositories.Abstracts;
 using FluentValidation;
 
-namespace FashionStore_BLL.Services.Validations
+namespace FashionStore_BLL.Validations.ProfilValidations
 {
     public class ProfilUpdateValidator : AbstractValidator<Customer>
     {

@@ -1,0 +1,175 @@
+﻿
+@{
+    ViewBag.Title = "Kategori Detay";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+@model FashionStore.Entity.Entities.CategoryPicture
+<div class="container-fluid">
+    <div class="row bg-title">
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+            @if (Model.Category.ParentCategoryId != null)
+            {
+                <h4 class="page-title">Kategori Bilgileri - @Model.Category.ParentCategory.Name >> @Model.Category.Name</h4>
+            }
+            else
+            {
+                <h4 class="page-title">Kategori Bilgileri - @Model.Category.Name</h4>
+            }
+        </div>
+        <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+            <ol class="breadcrumb">
+                <li><a href="/Admin/Home">Dashboard</a></li>
+                <li><a href="/Admin/Category/List">Kategori Yönetimi</a></li>
+                <li class="active">Kategori Detay</li>
+            </ol>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-info">
+                <div class="panel-heading"> Kategori Bilgileri</div>
+                <div class="panel-wrapper collapse in" aria-expanded="true">
+                    <div class="panel-body">
+                        <div class="form-body">
+                            <h3 class="box-title">Kategori</h3>
+                            <hr class="m-t-0 m-b-40">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Kategori Resmi:</label>
+                                        <div class="col-md-9">
+                                            <img style="max-height: 250px; max-width: 250px;" class="img-responsive" src="/Uploads/@Model.Picture.PicturePath" alt="@Model.Picture.AltAttribute" title="@Model.Picture.TitleAttribute" id="categoryphoto">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Kategori Ad:</label>
+                                        <div class="col-md-9">
+                                            <p class="form-control-static"> @Model.Category.Name </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Üst Kategorisi:</label>
+                                        <div class="col-md-9">
+                                            @if (Model.Category.ParentCategoryId != null)
+                                            {
+                                                <p class="form-control-static"> @Model.Category.ParentCategory.Name </p>
+                                            }
+                                            else
+                                            {
+                                                <p class="form-control-static">
+                                                    <b> - </b>
+                                                </p>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                            </div>
+                            <!--/row-->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Açıklama:</label>
+                                        <div class="col-md-9">
+                                            <p class="form-control-static"> @Model.Category.Description </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Seo Başlık:</label>
+                                        <div class="col-md-9">
+                                            <p class="form-control-static"> @Model.Category.MetaTitle </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                            </div>
+                            <!--/row-->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Seo Açıklama:</label>
+                                        <div class="col-md-9">
+                                            <p class="form-control-static"> @Model.Category.MetaDescription </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Seo Kelimeler:</label>
+                                        <div class="col-md-9">
+                                            <p class="form-control-static"> @Model.Category.MetaKeywords </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Anasayfada Gösterim Durumu:</label>
+                                        <div class="col-md-9">
+                                            <p class="form-control-static"> @Model.Category.ShowOnHomePage </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Üst Menüde Gösterim Durumu:</label>
+                                        <div class="col-md-9">
+                                            <p class="form-control-static"> @Model.Category.ShowOnTopMenu </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Oluşturulma Tarihi:</label>
+                                        <div class="col-md-9">
+                                            <p class="form-control-static"> @Model.Category.CreateTime </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Son Güncellenme Tarihi:</label>
+                                        <div class="col-md-9">
+                                            @if (@Model.Category.UpdateTime == null)
+                                            {
+                                                <b> - </b>
+                                            }
+                                            else
+                                            {
+                                                <p class="form-control-static"> @Model.Category.UpdateTime </p>
+                                            }
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                            </div>
+                            <!--/row-->
+                            <br />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

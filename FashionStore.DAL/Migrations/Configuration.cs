@@ -10,7 +10,7 @@ namespace FashionStore.DAL.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
-            AutomaticMigrationDataLossAllowed = true;
+            //AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(FashionStore.DAL.ORM.EntityFramework.Context.ProjectContext context)

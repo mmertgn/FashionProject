@@ -1,4 +1,6 @@
-﻿using FashionStore.Entity.Entities;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity.Infrastructure.Annotations;
+using FashionStore.Entity.Entities;
 using System.Data.Entity.ModelConfiguration;
 
 namespace FashionStore.DAL.ORM.EntityFramework.Mappings.Categories
@@ -17,12 +19,16 @@ namespace FashionStore.DAL.ORM.EntityFramework.Mappings.Categories
                 .IsRequired()
                 .IsUnicode()
                 .HasMaxLength(75)
-                .HasColumnName("Ürün Adı");
+                .HasColumnName("Kategori Adı");
 
             Property(x => x.Description)
                 .IsRequired()
                 .IsUnicode()
                 .HasColumnName("Açıklama");
+            Property(x => x.SeoUrl)
+                .IsRequired()
+                .IsUnicode()
+                .HasColumnName("Seo Link");
 
             Property(x => x.MetaKeywords)
                 .IsOptional()
@@ -40,8 +46,8 @@ namespace FashionStore.DAL.ORM.EntityFramework.Mappings.Categories
                 .HasColumnName("Seo Başlık");
 
             Property(x => x.ParentCategoryId)
-                            .IsOptional()
-                            .HasColumnName("ÜstKategoriId");
+                .IsOptional()
+                .HasColumnName("ÜstKategoriId");
 
             Property(x => x.ShowOnHomePage)
                 .HasColumnName("AnasayfadaGöster");

@@ -1,0 +1,292 @@
+﻿@model FashionStore.UI.Web.Areas.Admin.Models.ProductViewModel
+@section styles
+{
+    <link href="~/AdminTemplate/plugins/bower_components/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css" rel="stylesheet">
+    <link href="~/AdminTemplate/plugins/bower_components/summernote/dist/summernote.css" rel="stylesheet" />
+    <link href="~/AdminTemplate/plugins/bower_components/dropzone-master/dist/dropzone.css" rel="stylesheet" type="text/css" />
+}
+@{
+    ViewBag.Title = "Ürün Düzenle";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row bg-title">
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+            <h4 class="page-title">Ürün Ekle</h4>
+        </div>
+        <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+            <ol class="breadcrumb">
+                <li><a href="/Admin/Home">Dashboard</a></li>
+                <li><a href="/Admin/Product/List">Ürün Yönetimi</a></li>
+                <li class="active">Ürün Ekle</li>
+            </ol>
+        </div>
+    </div>
+    <!-- /.row -->
+    <!-- .row -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="white-box">
+                <h2 class="box-title m-b-0">Ürün Ekle</h2>
+                <hr />
+                @Html.Partial("_PartialValidationResult")
+
+                <div class="tab-pane active">
+                    @using (Html.BeginForm("Add", "Product", FormMethod.Post, new { @class = "form-horizontal form-material", @data_toggle = "validator", enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="col-md-12">Ürün Adı</label>
+                                    <div class="col-md-9">
+                                        @Html.TextBoxFor(x => x.Product.Name, new { @class = "form-control form-control-line" })
+                                        <div style="color:red;">
+                                            @Html.ValidationMessageFor(x => x.Product.Name)
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-7">
+                                        <div class="form-group">
+                                            <label class="col-md-12">Üst Kategori</label>
+                                            <div class="col-md-12">
+                                                @Html.DropDownListFor(x => x.Product.CategoryId, ViewBag.Categories as SelectList, "Kategori Seçiniz.", new { @class = "form-control" })
+                                                <div style="color:red;">
+                                                    @Html.ValidationMessageFor(x => x.Product.CategoryId)
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-12">Alt Kategori</label>
+                                            <div class="col-md-12">
+                                                @Html.TextBoxFor(x => x.Product.CategoryId, new { @class = "form-control form-control-line" })
+                                                <span class="help-block">Alt kategori boş bırakılabilir. Bu durumda kategoriniz 'Üst Kategori' olacaktır.</span>
+                                                <div style="color:red;">
+                                                    @Html.ValidationMessageFor(x => x.Product.CategoryId)
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-12">Stok Miktarı</label>
+                                            <div class="col-md-6">
+                                                @Html.TextBoxFor(x => x.Product.StockQuantity, new { @class = "form-control form-control-line", @data_bts_button_down_class = "btn btn-default btn-outline", @data_bts_button_up_class = "btn btn-default btn-outline", id = "tchstok", Value = 1, style = "text-align:center;" })
+                                                <div style="color:red;">
+                                                    @Html.ValidationMessageFor(x => x.Product.StockQuantity)
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-6">
+                                                <label class="col-md-12">Fiyat</label>
+                                                <div class="col-md-12">
+                                                    @Html.TextBoxFor(x => x.Product.Price, new { @class = "form-control form-control-line" })
+                                                    <div style="color:red;">
+                                                        @Html.ValidationMessageFor(x => x.Product.Price)
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="col-md-12">Eski Fiyat</label>
+                                                <div class="col-md-12">
+                                                    @Html.TextBoxFor(x => x.Product.OldPrice, new { @class = "form-control form-control-line" })
+                                                    <div style="color:red;">
+                                                        @Html.ValidationMessageFor(x => x.Product.OldPrice)
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="white-box">
+                                            <h3 class="box-title m-b-0">Ürün Resimlerini Yükle </h3>
+                                            <p class="text-muted m-b-30"> Birden fazla resim seçebilirsiniz.</p>
+                                            <div class="fallback">
+                                                <input name="PostedPictures" type="file" multiple />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12">Kısa Açıklama</label>
+                                    <div class="col-md-6">
+                                        @Html.TextAreaFor(x => x.Product.ShortDescription, new { @class = "form-control form-control-line" })
+                                        <div style="color:red;">
+                                            @Html.ValidationMessageFor(x => x.Product.ShortDescription)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12 box-title">Uzun Açıklama</label>
+                                    <div class="col-md-9">
+                                        @Html.TextAreaFor(x => x.Product.FullDescription, new { @class = "summernote" })
+                                        <div style="color: red;">
+                                            @Html.ValidationMessageFor(x => x.Product.FullDescription)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12">Yönetici Yorumu</label>
+                                    <div class="col-md-9">
+                                        @Html.TextBoxFor(x => x.Product.AdminComment, new { @class = "form-control form-control-line" })
+                                        <div style="color:red;">
+                                            @Html.ValidationMessageFor(x => x.Product.AdminComment)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12">SEO Kelimeler</label>
+                                    <div class="col-md-9">
+                                        @Html.TextBoxFor(x => x.Product.MetaKeywords, new { @class = "form-control form-control-line" })
+                                        <div style="color:red;">
+                                            @Html.ValidationMessageFor(x => x.Product.MetaKeywords)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12">SEO Başlık</label>
+                                    <div class="col-md-9">
+                                        @Html.TextBoxFor(x => x.Product.MetaTitle, new { @class = "form-control form-control-line" })
+                                        <div style="color:red;">
+                                            @Html.ValidationMessageFor(x => x.Product.MetaTitle)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12">SEO Açıklama</label>
+                                    <div class="col-md-9">
+                                        @Html.TextAreaFor(x => x.Product.MetaKeywords, new { @class = "form-control form-control-line" })
+                                        <div style="color:red;">
+                                            @Html.ValidationMessageFor(x => x.Product.MetaDescription)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-2">
+                                        <label class="col-md-12">Min. Sipariş Miktarı</label>
+                                        <div class="col-md-12">
+                                            @Html.TextBoxFor(x => x.Product.OrderMinimumQuantity, new { @class = "form-control form-control-line", @data_bts_button_down_class = "btn btn-default btn-outline", @data_bts_button_up_class = "btn btn-default btn-outline", id = "tchminstok", Value = 1, style = "text-align:center;" })
+                                            <div style="color:red;">
+                                                @Html.ValidationMessageFor(x => x.Product.OrderMinimumQuantity)
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label class="col-md-12">Max. Sipariş Miktarı</label>
+                                        <div class="col-md-12">
+                                            @Html.TextBoxFor(x => x.Product.OrderMaximumQuantit, new { @class = "form-control form-control-line", @data_bts_button_down_class = "btn btn-default btn-outline", @data_bts_button_up_class = "btn btn-default btn-outline", id = "tchmaxstok", Value = 10, style = "text-align:center;" })
+                                            <div style="color:red;">
+                                                @Html.ValidationMessageFor(x => x.Product.OrderMaximumQuantit)
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label class="col-md-12">Görüntülenme Sırası</label>
+                                        <div class="col-md-12">
+                                            @Html.TextBoxFor(x => x.Product.DisplayOrder, new { @class = "form-control form-control-line", @data_bts_button_down_class = "btn btn-default btn-outline", @data_bts_button_up_class = "btn btn-default btn-outline", id = "tch3", Value = 1, style = "text-align:center;" })
+                                            <div style="color:red;">
+                                                @Html.ValidationMessageFor(x => x.Product.DisplayOrder)
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="checkbox checkbox-primary" id="chck1">
+                                    <input id="checkbox1" type="checkbox" name="ProductViewModel.Product.MarkAsNew" value=@Model.Product.Active.ToString().ToLower() checked=@Model.Product.Active.ToString().ToLower()>
+                                    <label for="checkbox1"> Ürün Erişim Durumu </label>
+                                </div>
+                                <div class="checkbox checkbox-primary" id="chck2">
+                                    <input id="checkbox2" type="checkbox" name="ProductViewModel.Product.ShowOnHomePage" value=@Model.Product.ShowOnHomePage.ToString().ToLower() checked=@Model.Product.ShowOnHomePage.ToString().ToLower()>
+                                    <label for="checkbox2"> Anasayfada Gösterim Durumu </label>
+                                </div>
+                                <div class="checkbox checkbox-primary" id="chck3">
+                                    <input id="checkbox3" type="checkbox" name="ProductViewModel.Product.IsFeaturedProduct" value=@Model.Product.IsFeaturedProduct.ToString().ToLower() checked=@Model.Product.IsFeaturedProduct.ToString().ToLower()>
+                                    <label for="checkbox3"> Öne Çıkarılan Ürün Durumu </label>
+                                </div>
+                                <div class="checkbox checkbox-primary" id="chck4">
+                                    <input id="checkbox4" type="checkbox" name="ProductViewModel.Product.MarkAsNew" value=@Model.Product.MarkAsNew.ToString().ToLower() checked=@Model.Product.MarkAsNew.ToString().ToLower()>
+                                    <label for="checkbox4"> Yeni Ürün Olarak İşaretle </label>
+                                </div>
+                                <br />
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <button type="submit" class="btn btn-success">Ürün Ekle</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.row -->
+</div>
+@section scripts
+{
+    <script src="~/AdminTemplate/plugins/bower_components/summernote/dist/summernote.min.js"></script>
+    <script src="~/AdminTemplate/plugins/bower_components/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js" type="text/javascript"></script>
+    <script src="~/AdminTemplate/plugins/bower_components/dropzone-master/dist/dropzone.js"></script>
+    <script>
+        //Bootstrap-TouchSpin
+        $("input[id='tch3']").TouchSpin();
+        $("input[id='tchstok']").TouchSpin();
+        $("input[id='tchminstok']").TouchSpin();
+        $("input[id='tchmaxstok']").TouchSpin();
+
+        jQuery(document).ready(function () {
+
+            $('.summernote').summernote({
+                height: 350, // set editor height
+                minHeight: null, // set minimum height of editor
+                maxHeight: null, // set maximum height of editor
+                focus: false // set focus to editable area after initializing summernote
+            });
+
+            $('.inline-editor').summernote({
+                airMode: true
+            });
+
+        });
+
+        window.edit = function () {
+            $(".click2edit").summernote()
+        },
+            window.save = function () {
+                $(".click2edit").summernote('destroy');
+            }
+
+        $('#chck1 input[type="checkbox"]').change(function () {
+            if ($(this).is(":checked")) {
+                $(this).val('true');
+            } else {
+                $(this).val('false');
+            }
+        });
+        $('#chck2 input[type="checkbox"]').change(function () {
+            if ($(this).is(":checked")) {
+                $(this).val('true');
+            } else {
+                $(this).val('false');
+            }
+        });
+        $('#chck3 input[type="checkbox"]').change(function () {
+            if ($(this).is(":checked")) {
+                $(this).val('true');
+            } else {
+                $(this).val('false');
+            }
+        });
+        $('#chck4 input[type="checkbox"]').change(function () {
+            if ($(this).is(":checked")) {
+                $(this).val('true');
+            } else {
+                $(this).val('false');
+            }
+        });
+    </script>
+}
+

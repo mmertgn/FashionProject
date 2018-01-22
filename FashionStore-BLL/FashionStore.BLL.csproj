@@ -84,6 +84,7 @@
     <Compile Include="Services\Concretes\CustomerPictureService.cs" />
     <Compile Include="Services\Concretes\Md5HashProvider.cs" />
     <Compile Include="Services\Concretes\PhotoUploadService.cs" />
+    <Compile Include="Services\Concretes\ProductPictureService.cs" />
     <Compile Include="Services\Concretes\SeoUrlMaker.cs" />
     <Compile Include="Validations\CategoryValidations\CategoryAddValidator.cs" />
     <Compile Include="Validations\CategoryValidations\CategoryUpdateValidator.cs" />
@@ -91,9 +92,13 @@
     <Compile Include="Validations\CustomerValidations\CustomerAddValidator.cs" />
     <Compile Include="Validations\CustomerValidations\CustomerEditValidator.cs" />
     <Compile Include="Validations\CustomerValidations\CustomerLoginValidator.cs" />
+    <Compile Include="Validations\ProductValidations\ProductAddValidator.cs" />
     <Compile Include="Validations\ProfilValidations\ProfilUpdateValidator.cs" />
     <Compile Include="Validations\SettingValidations\AdminMenuAddValidator.cs" />
     <Compile Include="Validations\SettingValidations\AdminMenuUpdateValidator.cs" />
+    <Compile Include="Validations\SettingValidations\EmailAccountValidator.cs" />
+    <Compile Include="Validations\SettingValidations\GeneralSettingsValidator.cs" />
+    <Compile Include="Validations\SettingValidations\SocialMediaSettingsValidator.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

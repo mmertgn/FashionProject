@@ -1,0 +1,206 @@
+﻿@model FashionStore.Entity.Entities.Setting
+
+@{
+    ViewBag.Title = "GeneralSettingsEdit";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+@section styles
+{
+    <link href="~/AdminTemplate/plugins/bower_components/summernote/dist/summernote.css" rel="stylesheet" />
+}
+<div class="container-fluid">
+    <div class="row bg-title">
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+            <h4 class="page-title">Site Ayarları</h4>
+        </div>
+        <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+            <ol class="breadcrumb">
+                <li><a href="/Admin/Home">Dashboard</a></li>
+                <li class="active">Site Ayarları</li>
+            </ol>
+        </div>
+    </div>
+    <!-- /.row -->
+    <!-- .row -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="white-box">
+                <h2 class="box-title m-b-0">Site Ayarları</h2>
+                <hr />
+                @Html.Partial("_PartialValidationResult")
+                <div class="tab-pane active">
+                    @using (Html.BeginForm("GeneralSettingsEdit", "Settings", FormMethod.Post, new { @class = "form-horizontal form-material", @data_toggle = "validator" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.HiddenFor(x => x.Id)
+
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="col-md-12">Şirket Adı</label>
+                                    <div class="col-md-12">
+                                        @Html.TextBoxFor(x => x.CompanyName, new { @class = "form-control form-control-line" })
+                                        <div style="color: red;">
+                                            @Html.ValidationMessageFor(x => x.CompanyName)
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12">SEO Başlık</label>
+                                    <div class="col-md-12">
+                                        @Html.TextBoxFor(x => x.MetaTitle, new { @class = "form-control form-control-line" })
+                                        <div style="color: red;">
+                                            @Html.ValidationMessageFor(x => x.MetaTitle)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12">SEO Açıklama</label>
+                                    <div class="col-md-12">
+                                        @Html.TextAreaFor(x => x.MetaDescription, new { @class = "form-control form-control-line" })
+                                        <div style="color: red;">
+                                            @Html.ValidationMessageFor(x => x.MetaDescription)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12">Adres</label>
+                                    <div class="col-md-12">
+                                        @Html.TextBoxFor(x => x.Address, new { @class = "form-control form-control-line" })
+                                        <div style="color: red;">
+                                            @Html.ValidationMessageFor(x => x.Address)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12">Şehir</label>
+                                    <div class="col-md-12">
+                                        @Html.TextBoxFor(x => x.Town, new { @class = "form-control form-control-line" })
+                                        <div style="color: red;">
+                                            @Html.ValidationMessageFor(x => x.Town)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12">İlçe</label>
+                                    <div class="col-md-12">
+                                        @Html.TextBoxFor(x => x.City, new { @class = "form-control form-control-line" })
+                                        <div style="color: red;">
+                                            @Html.ValidationMessageFor(x => x.City)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12">Telefon</label>
+                                    <div class="col-md-12">
+                                        @Html.TextBoxFor(x => x.PhoneNumber, new { @class = "form-control form-control-line" })
+                                        <div style="color: red;">
+                                            @Html.ValidationMessageFor(x => x.PhoneNumber)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12">Fax</label>
+                                    <div class="col-md-12">
+                                        @Html.TextBoxFor(x => x.FaxNumber, new { @class = "form-control form-control-line" })
+                                        <div style="color: red;">
+                                            @Html.ValidationMessageFor(x => x.FaxNumber)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12">Harita Kordinat (X)</label>
+                                    <div class="col-md-12">
+                                        @Html.TextBoxFor(x => x.MapXCoordinate, new { @class = "form-control form-control-line" })
+                                        <div style="color: red;">
+                                            @Html.ValidationMessageFor(x => x.MapXCoordinate)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12">Harita Kordinat (Y)</label>
+                                    <div class="col-md-12">
+                                        @Html.TextBoxFor(x => x.MapYCoordinate, new { @class = "form-control form-control-line" })
+                                        <div style="color: red;">
+                                            @Html.ValidationMessageFor(x => x.MapYCoordinate)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="box-title">Hakkımızda</label>
+                                    <div class="col-md-12">
+                                        @Html.TextAreaFor(x => x.AboutUs, new { @class = "summernote" })
+                                        <div style="color: red;">
+                                            @Html.ValidationMessageFor(x => x.AboutUs)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="box-title">Gizlilik Sözleşmesi</label>
+                                    <div class="col-md-12">
+                                        @Html.TextAreaFor(x => x.ConfidentialityAgreement, new { @class = "summernote" })
+                                        <div style="color: red;">
+                                            @Html.ValidationMessageFor(x => x.ConfidentialityAgreement)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="box-title">Satış Sözleşmesi</label>
+                                    <div class="col-md-12">
+                                        @Html.TextAreaFor(x => x.SalesContract, new { @class = "summernote" })
+                                        <div style="color: red;">
+                                            @Html.ValidationMessageFor(x => x.SalesContract)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="box-title">Şartlar Sözleşmesi</label>
+                                    <div class="col-md-12">
+                                        @Html.TextAreaFor(x => x.TermsAgreement, new { @class = "summernote" })
+                                        <div style="color: red;">
+                                            @Html.ValidationMessageFor(x => x.TermsAgreement)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <button type="submit" class="btn btn-success">Site Ayarları Güncelle</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script src="~/AdminTemplate/plugins/bower_components/summernote/dist/summernote.min.js"></script>
+    <script>
+        jQuery(document).ready(function () {
+
+            $('.summernote').summernote({
+                height: 350, // set editor height
+                minHeight: null, // set minimum height of editor
+                maxHeight: null, // set maximum height of editor
+                focus: false // set focus to editable area after initializing summernote
+            });
+
+            $('.inline-editor').summernote({
+                airMode: true
+            });
+
+        });
+
+        window.edit = function () {
+            $(".click2edit").summernote()
+        },
+            window.save = function () {
+                $(".click2edit").summernote('destroy');
+            }
+    </script>
+}

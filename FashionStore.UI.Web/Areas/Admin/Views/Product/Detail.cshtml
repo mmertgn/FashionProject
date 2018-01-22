@@ -1,0 +1,379 @@
+﻿@model FashionStore.UI.Web.Areas.Admin.Models.ProductViewModel
+
+@{
+    ViewBag.Title = "Ürün Bilgisi - " + Model.Product.Name;
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+@section styles
+{
+    <link rel="stylesheet" type="text/css" href="/AdminTemplate/plugins/bower_components/gallery/css/animated-masonry-gallery.css" />
+    <link rel="stylesheet" type="text/css" href="/AdminTemplate/plugins/bower_components/fancybox/ekko-lightbox.min.css" />
+}
+<div class="container-fluid">
+    <div class="row bg-title">
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+            <h4 class="page-title">Ürün Bilgileri - @Model.Product.Name</h4>
+        </div>
+        <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+            <ol class="breadcrumb">
+                <li><a href="/Admin/Home">Dashboard</a></li>
+                <li><a href="/Admin/Product/List">Ürün Yönetimi</a></li>
+                <li class="active">Ürün Detay</li>
+            </ol>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-warning">
+                <div class="panel-heading">Ürün GALERİSİ</div>
+                <div class="panel-wrapper collapse in" aria-expanded="true">
+                    <div class="panel-body">
+                        <div id="gallery">
+                            <div id="gallery-content">
+                                <div id="gallery-content-center">
+                                    @foreach (var picture in Model.ProductPictures)
+                                    {
+                                        <a href="/Uploads/@picture.Picture.PicturePath" data-toggle="lightbox" data-gallery="multiimages" data-title="@picture.Picture.TitleAttribute"><img src="/Uploads/@picture.Picture.PicturePath" alt="@picture.Picture.AltAttribute" class="all" /> </a>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-info">
+                <div class="panel-heading"> Ürün BİLGİLERİ</div>
+                <div class="panel-wrapper collapse in" aria-expanded="true">
+                    <div class="panel-body">
+                        <div class="form-body">
+                            <h3 class="box-title">Ürün</h3>
+                            <hr class="m-t-0 m-b-40">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Ürün Adı:</label>
+                                        <div class="col-md-9">
+                                            <p class="form-control-static"> @Model.Product.Name </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Ürün Kategorisi:</label>
+                                        <div class="col-md-9">
+                                            <p class="form-control-static"> @Model.Product.Category.Name </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                            </div>
+                            <!--/row-->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Kısa Açıklama:</label>
+                                        <div class="col-md-9">
+                                            <p class="form-control-static"> @Model.Product.ShortDescription </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Uzun Açıklama:</label>
+                                        <div class="col-md-9">
+                                            <p class="form-control-static"> @Model.Product.FullDescription </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                            </div>
+                            <!--/row-->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Yönetici Yorumu:</label>
+                                        <div class="col-md-9">
+                                            <p class="form-control-static"> @Model.Product.AdminComment </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">SEO Kelimeler:</label>
+                                        <div class="col-md-9">
+                                            <p class="form-control-static"> @Model.Product.MetaKeywords </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                            </div>
+                            <!--/row-->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">SEO Açıklama:</label>
+                                        <div class="col-md-9">
+                                            <p class="form-control-static"> @Model.Product.MetaDescription </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">SEO Başlık:</label>
+                                        <div class="col-md-9">
+                                            <p class="form-control-static"> @Model.Product.MetaTitle </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                            </div>
+                            <!--/row-->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Stok Miktarı:</label>
+                                        <div class="col-md-9">
+                                            <p class="form-control-static"> @Model.Product.StockQuantity </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Anasayfada Gösterim Durumu:</label>
+                                        <div class="col-md-9">
+                                            @{ var a = Model.Product.ShowOnHomePage ? "Aktif" : "İnaktif";}
+                                            <p class="form-control-static"> @a </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                            </div>
+                            <!--/row-->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Fiyat:</label>
+                                        <div class="col-md-9">
+                                            <p class="form-control-static"> @Model.Product.Price₺ </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Eski Fiyat:</label>
+                                        <div class="col-md-9">
+                                            <p class="form-control-static"> @Model.Product.OldPrice₺ </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                            </div>
+                            <!--/row-->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Min. Sipariş Miktarı:</label>
+                                        <div class="col-md-9">
+                                            <p class="form-control-static"> @Model.Product.OrderMinimumQuantity </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Max. Sipariş Miktarı:</label>
+                                        <div class="col-md-9">
+                                            <p class="form-control-static"> @Model.Product.OrderMaximumQuantit </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                            </div>
+                            <!--/row-->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Öne Çıkarılan Ürün Durumu:</label>
+                                        <div class="col-md-9">
+                                            @{ var b = Model.Product.IsFeaturedProduct ? "Aktif" : "İnaktif";}
+                                            <p class="form-control-static"> @b </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Yeni Ürün Olarak İşaretle:</label>
+                                        <div class="col-md-9">
+                                            @{ var c = Model.Product.IsFeaturedProduct ? "Aktif" : "İnaktif";}
+                                            <p class="form-control-static"> @c </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                            </div>
+                            <!--/row-->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Yeni Ürün Başlangıç Saati:</label>
+                                        <div class="col-md-9">
+                                            <p class="form-control-static"> @Model.Product.MarkAsNewStartTime </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Yeni Ürün Bitiş Saati:</label>
+                                        <div class="col-md-9">
+                                            <p class="form-control-static"> @Model.Product.MarkAsNewEndTime </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                            </div>
+                            <!--/row-->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Satış Aktif Başlangıç Saati:</label>
+                                        <div class="col-md-9">
+                                            <p class="form-control-static"> @Model.Product.AvailableStartDateTime </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Satış Aktif Bitiş Saati:</label>
+                                        <div class="col-md-9">
+                                            <p class="form-control-static"> @Model.Product.AvailableEndDateTime </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                            </div>
+                            <!--/row-->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Ürün Erişim Durumu:</label>
+                                        <div class="col-md-9">
+                                            @{ var c1 = Model.Product.Active ? "Aktif" : "İnaktif";}
+                                            <p class="form-control-static"> @c1 </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Görüntülenme Sırası:</label>
+                                        <div class="col-md-9">
+                                            <p class="form-control-static"> @Model.Product.DisplayOrder </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                            </div>
+                            <!--/row-->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Oluşturulma Tarihi:</label>
+                                        <div class="col-md-9">
+                                            <p class="form-control-static"> @Model.Product.CreateTime </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Son Güncelleme Tarihi:</label>
+                                        <div class="col-md-9">
+                                            <p class="form-control-static"> @Model.Product.UpdateTime </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                            </div>
+                            <!--/row-->
+                            <br />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+@section scripts
+{<!--Wave Effects -->
+    <script type="text/javascript" src="/AdminTemplate/plugins/bower_components/gallery/js/animated-masonry-gallery.js"></script>
+    <script type="text/javascript" src="/AdminTemplate/plugins/bower_components/gallery/js/jquery.isotope.min.js"></script>
+    <script type="text/javascript" src="/AdminTemplate/plugins/bower_components/fancybox/ekko-lightbox.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function ($) {
+            // delegate calls to data-toggle="lightbox"
+            $(document).delegate('*[data-toggle="lightbox"]:not([data-gallery="navigateTo"])', 'click', function (event) {
+                event.preventDefault();
+                return $(this).ekkoLightbox({
+                    onShown: function () {
+                        if (window.console) {
+                            return console.log('Checking our the events huh?');
+                        }
+                    },
+                    onNavigate: function (direction, itemIndex) {
+                        if (window.console) {
+                            return console.log('Navigating ' + direction + '. Current item: ' + itemIndex);
+                        }
+                    }
+                });
+            });
+
+            //Programatically call
+            $('#open-image').click(function (e) {
+                e.preventDefault();
+                $(this).ekkoLightbox();
+            });
+            $('#open-youtube').click(function (e) {
+                e.preventDefault();
+                $(this).ekkoLightbox();
+            });
+
+            // navigateTo
+            $(document).delegate('*[data-gallery="navigateTo"]', 'click', function (event) {
+                event.preventDefault();
+
+                var lb;
+                return $(this).ekkoLightbox({
+                    onShown: function () {
+
+                        lb = this;
+
+                        $(lb.modal_content).on('click', '.modal-footer a', function (e) {
+
+                            e.preventDefault();
+                            lb.navigateTo(2);
+
+                        });
+
+                    }
+                });
+            });
+
+
+        });
+    </script>}

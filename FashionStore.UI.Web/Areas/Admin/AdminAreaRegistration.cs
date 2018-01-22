@@ -8,6 +8,14 @@ namespace FashionStore.UI.Web.Areas.Admin
 
         public override void RegisterArea(AreaRegistrationContext context) 
         {
+
+            context.MapRoute(
+                "Admin_product",
+                "Admin/Product/{action}/{SeoUrl}",
+                new { controller = "Product", action = "List", id = UrlParameter.Optional },
+                new[] { "FashionStore.UI.Web.Areas.Admin.Controllers" }
+            );
+
             context.MapRoute(
                 "Admin_category",
                 "Admin/Category/{action}/{SeoUrl}",

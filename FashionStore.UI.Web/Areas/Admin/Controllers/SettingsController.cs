@@ -16,6 +16,137 @@ namespace FashionStore.UI.Web.Areas.Admin.Controllers
         {
         }
 
+        #region SosyalMedyaİşlemleri
+        public ActionResult SocialMediaSettings()
+        {
+            var settingModel = _unitOfWork.GetRepo<Setting>().GetAll().FirstOrDefault();
+            return View(settingModel ?? new Setting());
+        }
+        [HttpPost, ValidateAntiForgeryToken]
+        public ActionResult SocialMediaSettings(Setting model)
+        {
+            var validator = new SocialMediaSettingsValidator().Validate(model);
+            if (validator.IsValid)
+            {
+                var settingModel = _unitOfWork.GetRepo<Setting>().GetAll().FirstOrDefault();
+                if (settingModel != null)
+                {
+                    settingModel.FacebookUrl = model.FacebookUrl;
+                    settingModel.GoogleUrl = model.GoogleUrl;
+                    settingModel.InstagramUrl = model.InstagramUrl;
+                    settingModel.PinterestUrl = model.PinterestUrl;
+                    settingModel.TwitterUrl = model.TwitterUrl;
+                    _unitOfWork.GetRepo<Setting>().Update(settingModel);
+                }
+                else
+                {
+                    _unitOfWork.GetRepo<Setting>().Add(model);
+                }
+            }
+            var isSuccess = _unitOfWork.Commit();
+            TempData["IsSuccess"] = isSuccess;
+            validator.Errors.ToList().ForEach(a =>
+            {
+                ModelState.AddModelError(a.PropertyName, a.ErrorMessage);
+            });
+            TempData["ModelState"] = ModelState;
+            TempData["Message"] = isSuccess ? "Sosyal medya ayarları güncelleme işlemi başarılı bir şekilde gerçekleştirildi." : "Sosyal medya ayarları güncelleme işlemi gerçekleştirilemedi lütfen tekrar deneyiniz.";
+
+            return RedirectToAction("SocialMediaSettings");
+        }
+        #endregion
+        #region GenelAyarlar
+        public ActionResult GeneralSettingsEdit()
+        {
+            var settingModel = _unitOfWork.GetRepo<Setting>().GetAll().FirstOrDefault();
+            return View(settingModel ?? new Setting());
+        }
+        [HttpPost, ValidateAntiForgeryToken]
+        [ValidateInput(false)]
+        public ActionResult GeneralSettingsEdit(Setting model)
+        {
+            var validator = new GeneralSettingsValidator().Validate(model);
+            if (validator.IsValid)
+            {
+                var settingModel = _unitOfWork.GetRepo<Setting>().GetAll().FirstOrDefault();
+                if (settingModel != null)
+                {
+                    settingModel.Id = model.Id;
+                    settingModel.CompanyName = model.CompanyName;
+                    settingModel.MetaTitle = model.MetaTitle;
+                    settingModel.MetaDescription = model.MetaDescription;
+                    settingModel.Address = model.Address;
+                    settingModel.Town = model.Town;
+                    settingModel.City = model.City;
+                    settingModel.PhoneNumber = model.PhoneNumber;
+                    settingModel.FaxNumber = model.FaxNumber;
+                    settingModel.MapXCoordinate = model.MapXCoordinate;
+                    settingModel.MapYCoordinate = model.MapYCoordinate;
+                    settingModel.AboutUs = model.AboutUs;
+                    settingModel.ConfidentialityAgreement = model.ConfidentialityAgreement;
+                    settingModel.TermsAgreement = model.TermsAgreement;
+                    settingModel.SalesContract = model.SalesContract;
+                    _unitOfWork.GetRepo<Setting>().Update(settingModel);
+                }
+                else
+                {
+                    _unitOfWork.GetRepo<Setting>().Add(model);
+                }
+            }
+            var isSuccess = _unitOfWork.Commit();
+            TempData["IsSuccess"] = isSuccess;
+            validator.Errors.ToList().ForEach(a =>
+            {
+                ModelState.AddModelError(a.PropertyName, a.ErrorMessage);
+            });
+            TempData["ModelState"] = ModelState;
+            TempData["Message"] = isSuccess ? "Site ayarları güncelleme işlemi başarılı bir şekilde gerçekleştirildi." : "Site ayarları güncelleme işlemi gerçekleştirilemedi lütfen tekrar deneyiniz.";
+
+            return RedirectToAction("GeneralSettingsEdit");
+        } 
+        #endregion
+        #region Emailİşlemleri
+        public ActionResult EmailEdit()
+        {
+            var emailModel = _unitOfWork.GetRepo<EmailAccount>().GetAll().FirstOrDefault();
+            return View(emailModel ?? new EmailAccount());
+        }
+        [HttpPost, ValidateAntiForgeryToken]
+        public ActionResult EmailEdit(EmailAccount model)
+        {
+            var validator = new EmailAccountValidator().Validate(model);
+            if (validator.IsValid)
+            {
+                var emailModel = _unitOfWork.GetRepo<EmailAccount>().GetAll().FirstOrDefault();
+                if (emailModel != null)
+                {
+                    emailModel.Id = model.Id;
+                    emailModel.Email = model.Email;
+                    emailModel.EnableSsl = model.EnableSsl;
+                    emailModel.Host = model.Host;
+                    emailModel.Password = model.Password;
+                    emailModel.Port = model.Port;
+                    emailModel.UseDefaultCredentials = model.UseDefaultCredentials;
+                    _unitOfWork.GetRepo<EmailAccount>().Update(emailModel);
+                }
+                else
+                {
+                    _unitOfWork.GetRepo<EmailAccount>().Add(model);
+                }
+            }
+            var isSuccess = _unitOfWork.Commit();
+            TempData["IsSuccess"] = isSuccess;
+            validator.Errors.ToList().ForEach(a =>
+            {
+                ModelState.AddModelError(a.PropertyName, a.ErrorMessage);
+            });
+            TempData["ModelState"] = ModelState;
+            TempData["Message"] = isSuccess ? "Email güncelleme işlemi başarılı bir şekilde gerçekleştirildi." : "Email güncelleme işlemi gerçekleştirilemedi lütfen tekrar deneyiniz.";
+
+            return RedirectToAction("EmailEdit");
+        }
+        #endregion
+        #region Menu İşlemleri
         public ActionResult MenuList()
         {
             var model = _unitOfWork.GetRepo<AdminMenuBar>().GetAll().OrderBy(x => x.ParentSidebarId).ToList();
@@ -87,5 +218,6 @@ namespace FashionStore.UI.Web.Areas.Admin.Controllers
             TempData["Message"] = isSuccess ? "Menü silme işlemi başarılı bir şekilde gerçekleştirildi." : "Menü silme işlemi gerçekleştirilemedi lütfen tekrar deneyiniz.";
             return RedirectToAction("MenuList");
         }
+        #endregion
     }
 }

@@ -1,0 +1,94 @@
+﻿@model FashionStore.Entity.Entities.Setting
+
+@{
+    ViewBag.Title = "SocialMediaSettings";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="container-fluid">
+<div class="row bg-title">
+    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+        <h4 class="page-title">Sosyal Medya Ayarları</h4>
+    </div>
+    <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+        <ol class="breadcrumb">
+            <li><a href="/Admin/Home">Dashboard</a></li>
+            <li class="active">Sosyal Medya Ayarları</li>
+        </ol>
+    </div>
+</div>
+<!-- /.row -->
+<!-- .row -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="white-box">
+            <h2 class="box-title m-b-0">Sosyal Medya Ayarları</h2>
+            <hr />
+            @Html.Partial("_PartialValidationResult")
+            <div class="tab-pane active">
+                @using (Html.BeginForm("SocialMediaSettings", "Settings", FormMethod.Post, new { @class = "form-horizontal form-material", @data_toggle = "validator" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(x => x.Id)
+
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="col-md-12">Facebook URL</label>
+                                <div class="col-md-12">
+                                    @Html.TextBoxFor(x => x.FacebookUrl, new { @class = "form-control form-control-line" })
+                                    <div style="color: red;">
+                                        @Html.ValidationMessageFor(x => x.CompanyName)
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-12">Instagram URL</label>
+                                <div class="col-md-12">
+                                    @Html.TextBoxFor(x => x.InstagramUrl, new { @class = "form-control form-control-line" })
+                                    <div style="color: red;">
+                                        @Html.ValidationMessageFor(x => x.InstagramUrl)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-12">Twitter URL</label>
+                                <div class="col-md-12">
+                                    @Html.TextAreaFor(x => x.TwitterUrl, new { @class = "form-control form-control-line" })
+                                    <div style="color: red;">
+                                        @Html.ValidationMessageFor(x => x.TwitterUrl)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-12">Google URL</label>
+                                <div class="col-md-12">
+                                    @Html.TextBoxFor(x => x.GoogleUrl, new { @class = "form-control form-control-line" })
+                                    <div style="color: red;">
+                                        @Html.ValidationMessageFor(x => x.GoogleUrl)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-12">Pinterest URL</label>
+                                <div class="col-md-12">
+                                    @Html.TextBoxFor(x => x.PinterestUrl, new { @class = "form-control form-control-line" })
+                                    <div style="color: red;">
+                                        @Html.ValidationMessageFor(x => x.PinterestUrl)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <button type="submit" class="btn btn-success">Site Ayarları Güncelle</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+</div>

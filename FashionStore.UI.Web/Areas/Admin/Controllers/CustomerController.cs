@@ -1,18 +1,16 @@
-﻿
-using FashionStore.Entity.Entities;
+﻿using FashionStore.Entity.Entities;
 using FashionStore.Repository.Repositories.Abstracts;
 using FashionStore.UI.Web.Areas.Admin.Models;
 using FashionStore.UI.Web.Controllers;
 using FashionStore_BLL.Services.Abstracts;
+using FashionStore_BLL.Validations.CustomerValidations;
+using FashionStore_BLL.Validations.ProfilValidations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
-using FashionStore_BLL.Validations;
-using FashionStore_BLL.Validations.CustomerValidations;
-using FashionStore_BLL.Validations.ProfilValidations;
 using Unity.Attributes;
 
 namespace FashionStore.UI.Web.Areas.Admin.Controllers

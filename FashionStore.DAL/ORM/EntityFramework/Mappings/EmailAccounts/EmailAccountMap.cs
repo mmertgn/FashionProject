@@ -24,7 +24,7 @@ namespace FashionStore.DAL.ORM.EntityFramework.Mappings.EmailAccounts
                 .IsRequired();
             Property(x => x.Username)
                 .HasColumnName("Kullanıcı Adı")
-                .IsRequired()
+                .IsOptional()
                 .IsUnicode();
             Property(x => x.Password)
                 .HasColumnName("Parola")

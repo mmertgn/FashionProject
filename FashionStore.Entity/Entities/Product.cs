@@ -12,6 +12,7 @@ namespace FashionStore.Entity.Entities
         public string FullDescription { get; set; }
         public string AdminComment { get; set; }
         public bool ShowOnHomePage { get; set; }
+        public string SeoUrl { get; set; }
         public string MetaKeywords { get; set; }
         public string MetaDescription { get; set; }
         public string MetaTitle { get; set; }

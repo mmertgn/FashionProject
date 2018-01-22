@@ -761,11 +761,13 @@
     <Compile Include="Areas\Admin\Controllers\CustomerController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
     <Compile Include="Areas\Admin\Controllers\SettingsController.cs" />
     <Compile Include="Areas\Admin\Models\CustomerDetailViewModel.cs" />
     <Compile Include="Areas\Admin\Models\CustomerEditViewModel.cs" />
     <Compile Include="Areas\Admin\Models\LoginModel.cs" />
     <Compile Include="Areas\Admin\Models\PasswordChangeModel.cs" />
+    <Compile Include="Areas\Admin\Models\ProductViewModel.cs" />
     <Compile Include="Areas\Admin\Models\ProfileEditViewModel.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -864,6 +866,13 @@
     <Content Include="Areas\Admin\Views\Settings\MenuList.cshtml" />
     <Content Include="Areas\Admin\Views\Settings\MenuAdd.cshtml" />
     <Content Include="Areas\Admin\Views\Settings\MenuEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\Settings\EmailEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\Settings\GeneralSettingsEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\Settings\SocialMediaSettings.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\List.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\Detail.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\Add.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\Edit.cshtml" />
     <None Include="bundleconfig.json" />
     <None Include="packages.config" />
     <Content Include="Views\Shared\_LayoutHome.cshtml" />

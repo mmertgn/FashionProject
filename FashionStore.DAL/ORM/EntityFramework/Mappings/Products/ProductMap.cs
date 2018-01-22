@@ -40,7 +40,10 @@ namespace FashionStore.DAL.ORM.EntityFramework.Mappings.Products
 
             Property(x => x.ShowOnHomePage)
                 .HasColumnName("AnasayfadaGöster");
-
+            Property(x => x.SeoUrl)
+                .IsRequired()
+                .IsUnicode()
+                .HasColumnName("Seo Link");
             Property(x => x.MetaKeywords)
                 .IsOptional()
                 .IsUnicode()

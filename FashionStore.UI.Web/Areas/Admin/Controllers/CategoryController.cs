@@ -12,6 +12,7 @@ using Unity.Attributes;
 
 namespace FashionStore.UI.Web.Areas.Admin.Controllers
 {
+    [Authorize]
     public class CategoryController : BaseController
     {
         private readonly ISeoUrlMaker _seoUrlMaker;
@@ -47,7 +48,7 @@ namespace FashionStore.UI.Web.Areas.Admin.Controllers
             if (TempData["ModelState"] != null && !ModelState.Equals(TempData["ModelState"]))
                 ModelState.Merge((ModelStateDictionary)TempData["ModelState"]);
 
-            var categories = _unitOfWork.GetRepo<Category>().GetAll();
+            var categories = _unitOfWork.GetRepo<Category>().Where(x => x.ParentCategoryId == null);
             ViewBag.Categories = new SelectList(categories, "Id", "Name");
 
             ViewBag.isActive = new SelectList(isActiveList, "Deger", "Name");
@@ -59,7 +60,8 @@ namespace FashionStore.UI.Web.Areas.Admin.Controllers
             var validator = new CategoryAddValidator(_unitOfWork).Validate(model);
             if (validator.IsValid)
             {
-                model.SeoUrl = model.ParentCategoryId == null ? _seoUrlMaker.MakeSlug(model.Name) : _seoUrlMaker.MakeSlug(_unitOfWork.GetRepo<Category>().Where(x => x.ParentCategoryId == model.ParentCategoryId).Select(x => x.Name).FirstOrDefault() + "-" + model.Name);
+                var parentCat = _unitOfWork.GetRepo<Category>().GetObject(x => x.Id == model.ParentCategoryId);
+                model.SeoUrl = model.ParentCategoryId == null ? _seoUrlMaker.MakeSlug(model.Name) : _seoUrlMaker.MakeSlug(parentCat.Name + "-" + model.Name);
                 model.CreateTime = DateTime.Now;
                 _unitOfWork.GetRepo<Category>().Add(model);
                 var defaultPicture = _categoryPictureService.GetDefaultImage();

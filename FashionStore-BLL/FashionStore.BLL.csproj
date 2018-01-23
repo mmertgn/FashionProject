@@ -93,6 +93,7 @@
     <Compile Include="Validations\CustomerValidations\CustomerEditValidator.cs" />
     <Compile Include="Validations\CustomerValidations\CustomerLoginValidator.cs" />
     <Compile Include="Validations\ProductValidations\ProductAddValidator.cs" />
+    <Compile Include="Validations\ProductValidations\ProductUpdateValidator.cs" />
     <Compile Include="Validations\ProfilValidations\ProfilUpdateValidator.cs" />
     <Compile Include="Validations\SettingValidations\AdminMenuAddValidator.cs" />
     <Compile Include="Validations\SettingValidations\AdminMenuUpdateValidator.cs" />

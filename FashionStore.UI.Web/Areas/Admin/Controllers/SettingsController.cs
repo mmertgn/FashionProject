@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using FashionStore.Entity.Entities;
+﻿using FashionStore.Entity.Entities;
 using FashionStore.Repository.Repositories.Abstracts;
 using FashionStore.UI.Web.Controllers;
 using FashionStore_BLL.Validations.SettingValidations;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace FashionStore.UI.Web.Areas.Admin.Controllers
 {
+    [Authorize]
     public class SettingsController : BaseController
     {
         public SettingsController(IUnitOfWork unitOfWork) : base(unitOfWork)

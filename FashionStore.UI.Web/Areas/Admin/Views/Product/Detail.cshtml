@@ -74,27 +74,7 @@
                                 </div>
                                 <!--/span-->
                             </div>
-                            <!--/row-->
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="control-label col-md-3">Kısa Açıklama:</label>
-                                        <div class="col-md-9">
-                                            <p class="form-control-static"> @Model.Product.ShortDescription </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--/span-->
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="control-label col-md-3">Uzun Açıklama:</label>
-                                        <div class="col-md-9">
-                                            <p class="form-control-static"> @Model.Product.FullDescription </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--/span-->
-                            </div>
+
                             <!--/row-->
                             <div class="row">
                                 <div class="col-md-6">
@@ -249,27 +229,6 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label col-md-3">Satış Aktif Başlangıç Saati:</label>
-                                        <div class="col-md-9">
-                                            <p class="form-control-static"> @Model.Product.AvailableStartDateTime </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--/span-->
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="control-label col-md-3">Satış Aktif Bitiş Saati:</label>
-                                        <div class="col-md-9">
-                                            <p class="form-control-static"> @Model.Product.AvailableEndDateTime </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--/span-->
-                            </div>
-                            <!--/row-->
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
                                         <label class="control-label col-md-3">Ürün Erişim Durumu:</label>
                                         <div class="col-md-9">
                                             @{ var c1 = Model.Product.Active ? "Aktif" : "İnaktif";}
@@ -310,6 +269,27 @@
                                 <!--/span-->
                             </div>
                             <!--/row-->
+                            <!--/row-->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Kısa Açıklama:</label>
+                                        <div class="col-md-9">
+                                            <p class="form-control-static"> @Model.Product.ShortDescription </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Uzun Açıklama:</label>
+                                        <div class="col-md-9">
+                                            <p class="form-control-static" id="fulldescp">@Html.Raw(Model.Product.FullDescription)</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                            </div>
                             <br />
                         </div>
                     </div>

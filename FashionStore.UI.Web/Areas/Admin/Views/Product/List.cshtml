@@ -61,7 +61,7 @@
                             <tr>
                                 <td>@product.DisplayOrder</td>
                                 <td>@product.Name</td>
-                                <td>@product.Category.Name</td>
+                                <td>@product.Category.ParentCategory.Name >> @product.Category.Name</td>
                                 <td>@product.StockQuantity</td>
                                 <td>@product.Price₺</td>
                                 @if (product.Active)
@@ -76,7 +76,7 @@
                                     <td>@product.CreateTime.ToShortDateString()</td>
                                 <td style="text-align: center;">
                                     <a href="/Admin/Product/Detail/@product.SeoUrl" class="btn btn-warning btn-rounded waves-effect waves-light btn-sm" type="button"><span class="btn-label"><i class="fa fa-info"></i></span>Detay</a>
-                                    <a href="/Admin/Category/Edit/@product.SeoUrl" class="btn btn-primary btn-rounded waves-effect waves-light btn-sm" type="button"><span class="btn-label"><i class="fa fa-edit"></i></span>Düzenle</a>
+                                    <a href="/Admin/Product/Edit/@product.SeoUrl" class="btn btn-primary btn-rounded waves-effect waves-light btn-sm" type="button"><span class="btn-label"><i class="fa fa-edit"></i></span>Düzenle</a>
                                 </td>
                             </tr>
                         }

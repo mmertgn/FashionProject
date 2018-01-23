@@ -1,13 +1,12 @@
-﻿using System;
-using System.Linq;
-using System.Web.Helpers;
-using FashionStore.UI.Web.Areas.Admin.Models;
-using System.Web.Mvc;
-using System.Web.Security;
-using FashionStore.Entity.Entities;
+﻿using FashionStore.Entity.Entities;
 using FashionStore.Repository.Repositories.Abstracts;
+using FashionStore.UI.Web.Areas.Admin.Models;
 using FashionStore.UI.Web.Controllers;
 using FashionStore_BLL.Services.Abstracts;
+using System;
+using System.Linq;
+using System.Web.Mvc;
+using System.Web.Security;
 using Unity.Attributes;
 
 namespace FashionStore.UI.Web.Areas.Admin.Controllers

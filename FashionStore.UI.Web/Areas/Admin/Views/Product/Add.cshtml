@@ -31,7 +31,6 @@
                 <h2 class="box-title m-b-0">Ürün Ekle</h2>
                 <hr />
                 @Html.Partial("_PartialValidationResult")
-
                 <div class="tab-pane active">
                     @using (Html.BeginForm("Add", "Product", FormMethod.Post, new { @class = "form-horizontal form-material", @data_toggle = "validator", enctype = "multipart/form-data" }))
                     {
@@ -48,23 +47,18 @@
 
                                     </div>
                                 </div>
-
                                 <div class="form-group">
                                     <div class="col-md-7">
                                         <div class="form-group">
                                             <label class="col-md-12">Üst Kategori</label>
                                             <div class="col-md-12">
-                                                @Html.DropDownListFor(x => x.Product.CategoryId, ViewBag.Categories as SelectList, "Kategori Seçiniz.", new { @class = "form-control",onchange="GetCategories()",id="ParentCat" })
-                                                <div style="color:red;">
-                                                    @Html.ValidationMessageFor(x => x.Product.CategoryId)
-                                                </div>
+                                                @Html.DropDownList("CatId", ViewBag.Categories as SelectList, "Kategori Seçiniz.", new { @class = "form-control", onchange = "GetCategories()", id = "ParentCat" })
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-md-12">Alt Kategori</label>
                                             <div class="col-md-12">
-                                                @Html.DropDownListFor(x => x.Product.CategoryId,new SelectList(""),"Alt Kategori Seçiniz", new { @class = "form-control form-control-line" })
-                                                <span class="help-block">Alt kategori boş bırakılabilir. Bu durumda kategoriniz 'Üst Kategori' olacaktır.</span>
+                                                @Html.DropDownListFor(x => x.Product.CategoryId, new SelectList(""), "Alt Kategori Seçiniz", new { @class = "form-control form-control-line" })
                                                 <div style="color:red;">
                                                     @Html.ValidationMessageFor(x => x.Product.CategoryId)
                                                 </div>
@@ -237,6 +231,8 @@
         $("input[id='tchminstok']").TouchSpin();
         $("input[id='tchmaxstok']").TouchSpin();
 
+
+
         jQuery(document).ready(function () {
 
             $('.summernote').summernote({
@@ -293,7 +289,7 @@
             var dat = $('#ParentCat').val();
             $.ajax({
                 type: "GET",
-                url: '/Product/GetCategories?ParentCatId='+dat,
+                url: '/Product/GetCategories?ParentCatId=' + dat,
                 dataType: 'json',
                 contentType: false,
                 processData: false,
@@ -303,9 +299,9 @@
                 success: function (catList) {
                     $('#Product_CategoryId').find("option:eq(0)").html("Alt Kategori Seçiniz");
                     $.each(catList, function (i, item) {
-                        $('#Product_CategoryId').append($('<option>', { 
+                        $('#Product_CategoryId').append($('<option>', {
                             value: item.Id,
-                            text : item.Name 
+                            text: item.Name
                         }));
                     });
                     console.log(catList);

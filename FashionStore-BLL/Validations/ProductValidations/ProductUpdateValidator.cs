@@ -1,14 +1,15 @@
-﻿using FashionStore.Entity.Entities;
+﻿using System.Linq;
+using FashionStore.Entity.Entities;
 using FashionStore.Repository.Repositories.Abstracts;
 using FluentValidation;
-using System.Linq;
 
 namespace FashionStore_BLL.Validations.ProductValidations
 {
-    public class ProductAddValidator : AbstractValidator<Product>
+    public class ProductUpdateValidator : AbstractValidator<Product>
     {
         private readonly IUnitOfWork _unitOfWork;
-        public ProductAddValidator(IUnitOfWork unitOfWork)
+
+        public ProductUpdateValidator(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
             RuleFor(x => x.Name)
@@ -35,10 +36,13 @@ namespace FashionStore_BLL.Validations.ProductValidations
             RuleFor(x => x.DisplayOrder)
                 .NotNull().WithMessage("Görüntülenme Sırası alanı boş geçilemez.")
                 .GreaterThanOrEqualTo(1).WithMessage("Görüntülenme Sırası 1'den küçük olamaz.");
+            RuleFor(x => x.MarkAsNewEndTime)
+                .GreaterThan(x => x.MarkAsNewStartTime)
+                .WithMessage("Bitiş tarihi, başlagıç tarihinden sonra olmak zorundadır.");
         }
         private bool UniqueNameCheck(Product product, string name)
         {
-            var data = _unitOfWork.GetRepo<Product>().Where(x => x.Name == name && x.Deleted == false).FirstOrDefault();
+            var data = _unitOfWork.GetRepo<Product>().Where(x => x.Name == name && x.Id != product.Id && x.Deleted == false).FirstOrDefault();
 
             if (data == null)
             {

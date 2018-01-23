@@ -25,8 +25,6 @@ namespace FashionStore.Entity.Entities
         public bool MarkAsNew { get; set; }
         public DateTime? MarkAsNewStartTime { get; set; }
         public DateTime? MarkAsNewEndTime { get; set; }
-        public DateTime? AvailableStartDateTime { get; set; }
-        public DateTime? AvailableEndDateTime { get; set; }
         public bool Active { get; set; }
         public bool Deleted { get; set; }
         public int DisplayOrder { get; set; }

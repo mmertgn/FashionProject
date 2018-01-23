@@ -95,14 +95,6 @@ namespace FashionStore.DAL.ORM.EntityFramework.Mappings.Products
             Property(x => x.MarkAsNewEndTime)
                 .IsOptional()
                 .HasColumnName("YeniÜrünBitiş");
-
-            Property(x => x.AvailableStartDateTime)
-                .IsOptional()
-                .HasColumnName("ErişimAçılmaSaati");
-            Property(x => x.AvailableEndDateTime)
-                .IsOptional()
-                .HasColumnName("ErişimeKapanmaSaati");
-
             Property(x => x.Active)
                 .HasColumnName("ErişimDurumu");
 

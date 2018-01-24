@@ -30,6 +30,7 @@ namespace FashionStore.UI.Web.Areas.Admin.Controllers
 
         public ActionResult List()
         {
+
             var model = _unitOfWork.GetRepo<Category>().GetAll().Where(x => x.Deleted == false);
             return View(model);
         }

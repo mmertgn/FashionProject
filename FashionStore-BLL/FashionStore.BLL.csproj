@@ -92,7 +92,9 @@
     <Compile Include="Validations\CustomerValidations\CustomerAddValidator.cs" />
     <Compile Include="Validations\CustomerValidations\CustomerEditValidator.cs" />
     <Compile Include="Validations\CustomerValidations\CustomerLoginValidator.cs" />
+    <Compile Include="Validations\FaqValidations\FaqAddValidator.cs" />
     <Compile Include="Validations\ProductValidations\ProductAddValidator.cs" />
+    <Compile Include="Validations\ProductValidations\ProductReviewUpdateValidator.cs" />
     <Compile Include="Validations\ProductValidations\ProductUpdateValidator.cs" />
     <Compile Include="Validations\ProfilValidations\ProfilUpdateValidator.cs" />
     <Compile Include="Validations\SettingValidations\AdminMenuAddValidator.cs" />
@@ -100,6 +102,8 @@
     <Compile Include="Validations\SettingValidations\EmailAccountValidator.cs" />
     <Compile Include="Validations\SettingValidations\GeneralSettingsValidator.cs" />
     <Compile Include="Validations\SettingValidations\SocialMediaSettingsValidator.cs" />
+    <Compile Include="Validations\SliderValidations\SliderAddValidator.cs" />
+    <Compile Include="Validations\SliderValidations\SliderUpdateValidator.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

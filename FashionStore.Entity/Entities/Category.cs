@@ -24,5 +24,7 @@ namespace FashionStore.Entity.Entities
         public virtual ICollection<Category> ChildCategories { get; set; }
         public virtual ICollection<Product> Products { get; set; }
         public virtual ICollection<CategoryPicture> CategoryPictures { get; set; }
+        public virtual ICollection<Slider> Sliders { get; set; }
+
     }
 }

@@ -13,6 +13,9 @@ using FashionStore.DAL.ORM.EntityFramework.Mappings.ShoppingCarts;
 using FashionStore.Entity.Entities;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
+using FashionStore.DAL.ORM.EntityFramework.Mappings;
+using FashionStore.DAL.ORM.EntityFramework.Mappings.Contents;
+using FashionStore.DAL.ORM.EntityFramework.Mappings.Sliders;
 
 namespace FashionStore.DAL.ORM.EntityFramework.Context
 {
@@ -42,6 +45,9 @@ namespace FashionStore.DAL.ORM.EntityFramework.Context
         public DbSet<Log> Logs { get; set; }
         public DbSet<CustomerPicture> CustomerPictures { get; set; } 
         public DbSet<AdminMenuBar> AdminMenuBars { get; set; }
+        public DbSet<Slider> Sliders { get; set; }
+        public DbSet<SliderPicture> SliderPictures { get; set; }
+        public DbSet<FrequantlyQuestion> Questions { get; set; }
         #endregion
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -67,6 +73,9 @@ namespace FashionStore.DAL.ORM.EntityFramework.Context
             modelBuilder.Configurations.Add(new LogMap());
             modelBuilder.Configurations.Add(new CustomerPictureMap());
             modelBuilder.Configurations.Add(new AdminMenuBarMap());
+            modelBuilder.Configurations.Add(new SliderMap());
+            modelBuilder.Configurations.Add(new SliderPictureMap());
+            modelBuilder.Configurations.Add(new QuestionMap());
             modelBuilder.Conventions.Add(new PluralizingTableNameConvention());
             #endregion
         }

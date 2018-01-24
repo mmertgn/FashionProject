@@ -27,6 +27,23 @@ namespace FashionStore.UI.Web
                     "~/AdminTemplate/plugins/bower_components/styleswitcher/jQuery.style.switcher.js"
                     ));
 
+            bundles.Add(new StyleBundle("~/bundles/mainstyles")
+                .Include(
+                "~/MainTemplate/css/bootstrap.min.css",
+                "~/MainTemplate/css/magnific-popup.css",
+                "~/MainTemplate/css/font-icons.css",
+                "~/MainTemplate/css/sliders.css", 
+                "~/MainTemplate/css/style.css", 
+                "~/MainTemplate/css/animate.min.css"
+                ));
+
+            bundles.Add(new ScriptBundle("~/bundles/mainscripts")
+            .Include(
+                    "~/MainTemplate/js/jquery.min.js",
+                    "~/MainTemplate/js/bootstrap.min.js",
+                    "~/MainTemplate/js/plugins.js",
+                    "~/MainTemplate/js/scripts.js"
+                    ));
             BundleTable.EnableOptimizations = true;
         }
     }

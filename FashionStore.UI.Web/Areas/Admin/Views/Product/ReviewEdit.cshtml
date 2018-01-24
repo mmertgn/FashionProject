@@ -1,0 +1,148 @@
+﻿@model FashionStore.Entity.Entities.ProductReview
+
+@{
+    ViewBag.Title = "ReviewEdit";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row bg-title">
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+            <h4 class="page-title">Yorum Düzenleme</h4>
+        </div>
+        <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+            <ol class="breadcrumb">
+                <li><a href="/Admin/Home">Dashboard</a></li>
+                <li><a href="/Admin/Product/ReviewList">Yorum Listesi</a></li>
+                <li class="active">Yorum Düzenleme</li>
+            </ol>
+        </div>
+    </div>
+    <!-- /.row -->
+    <!-- .row -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="white-box">
+                <h2 class="box-title m-b-0">Yorum Düzenle</h2>
+                <a class="btn btn-danger waves-effect waves-light" data-toggle="modal" data-target="#delete-modal" type="button"><span class="btn-label"><i class="fa fa-trash"></i></span>Yorumu Sil</a>
+                <hr />
+                @Html.Partial("_PartialValidationResult")
+                <div role="tabpanel" class="tab-pane active" id="home">
+                    <div class="col-md-12">
+                        <div class="tab-pane active">
+
+                            @using (Html.BeginForm("ReviewEdit", "Product", FormMethod.Post, new { @class = "form-horizontal form-material", @data_toggle = "validator" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                @Html.HiddenFor(x => x.Id)
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="col-md-12">Yorum Yapılan Ürün Adı</label>
+                                            <div class="col-md-9">
+                                                @Html.TextBoxFor(x => x.Product.Name, new { @class = "form-control form-control-line", disabled = "true" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-12">Yorum Yapan Kullanıcı</label>
+                                            <div class="col-md-9">
+                                                @Html.TextBoxFor(x => x.Customer.Name, new { @class = "form-control form-control-line", disabled = "true", Value = Model.Customer.Name + " " + Model.Customer.Surname })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-12">Yorum Başlık</label>
+                                            <div class="col-md-9">
+                                                @Html.TextBoxFor(x => x.Title, new { @class = "form-control form-control-line" })
+                                                <div style="color: red;">
+                                                    @Html.ValidationMessageFor(x => x.Title)
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-12">Yorum İçerik</label>
+                                            <div class="col-md-6">
+                                                @Html.TextAreaFor(x => x.ReviewText, new { @class = "form-control form-control-line", rows = 4 })
+                                                <div style="color: red;">
+                                                    @Html.ValidationMessageFor(x => x.ReviewText)
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-12">Yorum Puanı</label>
+                                            <div class="col-md-9">
+                                                @Html.TextBoxFor(x => x.Rating, new { @class = "form-control form-control-line" })
+                                                <div style="color: red;">
+                                                    @Html.ValidationMessageFor(x => x.Rating)
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-12">Yararlı Yorum Puanı Toplam</label>
+                                            <div class="col-md-9">
+                                                @Html.TextBoxFor(x => x.HelpfulYesTotal, new { @class = "form-control form-control-line" })
+                                                <div style="color: red;">
+                                                    @Html.ValidationMessageFor(x => x.HelpfulYesTotal)
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-12">Yararsız Yorum Puanı Toplam</label>
+                                            <div class="col-md-9">
+                                                @Html.TextBoxFor(x => x.HelpfulNoTotal, new { @class = "form-control form-control-line" })
+                                                <div style="color: red;">
+                                                    @Html.ValidationMessageFor(x => x.HelpfulNoTotal)
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="checkbox checkbox-primary" id="chck1">
+                                            <input id="checkbox1" type="checkbox" name="IsApproved" value=@Model.IsApproved.ToString().ToLower() checked="@Model.IsApproved">
+                                            <label for="checkbox1"> Yorum Aktiflik Durumu </label>
+                                        </div>
+                                        <br />
+                                        <div class="form-group">
+                                            <div class="col-sm-12">
+                                                <button type="submit" class="btn btn-success">Yorum Bilgileri Güncelle</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            }
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.row -->
+</div>
+<div id="delete-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title">Yorum Sil</h4>
+            </div>
+            <div class="modal-body">
+                <h3>Yorum silme işlemine eminseniz aşağıdan sil butonuna basınız.</h3>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Kapat</button>
+                    <a href="/Admin/Product/ReviewDelete/@Model.Id" class="btn btn-danger waves-effect">Sil</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts
+{
+    <script>
+        $('#chck1 input[type="checkbox"]').change(function () {
+            if ($(this).is(":checked")) {
+                $(this).val('true');
+            } else {
+                $(this).val('false');
+            }
+        });
+    </script>
+}

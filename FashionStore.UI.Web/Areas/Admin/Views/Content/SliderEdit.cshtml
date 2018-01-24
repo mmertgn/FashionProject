@@ -1,0 +1,180 @@
+﻿@model FashionStore.Entity.Entities.SliderPicture
+@section styles
+{
+    <link href="~/AdminTemplate/plugins/bower_components/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css" rel="stylesheet">
+    <link href="~/AdminTemplate/plugins/bower_components/dropzone-master/dist/dropzone.css" rel="stylesheet" type="text/css" />
+}
+@{
+    ViewBag.Title = "Slider Düzenleme";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row bg-title">
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+            <h4 class="page-title">Slider Düzenleme</h4>
+        </div>
+        <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+            <ol class="breadcrumb">
+                <li><a href="/Admin/Home">Dashboard</a></li>
+                <li><a href="/Admin/Content/SliderList">Slider Yönetimi</a></li>
+                <li class="active">Slider Düzenleme</li>
+            </ol>
+        </div>
+    </div>
+    <!-- /.row -->
+    <!-- .row -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="white-box">
+                <h2 class="box-title m-b-0">Slider Düzenleme Formu</h2>
+                <a class="btn btn-danger waves-effect waves-light" data-toggle="modal" data-target="#delete-modal" type="button"><span class="btn-label"><i class="fa fa-trash"></i></span>Slider Sil</a>
+                <hr />
+                @Html.Partial("_PartialValidationResult")
+                <div class="tab-pane active">
+                    @using (Html.BeginForm("SliderEdit", "Content", FormMethod.Post, new { @class = "form-horizontal form-material", @data_toggle = "validator", enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.HiddenFor(x => x.Slider.Id)
+                        @Html.HiddenFor(x => x.Slider.CreatedTime)
+                        <div class="form-group">
+                            <div class="col-md-9">
+                                <div class="form-group">
+                                    <label class="col-md-12">Slider Başlığı</label>
+                                    <div class="col-md-9">
+                                        @Html.TextBoxFor(x => x.Slider.SliderTitle, new { @class = "form-control form-control-line" })
+                                        <div style="color:red;">
+                                            @Html.ValidationMessageFor(x => x.Slider.SliderTitle)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-7">
+                                        <div class="form-group">
+                                            <label class="col-md-12">Slider Kategorisi</label>
+                                            <div class="col-md-12">
+                                                @Html.DropDownListFor(x => x.Slider.CategoryId, new SelectList(ViewBag.Categories, "Value", "Text"), "Kategori Seçiniz", new { @class = "form-control form-control-line" })
+                                                <div style="color:red;">
+                                                    @Html.ValidationMessageFor(x => x.Slider.CategoryId)
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-12">Slider Açıklama</label>
+                                            <div class="col-md-12">
+                                                @Html.TextAreaFor(x => x.Slider.SilderDescription, new { @class = "form-control form-control-line", rows = 3 })
+                                                <div style="color:red;">
+                                                    @Html.ValidationMessageFor(x => x.Slider.SilderDescription)
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="form-group">
+                                            <label class="col-md-12"> Slider Resmi</label>
+                                            <div class="product-img">
+                                                <img src="/Uploads/@Model.Picture.PicturePath" alt="@Model.Picture.AltAttribute" title="@Model.Picture.TitleAttribute" id="slidphoto">
+                                                <br />
+                                                <div class="fileupload btn btn-info waves-effect waves-light" style="margin-top: 10px;">
+                                                    <span><i class="ion-upload m-r-5"></i>Slider Resmi Yükle</span>
+                                                    <input onchange="Save()" type="file" class="upload" name="sliderphoto" id="sliderphoto">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12">Görüntülenme Sırası</label>
+                                    <div class="col-md-2">
+                                        @Html.TextBoxFor(x => x.Slider.DisplayOrder, new { @class = "form-control form-control-line", @data_bts_button_down_class = "btn btn-default btn-outline", @data_bts_button_up_class = "btn btn-default btn-outline", id = "tch3", style = "text-align:center;" })
+                                        <div style="color:red;">
+                                            @Html.ValidationMessageFor(x => x.Slider.DisplayOrder)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="checkbox checkbox-primary" id="chck1">
+                                    <input id="checkbox1" type="checkbox" name="Slider.IsActive" value=@Model.Slider.IsActive.ToString().ToLower() checked="@Model.Slider.IsActive">
+                                    <label for="checkbox1"> Slider Gösterim Durumu </label>
+                                </div>
+                                <br />
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <button type="submit" class="btn btn-success">Slider Güncelle</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.row -->
+</div>
+<div id="delete-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title">Slider Sil</h4>
+            </div>
+            <div class="modal-body">
+                <h3>Slider silme işlemine eminseniz aşağıdan sil butonuna basınız.</h3>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Kapat</button>
+                    <a href="/Admin/Content/SliderDelete/@Model.SliderId" class="btn btn-danger waves-effect">Sil</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts
+{
+    <script src="~/AdminTemplate/plugins/bower_components/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js" type="text/javascript"></script>
+    <script src="~/AdminTemplate/plugins/bower_components/dropzone-master/dist/dropzone.js"></script>
+    <script>
+        function Save() {
+            var formData = new FormData();
+            var dat = "@Model.SliderId";
+            var totalFiles = document.getElementById("sliderphoto").files.length;
+            for (var i = 0; i < totalFiles; i++) {
+                var file = document.getElementById("sliderphoto").files[i];
+                formData.append("sliderphoto", file);
+            }
+            formData.append("Id", dat);
+            $.ajax({
+                type: "POST",
+                url: '/Content/SliderPhotoUpload',
+                data: formData,
+                dataType: 'json',
+                contentType: false,
+                processData: false,
+                success: function(response) {
+                    $("img#slidphoto").attr("src", "/Uploads/" + response);
+                    $("#validation-result-success").text("Slider resmi başarıyla güncellendi.");
+                    $("#validation-result-success").fadeIn();
+                    $("#validation-result-success").delay(5000).fadeOut();
+                },
+                error: function() {
+                    $("#validation-result-error").text("Slider resmi güncellenirken bir hata oluştu.");
+                    $("#validation-result-error").fadeIn();
+                    $("#validation-result-error").delay(5000).fadeOut();
+                }
+            });
+        }
+
+        //Bootstrap-TouchSpin
+        $("input[id='tch3']").TouchSpin();
+
+        $('#chck1 input[type="checkbox"]').change(function () {
+            if ($(this).is(":checked")) {
+                $(this).val('true');
+            } else {
+                $(this).val('false');
+            }
+        });
+    </script>
+}
+

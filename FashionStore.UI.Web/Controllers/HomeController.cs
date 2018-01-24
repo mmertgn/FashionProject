@@ -16,7 +16,6 @@ namespace FashionStore.UI.Web.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            //Musteri
             return View();
         }
 

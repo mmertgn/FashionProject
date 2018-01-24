@@ -13,5 +13,6 @@ namespace FashionStore.Entity.Entities
         public virtual ICollection<ProductPicture> ProductPictures { get; set; }
         public virtual ICollection<CategoryPicture> CategoryPictures { get; set; }
         public virtual ICollection<CustomerPicture> CustomerPictures { get; set; }
+        public virtual ICollection<SliderPicture> SliderPictures { get; set; }
     }
 }

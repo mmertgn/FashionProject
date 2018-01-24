@@ -1,0 +1,140 @@
+﻿@model FashionStore.Entity.Entities.ProductReview
+
+@{
+    ViewBag.Title = "ReviewDetail";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row bg-title">
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+            <h4 class="page-title">Yorum İçeriği</h4>
+        </div>
+        <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+            <ol class="breadcrumb">
+                <li><a href="/Admin/Home">Dashboard</a></li>
+                <li><a href="/Admin/Product/ReviewList">Yorum Listesi</a></li>
+                <li class="active">Yorum Detay</li>
+            </ol>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-info">
+                <div class="panel-heading"> Yorum İçeriği</div>
+                <div class="panel-wrapper collapse in" aria-expanded="true">
+                    <div class="panel-body">
+                        <div class="form-body">
+                            <h3 class="box-title">Yorum</h3>
+                            <hr class="m-t-0 m-b-40">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Başlık:</label>
+                                        <div class="col-md-9">
+                                            <p class="form-control-static"> @Model.Title </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Yorum İçerik:</label>
+                                        <div class="col-md-9">
+                                            <p class="form-control-static"> @Model.ReviewText </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                            </div>
+                            <!--/row-->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Yorum Yapan Kullanıcı:</label>
+                                        <div class="col-md-9">
+                                            <p class="form-control-static"> @Model.Customer.Name @Model.Customer.Surname </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Yorum Yapılan Ürün:</label>
+                                        <div class="col-md-9">
+                                            <p class="form-control-static"> @Model.Product.Name </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                            </div>
+                            <!--/row-->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Yoruma Gelen Cevap:</label>
+                                        <div class="col-md-9">
+                                            <p class="form-control-static"> @Model.ReplyText </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Yorum Puanı:</label>
+                                        <div class="col-md-9">
+                                            <p class="form-control-static"> @Model.Rating </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                            </div>
+                            <!--/row-->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Yararlı/Yararsız Puanı Toplamı:</label>
+                                        <div class="col-md-9">
+                                            <p class="form-control-static"> @Model.HelpfulYesTotal / @Model.HelpfulNoTotal </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Oluşturulma Tarihi:</label>
+                                        <div class="col-md-9">
+                                            <p class="form-control-static"> @Model.CreatedTime </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Yorum Durumu:</label>
+                                        <div class="col-md-9">
+                                            @if (Model.IsApproved)
+                                            {
+                                                <p class="form-control-static"> Onaylı </p>
+                                            }
+                                            else
+                                            {
+                                                <p class="form-control-static"> Engellendi </p>
+                                            }
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                            </div>
+                            <!--/row-->
+                            <br />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

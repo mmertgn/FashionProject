@@ -48,7 +48,6 @@ namespace FashionStore.UI.Web.Areas.Admin.Controllers
 
             return RedirectToAction("List");
         }
-
         public ActionResult Add()
         {
             if (TempData["ModelState"] != null && !ModelState.Equals(TempData["ModelState"]))
@@ -101,7 +100,6 @@ namespace FashionStore.UI.Web.Areas.Admin.Controllers
 
             return RedirectToAction("Add");
         }
-
         public ActionResult Edit(string SeoUrl)
         {
             if (TempData["ModelState"] != null && !ModelState.Equals(TempData["ModelState"]))
@@ -212,6 +210,51 @@ namespace FashionStore.UI.Web.Areas.Admin.Controllers
             if (ParentCatId == null) return Json("", JsonRequestBehavior.DenyGet);
             var catList = _unitOfWork.GetRepo<Category>().Where(x => x.ParentCategoryId == ParentCatId).Select(x => new CatModel { Id = x.Id, Name = x.Name }).ToList();
             return Json(catList, JsonRequestBehavior.AllowGet);
+        }
+
+
+        public ActionResult ReviewList()
+        {
+            var reviews = _unitOfWork.GetRepo<ProductReview>().GetAll().ToList();
+            return View(reviews);
+        }
+        public ActionResult ReviewDetail(int SeoUrl)
+        {
+            var review = _unitOfWork.GetRepo<ProductReview>().GetObject(x => x.Id == SeoUrl);
+            return View(review);
+        }
+        public ActionResult ReviewEdit(int SeoUrl)
+        {
+            if (TempData["ModelState"] != null && !ModelState.Equals(TempData["ModelState"]))
+                ModelState.Merge((ModelStateDictionary)TempData["ModelState"]);
+            var review = _unitOfWork.GetRepo<ProductReview>().GetObject(x => x.Id == SeoUrl);
+
+            return View(review);
+        }
+        [HttpPost,ValidateAntiForgeryToken]
+        public ActionResult ReviewEdit(ProductReview model)
+        {
+            var validator = new ProductReviewUpdateValidator().Validate(model);
+            if (validator.IsValid)
+            {
+                var reviewModel = _unitOfWork.GetRepo<ProductReview>().GetObject(x => x.Id == model.Id);
+                reviewModel.Title = model.Title;
+                reviewModel.ReviewText = model.ReviewText;
+                reviewModel.Rating = model.Rating;
+                reviewModel.HelpfulYesTotal = model.HelpfulYesTotal;
+                reviewModel.HelpfulNoTotal = model.HelpfulNoTotal;
+                reviewModel.IsApproved = model.IsApproved;
+                _unitOfWork.GetRepo<ProductReview>().Update(reviewModel);
+            }
+            var isSuccess = _unitOfWork.Commit();
+            TempData["IsSuccess"] = isSuccess;
+            validator.Errors.ToList().ForEach(a =>
+            {
+                ModelState.AddModelError(a.PropertyName, a.ErrorMessage);
+            });
+            TempData["ModelState"] = ModelState;
+            TempData["Message"] = isSuccess ? "Yorum güncelleme işlemi başarılı bir şekilde gerçekleştirildi." : "Yorum güncelleme işlemi gerçekleştirilemedi lütfen tekrar deneyiniz.";
+            return RedirectToAction("ReviewEdit", new { model.Id });
         }
 
         private class CatModel

@@ -1,0 +1,135 @@
+﻿@model FashionStore.Entity.Entities.FrequantlyQuestion
+@section styles
+{
+    <link href="~/AdminTemplate/plugins/bower_components/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css" rel="stylesheet">
+    <link href="~/AdminTemplate/plugins/bower_components/dropzone-master/dist/dropzone.css" rel="stylesheet" type="text/css" />
+}
+@{
+    ViewBag.Title = "Soru - Cevap Düzenleme | Elsa Giyim";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div class="container-fluid">
+    <div class="row bg-title">
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+            <h4 class="page-title">Slider Düzenle</h4>
+        </div>
+        <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+            <ol class="breadcrumb">
+                <li><a href="/Admin/Home">Dashboard</a></li>
+                <li><a href="/Admin/Content/FaqList">Sıkça Sorulan Sorular Yönetimi</a></li>
+                <li class="active">Soru-Cevap Düzenle</li>
+            </ol>
+        </div>
+    </div>
+    <!-- /.row -->
+    <!-- .row -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="white-box">
+                <h2 class="box-title m-b-0">Soru-Cevap Düzenle</h2>
+                <a class="btn btn-danger waves-effect waves-light" data-toggle="modal" data-target="#delete-modal" type="button"><span class="btn-label"><i class="fa fa-trash"></i></span>Soru-Cevap Sil</a>
+                <hr />
+                @Html.Partial("_PartialValidationResult")
+                <div class="tab-pane active">
+                    @using (Html.BeginForm("FaqEdit", "Content", FormMethod.Post, new { @class = "form-horizontal form-material", @data_toggle = "validator" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.HiddenFor(x => x.Id)
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="col-md-12">Soru</label>
+                                    <div class="col-md-9">
+                                        @Html.TextBoxFor(x => x.Question, new { @class = "form-control form-control-line" })
+                                        <div style="color:red;">
+                                            @Html.ValidationMessageFor(x => x.Question)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12">Cevap</label>
+                                    <div class="col-md-9">
+                                        @Html.TextBoxFor(x => x.Answer, new { @class = "form-control form-control-line" })
+                                        <div style="color:red;">
+                                            @Html.ValidationMessageFor(x => x.Answer)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="checkbox checkbox-primary" id="chck1">
+                                    <input id="checkbox1" type="checkbox" name="IsColumn1" value=@Model.IsColumn1.ToString().ToLower() checked="@Model.IsColumn1">
+                                    <label for="checkbox1"> Footer İlk Kolonda Gösterilsin</label>
+                                </div>
+                                <div class="checkbox checkbox-primary" id="chck2">
+                                    <input id="checkbox2" type="checkbox" name="IsColumn2" value=@Model.IsColumn2.ToString().ToLower() checked="@Model.IsColumn2">
+                                    <label for="checkbox2"> Footer İkinci Kolonda Gösterilsin</label>
+                                </div>
+                                <div class="checkbox checkbox-primary" id="chck3">
+                                    <input id="checkbox3" type="checkbox" name="IsColumn3" value=@Model.IsColumn3.ToString().ToLower() checked="@Model.IsColumn3">
+                                    <label for="checkbox3"> Footer Üçüncü Kolonda Gösterilsin</label>
+                                </div>
+                                <br />
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <button type="submit" class="btn btn-success">Soru-Cevap Ekle</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.row -->
+</div>
+<div id="delete-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title">Soru-Cevap Sil</h4>
+            </div>
+            <div class="modal-body">
+                <h3>Soru-Cevap silme işlemine eminseniz aşağıdan sil butonuna basınız.</h3>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Kapat</button>
+                    <a href="/Admin/Content/FaqDelete/@Model.Id" class="btn btn-danger waves-effect">Sil</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts
+{
+    <script src="~/AdminTemplate/plugins/bower_components/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js" type="text/javascript"></script>
+    <script src="~/AdminTemplate/plugins/bower_components/dropzone-master/dist/dropzone.js"></script>
+    <script>
+        //Bootstrap-TouchSpin
+        $("input[id='tch3']").TouchSpin();
+
+        $('#chck1 input[type="checkbox"]').change(function () {
+            if ($(this).is(":checked")) {
+                $(this).val('true');
+            } else {
+                $(this).val('false');
+            }
+        });
+        $('#chck2 input[type="checkbox"]').change(function () {
+            if ($(this).is(":checked")) {
+                $(this).val('true');
+            } else {
+                $(this).val('false');
+            }
+        });
+        $('#chck3 input[type="checkbox"]').change(function () {
+            if ($(this).is(":checked")) {
+                $(this).val('true');
+            } else {
+                $(this).val('false');
+            }
+        });
+    </script>
+}
+
+

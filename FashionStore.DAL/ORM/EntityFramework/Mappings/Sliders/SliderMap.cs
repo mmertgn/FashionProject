@@ -18,6 +18,14 @@ namespace FashionStore.DAL.ORM.EntityFramework.Mappings.Sliders
                 .HasColumnName("Slider Başlığı")
                 .IsUnicode()
                 .IsRequired();
+            Property(x => x.SliderTitlePosition)
+                .HasColumnName("Slider Başlık Pozisyonu")
+                .IsUnicode()
+                .HasMaxLength(20);
+            Property(x => x.TitleTextColor)
+                .HasColumnName("Slider Başlık Rengi")
+                .IsUnicode()
+                .HasMaxLength(20);
             Property(x => x.IsActive)
                 .HasColumnName("AktifMi")
                 .IsRequired();

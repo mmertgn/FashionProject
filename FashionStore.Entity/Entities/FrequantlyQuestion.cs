@@ -11,9 +11,6 @@ namespace FashionStore.Entity.Entities
         public int Id { get; set; }
         public string Question { get; set; }
         public string Answer { get; set; }
-        public bool IsColumn1 { get; set; }
-        public bool IsColumn2 { get; set; }
-        public bool IsColumn3 { get; set; }
 
     }
 }

@@ -1,0 +1,106 @@
+﻿@model FashionStore.Entity.Entities.Setting
+@{
+    ViewBag.Title = "İletişim | Elsa Giyim";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+
+<div class="container">
+    <ol class="breadcrumb">
+        <li>
+            <a href="/">Anasayfa</a>
+        </li>
+        <li class="active">
+            İletişim
+        </li>
+    </ol> <!-- end breadcrumbs -->
+</div>
+<!-- Google Map -->
+<div class="container mt-60">
+    <div id="google-map" class="gmap" data-address="@Model.Address - @Model.City/@Model.Town"></div>
+</div>
+<!-- Contact -->
+<section class="section-wrap contact">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <h5 class="uppercase mb-30">Bize Yazın</h5>
+                @using (Html.BeginForm("", "", FormMethod.Post, new { id = "contact-form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="contact-name">
+                        <input name="name" id="name" type="text" placeholder="Ad Soyad*">
+                    </div>
+                    <div class="contact-email">
+                        <input name="mail" id="mail" type="email" placeholder="E-mail*">
+                    </div>
+                    <div class="contact-subject">
+                        <input name="subject" id="subject" type="text" placeholder="Konu">
+                    </div>
+                    <textarea name="comment" id="comment" placeholder="Mesajınız" rows="9"></textarea>
+                    <input type="submit" class="btn btn-lg btn-color btn-submit" value="Gönder" id="submit-message">
+                    <div id="msg" class="message"></div>
+                }
+            </div> <!-- end col -->
+            <div class="col-md-4 mb-40 mt-mdm-40 contact-info">
+                <div class="address-wrap">
+                    <h4 class="uppercase">Adres</h4>
+                    <h6>@Model.CompanyName</h6>
+                    <address class="address">@Model.Address @Model.City/@Model.Town</address>
+                </div>
+                <h4 class="uppercase">İletişim Bilgileri</h4>
+                <ul class="contact-info-list">
+                    <li><span>Telefon: </span><a href="tel:@Model.PhoneNumber">@Model.PhoneNumber</a></li>
+                    <li><span>Email: </span><a href="mailto:@ViewBag.Mail" class="sliding-link">@ViewBag.Mail</a></li>
+                </ul>
+                <h4 class="uppercase">Çalışma Saatleri</h4>
+                <p>Pazartesi – Cuma: 9:00 - 18:00</p>
+                <p>Cumartesi: 9:00 - 12:00</p>
+                <p>Pazar: Kapalı</p>
+            </div>
+        </div>
+    </div>
+</section> <!-- end contact -->
+@section scripts
+{
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRvXMFNBcdPRzlmXPIwkNa6zqzFyW9bs4" type="text/javascript"></script>
+    <script type="text/javascript" src="/MainTemplate/js/gmap3.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            var gmapDiv = $("#google-map");
+            var gmapMarker = gmapDiv.attr("data-address");
+            var center = [41.019961, 29.010970];
+
+            gmapDiv.gmap3({
+                zoom: 16,
+                center: center,
+                oomControl: true,
+                navigationControl: true,
+                scrollwheel: false,
+                styles: [
+                    {
+                        "featureType": "all",
+                        "elementType": "all",
+                        "stylers": [
+                            { "saturation": "0" }
+                        ]
+                    }]
+            })
+                .marker({
+                    position: center,
+                    icon: "/MainTemplate/img/map_pin.png"
+                })
+                .infowindow({
+                    content: gmapMarker
+                })
+                .then(function (infowindow) {
+                    var map = this.get(0);
+                    var marker = this.get(1);
+                    marker.addListener('click', function () {
+                        infowindow.open(map, marker);
+                    });
+                });
+        });
+    </script>
+
+}

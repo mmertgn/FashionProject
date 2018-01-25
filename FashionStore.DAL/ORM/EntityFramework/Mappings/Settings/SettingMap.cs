@@ -75,26 +75,7 @@ namespace FashionStore.DAL.ORM.EntityFramework.Mappings.Settings
                 .HasColumnName("Harita Y Kordinat")
                 .IsOptional()
                 .IsUnicode();
-            Property(x => x.AboutUs)
-                .HasColumnName("Hakkımızda")
-                .HasColumnType("text")
-                .IsRequired()
-                .IsUnicode();
-            Property(x => x.ConfidentialityAgreement)
-                .HasColumnName("Gizlilik Sözleşmesi")
-                .IsRequired()
-                .HasColumnType("text")
-                .IsUnicode();
-            Property(x => x.TermsAgreement)
-                .HasColumnName("Şartlar Sözleşmesi")
-                .IsRequired()
-                .HasColumnType("text")
-                .IsUnicode();
-            Property(x => x.SalesContract)
-                .HasColumnName("Satış Sözleşmesi")
-                .IsRequired()
-                .HasColumnType("text")
-                .IsUnicode();
+            
         }
     }
 }

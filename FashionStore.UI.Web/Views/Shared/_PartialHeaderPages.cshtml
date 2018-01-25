@@ -1,0 +1,14 @@
+﻿@model List<FashionStore.Entity.Entities.ContentPage>
+<li>
+    <a href="/Content/SSS">Sıkça Sorulan Sorular</a>
+</li>
+<li>
+    <a href="/Content/ContactUs">İletişim</a>
+</li>
+@foreach (var page in Model)
+{
+    <li>
+        <a href="/icerik/@page.SeoUrl">@page.Title</a>
+    </li>
+}
+

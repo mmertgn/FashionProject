@@ -55,18 +55,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="checkbox checkbox-primary" id="chck1">
-                                    <input id="checkbox1" type="checkbox" name="IsColumn1" value=@Model.IsColumn1.ToString().ToLower() checked="@Model.IsColumn1">
-                                    <label for="checkbox1"> Footer İlk Kolonda Gösterilsin</label>
-                                </div>
-                                <div class="checkbox checkbox-primary" id="chck2">
-                                    <input id="checkbox2" type="checkbox" name="IsColumn2" value=@Model.IsColumn2.ToString().ToLower() checked="@Model.IsColumn2">
-                                    <label for="checkbox2"> Footer İkinci Kolonda Gösterilsin</label>
-                                </div>
-                                <div class="checkbox checkbox-primary" id="chck3">
-                                    <input id="checkbox3" type="checkbox" name="IsColumn3" value=@Model.IsColumn3.ToString().ToLower() checked="@Model.IsColumn3">
-                                    <label for="checkbox3"> Footer Üçüncü Kolonda Gösterilsin</label>
-                                </div>
                                 <br />
                                 <div class="form-group">
                                     <div class="col-sm-12">
@@ -107,28 +95,7 @@
     <script>
         //Bootstrap-TouchSpin
         $("input[id='tch3']").TouchSpin();
-
-        $('#chck1 input[type="checkbox"]').change(function () {
-            if ($(this).is(":checked")) {
-                $(this).val('true');
-            } else {
-                $(this).val('false');
-            }
-        });
-        $('#chck2 input[type="checkbox"]').change(function () {
-            if ($(this).is(":checked")) {
-                $(this).val('true');
-            } else {
-                $(this).val('false');
-            }
-        });
-        $('#chck3 input[type="checkbox"]').change(function () {
-            if ($(this).is(":checked")) {
-                $(this).val('true');
-            } else {
-                $(this).val('false');
-            }
-        });
+        
     </script>
 }
 

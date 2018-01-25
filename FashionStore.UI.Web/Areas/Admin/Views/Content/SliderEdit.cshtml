@@ -92,6 +92,27 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="form-group">
+                                    <label for="example-color-input" class="col-md-12">Başlık Rengi</label>
+                                    <div class="col-md-2">
+                                        @Html.TextBoxFor(x => x.Slider.TitleTextColor, new { type = "color", @class = "form-control", id = "example-color-input" })
+                                    </div>
+                                    <div style="color:red;">
+                                        @Html.ValidationMessageFor(x => x.Slider.TitleTextColor)
+                                    </div>
+                                </div>
+                                <div class="radio radio-primary">
+                                    @Html.RadioButtonFor(x => x.Slider.SliderTitlePosition, "center", new { @id = "radio1" })
+                                    <label for="radio1"> Başlık Pozisyon : Orta </label>
+                                </div>
+                                <div class="radio radio-danger">
+                                    @Html.RadioButtonFor(x => x.Slider.SliderTitlePosition, "left", new { @id = "radio2" })
+                                    <label for="radio2"> Başlık Pozisyon : Sol </label>
+                                </div>
+                                <div class="radio radio-purple">
+                                    @Html.RadioButtonFor(x => x.Slider.SliderTitlePosition, "right", new { @id = "radio3" })
+                                    <label for="radio3"> Başlık Pozisyon : Sağ </label>
+                                </div>
                                 <div class="checkbox checkbox-primary" id="chck1">
                                     <input id="checkbox1" type="checkbox" name="Slider.IsActive" value=@Model.Slider.IsActive.ToString().ToLower() checked="@Model.Slider.IsActive">
                                     <label for="checkbox1"> Slider Gösterim Durumu </label>

@@ -80,10 +80,6 @@ namespace FashionStore.UI.Web.Areas.Admin.Controllers
                     settingModel.FaxNumber = model.FaxNumber;
                     settingModel.MapXCoordinate = model.MapXCoordinate;
                     settingModel.MapYCoordinate = model.MapYCoordinate;
-                    settingModel.AboutUs = model.AboutUs;
-                    settingModel.ConfidentialityAgreement = model.ConfidentialityAgreement;
-                    settingModel.TermsAgreement = model.TermsAgreement;
-                    settingModel.SalesContract = model.SalesContract;
                     _unitOfWork.GetRepo<Setting>().Update(settingModel);
                 }
                 else

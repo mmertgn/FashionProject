@@ -869,10 +869,12 @@
     <Compile Include="Areas\Admin\Models\ProfileEditViewModel.cs" />
     <Compile Include="Areas\Admin\Models\SliderViewModel.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\ContentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\HomePageViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -982,6 +984,9 @@
     <Content Include="Areas\Admin\Views\Content\FaqList.cshtml" />
     <Content Include="Areas\Admin\Views\Content\FaqAdd.cshtml" />
     <Content Include="Areas\Admin\Views\Content\FaqEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\Content\ContentPageList.cshtml" />
+    <Content Include="Areas\Admin\Views\Content\ContentPageAdd.cshtml" />
+    <Content Include="Areas\Admin\Views\Content\ContentPageEdit.cshtml" />
     <None Include="bundleconfig.json" />
     <Content Include="MainTemplate\fonts\ElegantIcons.eot" />
     <Content Include="MainTemplate\fonts\ElegantIcons.eot_%2523iefix" />
@@ -995,6 +1000,14 @@
     <None Include="packages.config" />
     <Content Include="Views\Shared\_LayoutHome.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\_PartialCategory.cshtml" />
+    <Content Include="Views\Shared\_PartialHeaderPages.cshtml" />
+    <Content Include="Views\Content\SSS.cshtml" />
+    <Content Include="Views\Content\ContactUs.cshtml" />
+    <Content Include="Views\Content\GetPage.cshtml" />
+    <Content Include="Views\Shared\_PartialSocialMedia.cshtml" />
+    <Content Include="Views\Shared\_PartialFooterAboutUsAddressSocialMedia.cshtml" />
+    <Content Include="Views\Shared\_PartialFooterColumns.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1004,7 +1017,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FashionStore-BLL\FashionStore.BLL.csproj">

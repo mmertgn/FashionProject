@@ -34,9 +34,6 @@
                         <tr>
                             <th data-sort-initial="true" data-toggle="true">Soru</th>
                             <th data-hide="phone, tablet">Cevap</th>
-                            <th data-hide="phone, tablet">Footer İlk Sütun </th>
-                            <th data-hide="phone, tablet">Footer İkinci Sütun</th>
-                            <th data-hide="phone, tablet">Footer Üçüncü Sütun</th>
                             <th data-sort-ignore="true" class="min-width" style="text-align: center;">İşlem</th>
                         </tr>
                     </thead>
@@ -59,30 +56,6 @@
                             <tr>
                                 <td>@faq.Question</td>
                                 <td>@faq.Answer</td>
-                                @if (faq.IsColumn1)
-                                {
-                                    <td style="text-align: center"><span class="label label-table label-success">Aktif</span></td>
-                                }
-                                else
-                                {
-                                    <td style="text-align: center"><span class="label label-table label-danger">İnaktif</span></td>
-                                }
-                                @if (faq.IsColumn2)
-                                {
-                                    <td style="text-align: center"><span class="label label-table label-success">Aktif</span></td>
-                                }
-                                else
-                                {
-                                    <td style="text-align: center"><span class="label label-table label-danger">İnaktif</span></td>
-                                }
-                                @if (faq.IsColumn3)
-                                {
-                                    <td style="text-align: center"><span class="label label-table label-success">Aktif</span></td>
-                                }
-                                else
-                                {
-                                    <td style="text-align: center"><span class="label label-table label-danger">İnaktif</span></td>
-                                }
                                 <td style="text-align: center;">
                                     <a href="/Admin/Content/FaqEdit/@faq.Id" class="btn btn-primary btn-rounded waves-effect waves-light btn-sm" type="button"><span class="btn-label"><i class="fa fa-edit"></i></span>Düzenle</a>
                                 </td>
@@ -91,7 +64,7 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <td colspan="6">
+                            <td colspan="3">
                                 <div class="text-right">
                                     <ul class="pagination"></ul>
                                 </div>

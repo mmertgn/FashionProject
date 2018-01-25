@@ -52,6 +52,7 @@
     <Compile Include="ORM\EntityFramework\Mappings\Adresses\AddressMap.cs" />
     <Compile Include="ORM\EntityFramework\Mappings\Categories\CategoryMap.cs" />
     <Compile Include="ORM\EntityFramework\Mappings\Categories\CategoryPictureMap.cs" />
+    <Compile Include="ORM\EntityFramework\Mappings\Contents\ContentPageMap.cs" />
     <Compile Include="ORM\EntityFramework\Mappings\Customers\CustomerLoginMap.cs" />
     <Compile Include="ORM\EntityFramework\Mappings\Customers\CustomerMap.cs" />
     <Compile Include="ORM\EntityFramework\Mappings\Customers\CustomerPictureMap.cs" />

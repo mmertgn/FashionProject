@@ -1,4 +1,4 @@
-﻿
+﻿@model FashionStore.UI.Web.Models.HomePageViewModel
 @{
     ViewBag.Title = "Elsa Giyim | Anasayfa";
     Layout = "~/Views/Shared/_LayoutHome.cshtml";
@@ -10,51 +10,21 @@
         <div class="entry-slider">
             <div class="flexslider" id="flexslider-hero">
                 <ul class="slides clearfix">
-                    <li>
-                        <img src="/MainTemplate/img/slider/1.jpg" alt="">
-                        <div class="img-holder img-1"></div>
-                        <div class="hero-holder text-center right-align">
-                            <div class="hero-lines">
-                                <h1 class="hero-heading white">Collection 2017</h1>
-                                <h4 class="hero-subheading white uppercase">HOT AND FRESH TRENDS OF THIS YEAR</h4>
+                    @foreach (var sliderPicture in Model.SliderPictures)
+                    {
+                        <li>
+                            <img src="/Uploads/@sliderPicture.Picture.PicturePath" alt="@sliderPicture.Picture.AltAttribute">
+                            <div class="img-holder img-@sliderPicture.Id"></div>
+                            <div class="hero-holder text-center @sliderPicture.Slider.SliderTitlePosition-align">
+                                <div class="hero-lines">
+                                    <h1 class="hero-heading" style="color: @sliderPicture.Slider.TitleTextColor">@sliderPicture.Slider.SliderTitle</h1>
+                                    <h4 class="hero-subheading uppercase" style="color: @sliderPicture.Slider.TitleTextColor">@sliderPicture.Slider.SilderDescription</h4>
+                                </div>
+                                <a href="/kategori/@sliderPicture.Slider.Category.SeoUrl" class="btn btn-lg btn-white"><span>Alışverişe Başla</span></a>
                             </div>
-                            <a href="#" class="btn btn-lg btn-white"><span>Shop Now</span></a>
-                        </div>
-                    </li>
-                    <li>
-                        <img src="/MainTemplate/img/slider/2.jpg" alt="">
-                        <div class="img-holder img-2"></div>
-                        <div class="hero-holder text-center">
-                            <div class="hero-lines">
-                                <h1 class="hero-heading white large">Winter Sales</h1>
-                            </div>
-                            <a href="#" class="btn btn-lg btn-white"><span>Shop Now</span></a>
-                        </div>
-                    </li>
-                    <li>
-                        <img src="/MainTemplate/img/slider/3.jpg" alt="">
-                        <div class="img-holder img-3"></div>
-                        <div class="hero-holder left-align">
-                            <div class="hero-lines">
-                                <h1 class="hero-heading white">Autumn 2017</h1>
-                                <p class="white">A-ha Theme is the Best E-Commerce solution</p>
-                                <p class="white">Packed with tons of features and unique styles</p>
-                            </div>
-                            <a href="#" class="btn btn-lg btn-white"><span>Shop Now</span></a>
-                        </div>
-                    </li>
-                    <li>
-                        <img src="/MainTemplate/img/slider/4.jpg" alt="">
-                        <div class="img-holder img-4"></div>
-                        <div class="hero-holder text-center right-align">
-                            <div class="hero-lines">
-                                <h1 class="hero-heading white">Summer 2017</h1>
-                                <p class="white">A-ha Theme is the Best E-Commerce solution</p>
-                                <p class="white">Packed with tons of features and unique styles</p>
-                            </div>
-                            <a href="#" class="btn btn-lg btn-white"><span>Shop Now</span></a>
-                        </div>
-                    </li>
+                        </li>
+                    }
+
                 </ul>
             </div>
         </div> <!-- end slider -->
@@ -65,7 +35,7 @@
     <div class="container">
         <div class="row heading-row">
             <div class="col-md-12 text-center">
-                <h2 class="heading uppercase"><small>New Arrivals</small></h2>
+                <h2 class="heading uppercase"><small>Yeni Ürünler</small></h2>
             </div>
         </div>
         <div class="row row-10">
@@ -346,53 +316,4 @@
         </div> <!-- end row -->
     </div>
 </section> <!-- end best sellers -->
-<!-- Partners -->
-<section class="section-wrap partners pt-0 pb-50">
-    <div class="container">
-        <div class="row">
-            <div id="owl-partners" class="owl-carousel owl-theme">
-                <div class="item">
-                    <a href="#">
-                        <img src="/MainTemplate/img/partners/partner_logo_dark_1.png" alt="">
-                    </a>
-                </div>
-                <div class="item">
-                    <a href="#">
-                        <img src="/MainTemplate/img/partners/partner_logo_dark_2.png" alt="">
-                    </a>
-                </div>
-                <div class="item">
-                    <a href="#">
-                        <img src="/MainTemplate/img/partners/partner_logo_dark_3.png" alt="">
-                    </a>
-                </div>
-                <div class="item">
-                    <a href="#">
-                        <img src="/MainTemplate/img/partners/partner_logo_dark_4.png" alt="">
-                    </a>
-                </div>
-                <div class="item">
-                    <a href="#">
-                        <img src="/MainTemplate/img/partners/partner_logo_dark_5.png" alt="">
-                    </a>
-                </div>
-                <div class="item">
-                    <a href="#">
-                        <img src="/MainTemplate/img/partners/partner_logo_dark_6.png" alt="">
-                    </a>
-                </div>
-                <div class="item">
-                    <a href="#">
-                        <img src="/MainTemplate/img/partners/partner_logo_dark_1.png" alt="">
-                    </a>
-                </div>
-                <div class="item">
-                    <a href="#">
-                        <img src="/MainTemplate/img/partners/partner_logo_dark_2.png" alt="">
-                    </a>
-                </div>
-            </div> <!-- end carousel -->
 
-        </div>
-    </div>
-</section> <!-- end partners -->

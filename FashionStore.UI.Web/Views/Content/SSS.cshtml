@@ -1,0 +1,71 @@
+﻿@model List<FashionStore.Entity.Entities.FrequantlyQuestion>
+@{
+    ViewBag.Title = "Sıkça Sorulan Sorular | Elsa Giyim";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+
+<!-- Breadcrumbs -->
+<div class="container">
+    <ol class="breadcrumb">
+        <li>
+            <a href="/">Anasayfa</a>
+        </li>
+        <li class="active">
+            Sıkça Sorulan Sorular
+        </li>
+    </ol> <!-- end breadcrumbs -->
+</div>
+
+<!-- FAQ -->
+<section class="section-wrap faq">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8">
+                <h2 class="uppercase mb-20">Sıkça Sorulan Sorular</h2>
+                <div class="toggle">
+                    @foreach (var faq in Model)
+                    {
+                        <div class="acc-panel">
+                            <a href="#">@faq.Question</a>
+                        </div>
+                        <div class="panel-content">
+                            <p>
+                                @faq.Answer
+                            </p>
+                        </div>
+                    }
+                </div>
+            </div> <!-- end col -->
+            <div class="col-sm-3 col-sm-offset-1">
+                <h2 class="uppercase mb-30">İletişim</h2>
+                <div class="service-item-box mb-30">
+                    <div class="icon-holder">
+                        <i class="fa fa-phone"></i>
+                    </div>
+                    <div class="service-text">
+                        <h3>Telefon</h3>
+                        <p>@ViewBag.Phone</p>
+                    </div>
+                </div>
+                <div class="service-item-box mb-30">
+                    <div class="icon-holder">
+                        <i class="fa fa-envelope-o"></i>
+                    </div>
+                    <div class="service-text">
+                        <h3>Email Adresi</h3>
+                        <p>@ViewBag.Email</p>
+                    </div>
+                </div>
+                <div class="service-item-box mb-40">
+                    <div class="icon-holder">
+                        <i class="fa fa-home"></i>
+                    </div>
+                    <div class="service-text">
+                        <h3>Adres</h3>
+                        <p>@ViewBag.Address</p>
+                    </div>
+                </div>
+            </div> <!-- end col -->
+        </div>
+    </div>
+</section> <!-- end faq -->

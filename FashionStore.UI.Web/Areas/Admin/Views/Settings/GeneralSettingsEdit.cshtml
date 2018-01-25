@@ -1,7 +1,7 @@
 ﻿@model FashionStore.Entity.Entities.Setting
 
 @{
-    ViewBag.Title = "GeneralSettingsEdit";
+    ViewBag.Title = "Site Genel Ayarları | Elsa Giyim";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 @section styles
@@ -127,42 +127,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label class="box-title">Hakkımızda</label>
-                                    <div class="col-md-12">
-                                        @Html.TextAreaFor(x => x.AboutUs, new { @class = "summernote" })
-                                        <div style="color: red;">
-                                            @Html.ValidationMessageFor(x => x.AboutUs)
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="box-title">Gizlilik Sözleşmesi</label>
-                                    <div class="col-md-12">
-                                        @Html.TextAreaFor(x => x.ConfidentialityAgreement, new { @class = "summernote" })
-                                        <div style="color: red;">
-                                            @Html.ValidationMessageFor(x => x.ConfidentialityAgreement)
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="box-title">Satış Sözleşmesi</label>
-                                    <div class="col-md-12">
-                                        @Html.TextAreaFor(x => x.SalesContract, new { @class = "summernote" })
-                                        <div style="color: red;">
-                                            @Html.ValidationMessageFor(x => x.SalesContract)
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="box-title">Şartlar Sözleşmesi</label>
-                                    <div class="col-md-12">
-                                        @Html.TextAreaFor(x => x.TermsAgreement, new { @class = "summernote" })
-                                        <div style="color: red;">
-                                            @Html.ValidationMessageFor(x => x.TermsAgreement)
-                                        </div>
-                                    </div>
-                                </div>
+                                
                                 <div class="form-group">
                                     <div class="col-sm-12">
                                         <button type="submit" class="btn btn-success">Site Ayarları Güncelle</button>

@@ -16,6 +16,10 @@ namespace FashionStore_BLL.Validations.SliderValidations
                 .NotNull().WithMessage("Slider Başlığı boş geçilemez.");
             RuleFor(x => x.SilderDescription)
                 .NotNull().WithMessage("Slider Açıklaması boş geçilemez.");
+            RuleFor(x => x.SliderTitlePosition)
+                .NotNull().WithMessage("Slider Başlık Pozisyonu boş geçilemez.");
+            RuleFor(x => x.TitleTextColor)
+                .NotNull().WithMessage("Slider Başlık Rengi boş geçilemez.");
             RuleFor(x => x.CategoryId)
                 .NotNull().WithMessage("Slider kategorisi boş geçilemez.");
             RuleFor(x => x.DisplayOrder)

@@ -1,0 +1,35 @@
+﻿@model FashionStore.Entity.Entities.ContentPage
+
+@{
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+
+<!-- Breadcrumbs -->
+<div class="container">
+    <ol class="breadcrumb">
+        <li>
+            <a href="/">Anasayfa</a>
+        </li>
+        <li class="active">
+            @Model.Title
+        </li>
+    </ol> <!-- end breadcrumbs -->
+</div>
+
+<!-- About us -->
+<section class="section-wrap about-us pb-60">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h4 class="about-intro uppercase">@Model.Title</h4>
+                @Html.Raw(Model.PageDetail)
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Divider -->
+<div class="container">
+    <hr>
+</div>
+

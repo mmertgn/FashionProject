@@ -8,9 +8,9 @@ using FluentValidation;
 
 namespace FashionStore_BLL.Validations.FaqValidations
 {
-    public class FaqAddValidator : AbstractValidator<FrequantlyQuestion>
+    public class FaqValidator : AbstractValidator<FrequantlyQuestion>
     {
-        public FaqAddValidator()
+        public FaqValidator()
         {
             RuleFor(x => x.Question)
                 .NotNull().WithMessage("Soru alanı boş geçilemez");

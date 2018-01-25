@@ -1,5 +1,6 @@
 ﻿using FashionStore.DAL.ORM.EntityFramework.Mappings.Adresses;
 using FashionStore.DAL.ORM.EntityFramework.Mappings.Categories;
+using FashionStore.DAL.ORM.EntityFramework.Mappings.Contents;
 using FashionStore.DAL.ORM.EntityFramework.Mappings.Customers;
 using FashionStore.DAL.ORM.EntityFramework.Mappings.EmailAccounts;
 using FashionStore.DAL.ORM.EntityFramework.Mappings.Logs;
@@ -10,12 +11,10 @@ using FashionStore.DAL.ORM.EntityFramework.Mappings.Products;
 using FashionStore.DAL.ORM.EntityFramework.Mappings.Settings;
 using FashionStore.DAL.ORM.EntityFramework.Mappings.Shipments;
 using FashionStore.DAL.ORM.EntityFramework.Mappings.ShoppingCarts;
+using FashionStore.DAL.ORM.EntityFramework.Mappings.Sliders;
 using FashionStore.Entity.Entities;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
-using FashionStore.DAL.ORM.EntityFramework.Mappings;
-using FashionStore.DAL.ORM.EntityFramework.Mappings.Contents;
-using FashionStore.DAL.ORM.EntityFramework.Mappings.Sliders;
 
 namespace FashionStore.DAL.ORM.EntityFramework.Context
 {
@@ -48,6 +47,7 @@ namespace FashionStore.DAL.ORM.EntityFramework.Context
         public DbSet<Slider> Sliders { get; set; }
         public DbSet<SliderPicture> SliderPictures { get; set; }
         public DbSet<FrequantlyQuestion> Questions { get; set; }
+        public DbSet<ContentPage> ContentPages { get; set; }
         #endregion
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -76,6 +76,7 @@ namespace FashionStore.DAL.ORM.EntityFramework.Context
             modelBuilder.Configurations.Add(new SliderMap());
             modelBuilder.Configurations.Add(new SliderPictureMap());
             modelBuilder.Configurations.Add(new QuestionMap());
+            modelBuilder.Configurations.Add(new ContentPageMap());
             modelBuilder.Conventions.Add(new PluralizingTableNameConvention());
             #endregion
         }

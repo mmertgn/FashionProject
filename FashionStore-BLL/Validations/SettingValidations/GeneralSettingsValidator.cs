@@ -7,12 +7,10 @@ namespace FashionStore_BLL.Validations.SettingValidations
     {
         public GeneralSettingsValidator()
         {
-            RuleFor(x => x.AboutUs)
-                .NotNull().WithMessage("Hakkımızda alanı boş geçilemez.");
+
             RuleFor(x => x.Address)
                 .NotNull().WithMessage("Adres alanı boş geçilemez.");
-            RuleFor(x => x.ConfidentialityAgreement)
-                .NotNull().WithMessage("Gizlilik Sözleşmesi alanı boş geçilemez.");
+
             RuleFor(x => x.FaxNumber)
                 .NotNull().WithMessage("Fax No alanı boş geçilemez.");
             RuleFor(x => x.MapXCoordinate)
@@ -21,10 +19,7 @@ namespace FashionStore_BLL.Validations.SettingValidations
                 .NotNull().WithMessage("Harita Kordinat(Y) alanı boş geçilemez.");
             RuleFor(x => x.PhoneNumber)
                 .NotNull().WithMessage("Telefon alanı boş geçilemez.");
-            RuleFor(x => x.SalesContract)
-                .NotNull().WithMessage("Satış Sözleşmesi alanı boş geçilemez.");
-            RuleFor(x => x.TermsAgreement)
-                .NotNull().WithMessage("Şartlar Sözleşmesi alanı boş geçilemez.");
+
             RuleFor(x => x.City)
                 .NotNull().WithMessage("İlçe alanı boş geçilemez.");
             RuleFor(x => x.Town)

@@ -24,9 +24,6 @@ namespace FashionStore.Entity.Entities
         public string FaxNumber { get; set; }
         public string MapXCoordinate { get; set; }
         public string MapYCoordinate { get; set; }
-        public string AboutUs { get; set; }
-        public string ConfidentialityAgreement { get; set; }
-        public string TermsAgreement { get; set; }
-        public string SalesContract { get; set; }
+        
     }
 }

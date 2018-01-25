@@ -12,6 +12,8 @@ namespace FashionStore.Entity.Entities
         public int CategoryId { get; set; }
         public string SliderTitle { get; set; }
         public string SilderDescription { get; set; }
+        public string SliderTitlePosition { get; set; }
+        public string TitleTextColor { get; set; }
         public bool IsActive { get; set; }
         public int DisplayOrder { get; set; }
         public DateTime CreatedTime { get; set; }

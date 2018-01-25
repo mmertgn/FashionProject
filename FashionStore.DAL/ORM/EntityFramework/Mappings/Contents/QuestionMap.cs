@@ -17,12 +17,6 @@ namespace FashionStore.DAL.ORM.EntityFramework.Mappings.Contents
                 .HasColumnName("Cevap")
                 .IsUnicode()
                 .IsRequired();
-            Property(x => x.IsColumn1)
-                .HasColumnName("FooterSütun1GözükmeDurumu");
-            Property(x => x.IsColumn2)
-                .HasColumnName("FooterSütun2GözükmeDurumu");
-            Property(x => x.IsColumn3)
-                .HasColumnName("FooterSütun3GözükmeDurumu");
 
         }
     }

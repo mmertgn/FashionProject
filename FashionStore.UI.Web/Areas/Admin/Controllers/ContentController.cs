@@ -59,7 +59,7 @@ namespace FashionStore.UI.Web.Areas.Admin.Controllers
                 model.Slider.CreatedTime = DateTime.Now;
                 _unitOfWork.GetRepo<Slider>().Add(model.Slider);
                 var picture = new Picture();
-                var picturePath = _uploadService.Upload(model.PostedSlider);
+                var picturePath = _uploadService.Upload(model.PostedSlider,1140,536);
                 picture.PicturePath = picturePath;
                 picture.SeoFileName = _seoUrlMaker.MakeSlug(model.Slider.SliderTitle);
                 picture.TitleAttribute = _seoUrlMaker.MakeSlug(model.Slider.SliderTitle);
@@ -135,7 +135,7 @@ namespace FashionStore.UI.Web.Areas.Admin.Controllers
 
             if (System.IO.File.Exists(fullPath)) System.IO.File.Delete(fullPath);
 
-            var picturePath = _uploadService.Upload(sliderphoto);
+            var picturePath = _uploadService.Upload(sliderphoto,1140,536);
             model.Picture.PicturePath = picturePath;
             _unitOfWork.GetRepo<SliderPicture>().Update(model);
 

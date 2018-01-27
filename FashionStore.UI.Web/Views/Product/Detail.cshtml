@@ -1,0 +1,278 @@
+﻿@model FashionStore.UI.Web.Models.ProductDetailViewModel
+
+@{
+    ViewBag.Title = @Model.Product.Name;
+    ViewBag.SeoDescription = Model.Product.MetaDescription;
+    ViewBag.Keywords = Model.Product.MetaKeywords;
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+
+<!-- Breadcrumbs -->
+<div class="container">
+    <ol class="breadcrumb">
+        <li>
+            <a href="/">Anasayfa</a>
+        </li>
+        <li>
+            <a href="/urunler1/@Model.Product.Category.ParentCategory.SeoUrl">@Model.Product.Category.ParentCategory.Name</a>
+        </li>
+        <li>
+            <a href="/urunler/@Model.Product.Category.SeoUrl">@Model.Product.Category.Name</a>
+        </li>
+        <li class="active">
+            @Model.Product.Name
+        </li>
+    </ol> <!-- end breadcrumbs -->
+</div>
+
+<!-- Single Product -->
+<section class="section-wrap single-product">
+    <div class="container relative">
+        <div class="row">
+            <div class="col-sm-6 col-xs-12 mb-60">
+                <div class="flickity flickity-slider-wrap mfp-hover" id="gallery-main">
+                    @foreach (var picture in Model.Product.ProductPictures)
+                    {
+                        <div class="gallery-cell">
+                            <a href="/Uploads/@picture.Picture.PicturePath" class="lightbox-img">
+                                <img src="/Uploads/@picture.Picture.PicturePath" alt="/Uploads/@picture.Picture.AltAttribute" />
+                                <i class="icon arrow_expand"></i>
+                            </a>
+                        </div>
+                    }
+
+                </div> <!-- end gallery main -->
+                <div class="gallery-thumbs">
+                    @foreach (var picture in Model.Product.ProductPictures)
+                    {
+                        <div class="gallery-cell">
+                            <img src="/Uploads/@picture.Picture.PicturePath" alt="/Uploads/@picture.Picture.AltAttribute" />
+                        </div>
+                    }
+                </div> <!-- end gallery thumbs -->
+            </div> <!-- end col img slider -->
+            <div class="col-sm-6 col-xs-12 product-description-wrap">
+                <h1 class="product-title">@Model.Product.Name</h1>
+                <span class="rating">
+                    <a href="#">3 Reviews</a>
+                </span>
+                <span class="price">
+                    @if (Model.Product.OldPrice != null)
+                    {
+                        <del>
+                            <span>@Model.Product.OldPrice ₺</span>
+                        </del>
+                    }
+                    <ins>
+                        <span class="ammount">@Model.Product.OldPrice ₺</span>
+                    </ins>
+                </span>
+                <p class="product-description">@Model.Product.ShortDescription</p>
+                <ul class="product-actions clearfix">
+                    <li>
+                        <a href="#" class="btn btn-color btn-lg add-to-cart left"><span>Sepete Ekle</span></a>
+                    </li>
+                    <li>
+                        <div class="icon-add-to-wishlist left">
+                            <a href="/Account/WishlistAdd"><i class="icon icon_heart_alt"></i></a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="quantity buttons_added">
+                            <input type="button" value="-" class="minus" /><input type="number" step="1" min="0" value="1" title="Qty" class="input-text qty text" /><input type="button" value="+" class="plus" />
+                        </div>
+                    </li>
+                </ul>
+                <div class="product_meta">
+                    <span class="sku">SKU: <a href="#">111@(Model.Product.Id)</a></span>
+                    <span class="posted_in">Kategori: <a href="/urunler/@Model.Product.Category.SeoUrl">@Model.Product.Category.ParentCategory.Name >> @Model.Product.Category.Name</a></span>
+                </div>
+                <div class="socials-share clearfix">
+                    <div class="social-icons rounded">
+                        <a href="#"><i class="fa fa-twitter"></i></a>
+                        <a href="#"><i class="fa fa-facebook"></i></a>
+                        <a href="#"><i class="fa fa-google-plus"></i></a>
+                        <a href="#"><i class="fa fa-linkedin"></i></a>
+                        <a href="#"><i class="fa fa-vimeo"></i></a>
+                    </div>
+                </div>
+            </div> <!-- end col product description -->
+        </div> <!-- end row -->
+        <!-- tabs -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="tabs tabs-bb">
+                    <ul class="nav nav-tabs">
+                        <li class="active">
+                            <a href="#tab-description" data-toggle="tab">Ürün Açıklaması</a>
+                        </li>
+                        <li>
+                            <a href="#tab-reviews" data-toggle="tab">Yorumlar</a>
+                        </li>
+                    </ul> <!-- end tabs -->
+                    <!-- tab content -->
+                    <div class="tab-content">
+
+                        <div class="tab-pane fade in active" id="tab-description">
+                            <p>
+                                @Html.Raw(Model.Product.FullDescription)
+                            </p>
+                        </div>
+                        <div class="tab-pane fade" id="tab-reviews">
+                            <div class="reviews">
+                                <ul class="reviews-list" id="reviews-list">
+                                    @if (Model.Product.ProductReviews.Count == 0)
+                                    {
+                                        <p id="empty-review">Bu ürün için henüz yapılmış bir yorum bulunmamaktadır. Asağıdaki formdan ürünle ilgili görüşlerinizi iletebilirsiniz.</p>
+                                    }
+                                    else
+                                    {
+                                        foreach (var review in Model.Product.ProductReviews)
+                                        {
+                                            <li>
+                                                <div class="review-body">
+                                                    <div class="review-content">
+                                                        <p class="review-author"><strong>@review.Customer.Name</strong> - @review.CreatedTime</p>
+                                                        <div class="rating">
+                                                            <a href="#">@review.Title</a>
+                                                        </div>
+                                                        <p>@review.ReviewText</p>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        }
+                                    }
+
+                                </ul>
+                                <div class="form-group">
+                                    <label class="col-md-12">Yorum Başlığı</label>
+                                    <div class="col-md-9">
+                                        <input type="text" id="yorumBaslik" class="form-control" placeholder="Başlık" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12">Yorumunuz</label>
+                                    <div class="col-md-9">
+                                        <textarea id="yorum" rows="3" placeholder="Yorum"></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <input class="btn btn-green" type="button" id="postReview" value="Yorum Gönder" />
+                                </div>
+                            </div> <!--  end reviews -->
+                        </div>
+
+                    </div> <!-- end tab content -->
+                </div>
+            </div> <!-- end tabs -->
+        </div> <!-- end row -->
+
+    </div> <!-- end container -->
+</section> <!-- end single product -->
+<!-- Related Items -->
+<section class="section-wrap related-products pt-0">
+    <div class="container">
+        <div class="row heading-row">
+            <div class="col-md-12 text-center">
+                <h2 class="heading uppercase"><small>İlgili Ürünler</small></h2>
+            </div>
+        </div>
+
+        <div class="row row-10">
+            <div id="owl-related-products" class="owl-carousel owl-theme nopadding">
+                @foreach (var product in Model.RelatedProducts)
+                {
+                    <div class="product-item">
+                        <div class="product-img">
+                            <a href="/urun-detay/@product.SeoUrl">
+                                @{
+                                    var pictures = product.ProductPictures.ToList();
+                                }
+                                @if (pictures.Count < 2)
+                                {
+                                    <img src="/Uploads/@pictures[0].Picture.PicturePath" alt="">
+                                }
+                                else
+                                {
+                                    <img src="/Uploads/@pictures[0].Picture.PicturePath" alt="">
+                                    <img src="/Uploads/@pictures[1].Picture.PicturePath" alt="" class="back-img">
+                                }
+                            </a>
+                            @if (product.StockQuantity == 0)
+                            {
+                                <span class="sold-out valign">Stokta Yok</span>
+                            }
+                            @if (product.OldPrice != null)
+                            {
+                                <div class="product-label">
+                                    <span class="sale">İndirim</span>
+                                </div>
+                            }
+                            <div class="product-actions">
+                                <a href="/Account/WishlistAdd" class="product-add-to-wishlist" data-toggle="tooltip" data-placement="bottom" title="İstek Listeme Ekle">
+                                    <i class="fa fa-heart"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="product-details">
+                            <h3>
+                                <a class="product-title" href="/urun-detay/@product.SeoUrl">@product.Name</a>
+                            </h3>
+                            <span class="price">
+                                @if (product.OldPrice != null)
+                                {
+                                    <del>
+                                        <span>@product.OldPrice ₺</span>
+                                    </del>
+                                }
+                                <ins>
+                                    <span class="ammount">@product.OldPrice ₺</span>
+                                </ins>
+                            </span>
+                        </div>
+                    </div>
+                }
+            </div> <!-- end owl -->
+        </div> <!-- end row -->
+    </div> <!-- end container -->
+</section> <!-- end related products -->
+@section scripts
+{
+    <script>
+        $("#postReview").click(function () {
+            var title = $("#yorumBaslik").val();
+            var review = $("#yorum").val();
+            $.ajax({
+                type: "GET",
+                url: '/Product/ReviewAdd?title=' + title + '&review=' + review+'&SeoUrl='+'@Model.Product.SeoUrl',
+                dataType: 'json',
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    $("#reviews-list").prepend(
+                        "<div class='alert fade in alert-dismissible alert-" + response.AlertType + "' role='alert' style='display: none;' id ='validation-result-reset'>" +
+                        "<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>×</span></button>" +
+                        "<strong id ='result-strong'>" + response.Message + "</strong>" +
+                        "</div>");
+                    $("#validation-result-reset").fadeIn("slow");
+                    if (response.AlertType === "success") {
+                        var loggedname = $("#logged-name").text();
+                        console.log(loggedname);
+                        $("#reviews-list").append(
+                            "<li>"+
+                            "<div class='review-body'>"+
+                            "<div class='review-content'>"+
+                            "<p class='review-author'><strong>"+loggedname+"</strong> - @DateTime.Now</p>"+
+                            "<div class='rating'>"+
+                            "<a href='#'>"+title+"</a>"+
+                            "</div>"+
+                            "<p>"+review+"</p>"+
+                            "</div>"+
+                            "</div>"+
+                            "</li>");
+                    }
+                }
+            });
+        });
+    </script>
+}

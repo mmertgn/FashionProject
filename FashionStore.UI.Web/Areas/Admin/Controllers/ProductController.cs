@@ -53,7 +53,7 @@ namespace FashionStore.UI.Web.Areas.Admin.Controllers
             if (TempData["ModelState"] != null && !ModelState.Equals(TempData["ModelState"]))
                 ModelState.Merge((ModelStateDictionary)TempData["ModelState"]);
 
-            var categories = _unitOfWork.GetRepo<Category>().Where(x => x.ParentCategoryId == null);
+            var categories = _unitOfWork.GetRepo<Category>().Where(x => x.ParentCategoryId == null && !x.Deleted);
             ViewBag.Categories = new SelectList(categories, "Id", "Name");
             var model = new ProductViewModel
             {
@@ -76,7 +76,7 @@ namespace FashionStore.UI.Web.Areas.Admin.Controllers
                 foreach (var picture in model.PostedPictures)
                 {
                     var pictureModel = new Picture();
-                    var picturePath = _uploadService.Upload(picture);
+                    var picturePath = _uploadService.Upload(picture,277,350);
                     pictureModel.SeoFileName = _seoUrlMaker.MakeSlug(picture.FileName);
                     pictureModel.AltAttribute = _seoUrlMaker.MakeSlug(picture.FileName);
                     pictureModel.TitleAttribute = _seoUrlMaker.MakeSlug(picture.FileName);
@@ -170,7 +170,7 @@ namespace FashionStore.UI.Web.Areas.Admin.Controllers
                 foreach (var picture in httpPostedFileBases)
                 {
                     var pictureModel = new Picture();
-                    var picturePath = _uploadService.Upload(picture);
+                    var picturePath = _uploadService.Upload(picture,277,350);
                     pictureModel.SeoFileName = _seoUrlMaker.MakeSlug(picture.FileName);
                     pictureModel.AltAttribute = _seoUrlMaker.MakeSlug(picture.FileName);
                     pictureModel.TitleAttribute = _seoUrlMaker.MakeSlug(picture.FileName);

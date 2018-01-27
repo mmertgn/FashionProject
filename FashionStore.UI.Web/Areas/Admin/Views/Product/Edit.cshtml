@@ -345,7 +345,7 @@
             var elementName = this.id;
             $.ajax({
                 type: "GET",
-                url: '/Product/ProductPhotoDelete?picturePath=' + elementName,
+                url: '/Admin/Product/ProductPhotoDelete?picturePath=' + elementName,
                 dataType: 'json',
                 contentType: false,
                 processData: false,
@@ -473,7 +473,7 @@
             var dat = $('#ParentCat').val();
             $.ajax({
                 type: "GET",
-                url: '/Product/GetCategories?ParentCatId=' + dat,
+                url: '/Admin/Product/GetCategories?ParentCatId=' + dat,
                 dataType: 'json',
                 contentType: false,
                 processData: false,

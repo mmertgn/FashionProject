@@ -150,7 +150,7 @@
             }
             $.ajax({
                 type: "POST",
-                url: '/Customer/ProfilPhotoUpload',
+                url: '/Admin/Customer/ProfilPhotoUpload',
                 data: formData,
                 dataType: 'json',
                 contentType: false,
@@ -166,7 +166,7 @@
         function DeletePhoto() {
             $.ajax({
                 type: "GET",
-                url: '/Customer/ProfilPhotoDelete',
+                url: '/Admin/Customer/ProfilPhotoDelete',
                 dataType: 'json',
                 contentType: false,
                 processData: false,

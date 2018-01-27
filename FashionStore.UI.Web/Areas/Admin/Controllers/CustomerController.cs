@@ -331,7 +331,7 @@ namespace FashionStore.UI.Web.Areas.Admin.Controllers
             if (profilphoto == null) return Json("");
 
             var model = _unitOfWork.GetRepo<CustomerPicture>().Where(x => x.Customer.Email == HttpContext.User.Identity.Name).FirstOrDefault();
-            var picturePath = _uploadService.Upload(profilphoto);
+            var picturePath = _uploadService.Upload(profilphoto,1920,1080);
             model.Picture.PicturePath = picturePath;
             _unitOfWork.GetRepo<CustomerPicture>().Update(model);
 

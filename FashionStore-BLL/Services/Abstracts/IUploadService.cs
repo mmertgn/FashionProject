@@ -9,6 +9,6 @@ namespace FashionStore_BLL.Services.Abstracts
 {
   public  interface IUploadService
   {
-      string Upload(HttpPostedFileBase file);
+      string Upload(HttpPostedFileBase file,int width,int height);
   }
 }

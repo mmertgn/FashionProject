@@ -110,6 +110,8 @@ namespace FashionStore.UI.Web.Areas.Admin.Controllers
             var validator = new CategoryUpdateValidator(_unitOfWork).Validate(model.Category);
             if (validator.IsValid)
             {
+                var parentCat = _unitOfWork.GetRepo<Category>().GetObject(x => x.Id == model.Category.ParentCategoryId);
+                model.Category.SeoUrl = model.Category.ParentCategoryId == null ? _seoUrlMaker.MakeSlug(model.Category.Name) : _seoUrlMaker.MakeSlug(parentCat.Name + "-" + model.Category.Name);
                 model.Category.UpdateTime = DateTime.Now;
                 _unitOfWork.GetRepo<Category>().Update(model.Category);
             }
@@ -122,7 +124,7 @@ namespace FashionStore.UI.Web.Areas.Admin.Controllers
             });
             TempData["ModelState"] = ModelState;
             TempData["Message"] = isSuccess ? "Kategori bilgileri güncelleme işlemi başarılı bir şekilde gerçekleştirildi." : "Kategori bilgileri güncelleme işlemi gerçekleştirilemedi lütfen tekrar deneyiniz.";
-            return RedirectToAction("Edit", new { SeoUrl = model.Category.SeoUrl });
+            return RedirectToAction("Edit", new {model.Category.SeoUrl });
         }
 
         public ActionResult Delete(string SeoUrl)
@@ -142,7 +144,7 @@ namespace FashionStore.UI.Web.Areas.Admin.Controllers
             if (categoryphoto == null) return Json("");
 
             var model = _unitOfWork.GetRepo<CategoryPicture>().GetObject(x => x.Category.SeoUrl == SeoUrl);
-            var picturePath = _uploadService.Upload(categoryphoto);
+            var picturePath = _uploadService.Upload(categoryphoto,565,697);
             model.Picture.SeoFileName = _seoUrlMaker.MakeSlug(categoryphoto.FileName);
             model.Picture.AltAttribute = _seoUrlMaker.MakeSlug(categoryphoto.FileName);
             model.Picture.TitleAttribute = categoryphoto.FileName;

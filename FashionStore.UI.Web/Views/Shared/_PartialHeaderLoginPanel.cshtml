@@ -1,7 +1,7 @@
 ﻿<ul class="col-sm-6 top-bar-acc">
     @if (User.Identity.IsAuthenticated)
     {
-        <li class="top-bar-link"><a> @ViewBag.Name </a></li>
+        <li class="top-bar-link"><a id="logged-name"> @ViewBag.Name </a></li>
         if (ViewBag.Role == "Admin")
         {
             <li class="top-bar-link"><a href="/Admin">Yönetim Paneli</a> </li>

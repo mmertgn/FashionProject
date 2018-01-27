@@ -289,7 +289,7 @@
             var dat = $('#ParentCat').val();
             $.ajax({
                 type: "GET",
-                url: '/Product/GetCategories?ParentCatId=' + dat,
+                url: '/Admin/Product/GetCategories?ParentCatId=' + dat,
                 dataType: 'json',
                 contentType: false,
                 processData: false,

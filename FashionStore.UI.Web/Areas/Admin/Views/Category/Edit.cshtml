@@ -191,7 +191,7 @@
             formData.append("SeoUrl", dat);
             $.ajax({
                 type: "POST",
-                url: '/Category/CategoryPhotoUpload',
+                url: '/Admin/Category/CategoryPhotoUpload',
                 data: formData,
                 dataType: 'json',
                 contentType: false,
@@ -214,7 +214,7 @@
             var dat = "@Model.Category.SeoUrl"
             $.ajax({
                 type: "GET",
-                url: '/Category/CategoryPhotoDelete?SeoUrl='+dat,
+                url: '/Admin/Category/CategoryPhotoDelete?SeoUrl='+dat,
                 dataType: 'json',
                 contentType: false,
                 processData: false,

@@ -26,7 +26,7 @@ namespace FashionStore.UI.Web.Controllers
 
         public PartialViewResult GetCategories()
         {
-            var model = _unitOfWork.GetRepo<Category>().Where(x => x.ParentCategoryId == null).OrderBy(x => x.DisplayOrder).ToList();
+            var model = _unitOfWork.GetRepo<Category>().Where(x => x.ParentCategoryId == null && !x.Deleted && x.ShowOnTopMenu).OrderBy(x => x.DisplayOrder).ToList();
             return PartialView("_PartialCategory", model);
         }
 

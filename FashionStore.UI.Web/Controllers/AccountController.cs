@@ -9,6 +9,7 @@ using System.IO;
 using System.Linq;
 using System.Web.Mvc;
 using System.Web.Security;
+using FashionStore_BLL.Services.Concretes;
 using Unity.Attributes;
 
 namespace FashionStore.UI.Web.Controllers
@@ -175,11 +176,7 @@ namespace FashionStore.UI.Web.Controllers
             TempData["Message"] = "Şifre sıfırlama işlemi gerçekleştirilemedi. Lütfen tekrar deneyiniz.";
             return RedirectToAction("PasswordReset", new { token = model.Customer.PasswordResetToken });
         }
-        private class ForgetPasswordResult
-        {
-            public string Message { get; set; }
-            public string AlertType { get; set; }
-        }
+        
         private string MailTemplateReader(string mailTo, string url)
         {
             var modelSite = _unitOfWork.GetRepo<Setting>().GetAll().FirstOrDefault();

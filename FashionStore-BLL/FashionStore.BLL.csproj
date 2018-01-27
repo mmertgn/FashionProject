@@ -42,6 +42,9 @@
     <Reference Include="FluentValidation.Mvc, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
       <HintPath>..\packages\FluentValidation.Mvc5.7.2.1\lib\net45\FluentValidation.Mvc.dll</HintPath>
     </Reference>
+    <Reference Include="ImageResizer, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ImageResizer.4.2.0\lib\net45\ImageResizer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
@@ -85,6 +88,7 @@
     <Compile Include="Services\Concretes\CategoryPictureService.cs" />
     <Compile Include="Services\Concretes\CookieService.cs" />
     <Compile Include="Services\Concretes\CustomerPictureService.cs" />
+    <Compile Include="Services\Concretes\ForgetPasswordResult.cs" />
     <Compile Include="Services\Concretes\MailManager.cs" />
     <Compile Include="Services\Concretes\Md5HashProvider.cs" />
     <Compile Include="Services\Concretes\PhotoUploadService.cs" />

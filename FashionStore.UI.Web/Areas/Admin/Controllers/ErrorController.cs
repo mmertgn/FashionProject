@@ -8,6 +8,7 @@ using FashionStore.UI.Web.Controllers;
 
 namespace FashionStore.UI.Web.Areas.Admin.Controllers
 {
+    [AllowAnonymous]
     public class ErrorController : BaseController
     {
         public ActionResult PageError()

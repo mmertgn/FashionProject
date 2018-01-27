@@ -16,5 +16,6 @@ namespace FashionStore.Entity.Entities
         public bool ShowOnFooterColumn1 { get; set; }
         public bool ShowOnFooterColumn2 { get; set; }
         public bool ShowOnFooterColumn3 { get; set; }
+        public int DisplayOrder { get; set; }
     }
 }

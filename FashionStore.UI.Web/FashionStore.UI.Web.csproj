@@ -746,6 +746,7 @@
     <Content Include="AdminTemplate\plugins\images\users\salman.jpg" />
     <Content Include="AdminTemplate\plugins\images\users\sonu.jpg" />
     <Content Include="AdminTemplate\plugins\images\users\varun.jpg" />
+    <Content Include="App_Data\Templates\MailTemplate.html" />
     <Content Include="Global.asax" />
     <Content Include="MainTemplate\css\animate.min.css" />
     <Content Include="MainTemplate\css\bootstrap.min.css" />
@@ -868,12 +869,15 @@
     <Compile Include="Areas\Admin\Models\ProductViewModel.cs" />
     <Compile Include="Areas\Admin\Models\ProfileEditViewModel.cs" />
     <Compile Include="Areas\Admin\Models\SliderViewModel.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ContentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="App_Start\CustomAuthorization.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AccountViewModel.cs" />
     <Compile Include="Models\HomePageViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -1008,6 +1012,10 @@
     <Content Include="Views\Shared\_PartialSocialMedia.cshtml" />
     <Content Include="Views\Shared\_PartialFooterAboutUsAddressSocialMedia.cshtml" />
     <Content Include="Views\Shared\_PartialFooterColumns.cshtml" />
+    <Content Include="Views\Account\SignIn.cshtml" />
+    <Content Include="Views\Shared\_PartialValidationResult.cshtml" />
+    <Content Include="Views\Shared\_PartialHeaderLoginPanel.cshtml" />
+    <Content Include="Views\Account\PasswordReset.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1015,9 +1023,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\FashionStore-BLL\FashionStore.BLL.csproj">
       <Project>{78BD5733-703B-48C7-B63D-FABEE1C7A51C}</Project>

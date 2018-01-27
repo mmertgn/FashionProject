@@ -12,7 +12,7 @@ using Unity.Attributes;
 
 namespace FashionStore.UI.Web.Areas.Admin.Controllers
 {
-    [Authorize]
+    [CustomAuthorization(Roles = "Admin")]
     public class CategoryController : BaseController
     {
         private readonly ISeoUrlMaker _seoUrlMaker;

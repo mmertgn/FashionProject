@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using FashionStore.Entity.Entities;
+﻿using FashionStore.Entity.Entities;
 using FashionStore.Repository.Repositories.Abstracts;
 using FashionStore.UI.Web.Areas.Admin.Models;
 using FashionStore.UI.Web.Controllers;
@@ -11,10 +6,15 @@ using FashionStore_BLL.Services.Abstracts;
 using FashionStore_BLL.Validations.ContentPageValidations;
 using FashionStore_BLL.Validations.FaqValidations;
 using FashionStore_BLL.Validations.SliderValidations;
+using System;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
 using Unity.Attributes;
 
 namespace FashionStore.UI.Web.Areas.Admin.Controllers
 {
+    [CustomAuthorization(Roles = "Admin")]
     public class ContentController : BaseController
     {
         private readonly IUploadService _uploadService;

@@ -33,12 +33,9 @@
                     <div class="top-bar-line">
                         <div class="row">
                             <div class="top-bar-links">
-                                <ul class="col-sm-6 top-bar-acc">
-                                    <li class="top-bar-link"><a href="#">Hesabım</a></li>
-                                    <li class="top-bar-link"><a href="#">İstek Listem</a></li>
-                                    <li class="top-bar-link"><a href="#">Giriş Yap</a></li>
-                                    <li class="top-bar-link"><a href="#">Kayıt Ol</a></li>
-                                </ul>
+                                @{
+                                    Html.RenderAction("HeaderLoginPanel", "Home");
+                                }
                                 @{
                                     Html.RenderAction("SocialMediaLinks", "Home");
                                 }

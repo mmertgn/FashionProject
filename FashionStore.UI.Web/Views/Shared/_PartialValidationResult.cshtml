@@ -1,0 +1,19 @@
+﻿<div>
+    <br />
+    <div id="validation-result-success" class="alert alert-success" style="display: none"></div>
+    <div id="validation-result-error" class="alert alert-danger" style="display: none"></div>
+    @if (TempData["IsSuccess"] != null && (bool)TempData["IsSuccess"])
+    {
+        <div class="alert alert-success fade in alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+            <strong>İşlem Tamamlandı!</strong> @TempData["Message"]
+        </div>
+    }
+    else if (TempData["IsSuccess"] != null && (bool)TempData["IsSuccess"] == false)
+    {
+        <div class="alert alert-danger fade in alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+            <strong>Hata!</strong> @TempData["Message"].
+        </div>
+    }
+</div>

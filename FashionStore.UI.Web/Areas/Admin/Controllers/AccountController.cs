@@ -11,6 +11,7 @@ using Unity.Attributes;
 
 namespace FashionStore.UI.Web.Areas.Admin.Controllers
 {
+    [AllowAnonymous]
     public class AccountController : BaseController
     {
         private readonly IEncryptor _encryptor;
@@ -21,7 +22,8 @@ namespace FashionStore.UI.Web.Areas.Admin.Controllers
         // GET: Admin/Login
         public ActionResult Login()
         {
-            if (HttpContext.User.Identity.IsAuthenticated)
+            var roleControl = _unitOfWork.GetRepo<Customer>().Where(x => x.Email == User.Identity.Name).FirstOrDefault();
+            if (HttpContext.User.Identity.IsAuthenticated && roleControl.CustomerRole.Name != "Üye")
             {
                 return Redirect("/Admin/Home");
             }
@@ -49,7 +51,7 @@ namespace FashionStore.UI.Web.Areas.Admin.Controllers
                 return View();
             }
         }
-
+        [CustomAuthorization(Roles = "Admin")]
         public RedirectResult Logout()
         {
             FormsAuthentication.SignOut();

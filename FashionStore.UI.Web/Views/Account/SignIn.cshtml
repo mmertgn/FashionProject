@@ -1,0 +1,192 @@
+﻿@model FashionStore.UI.Web.Models.AccountViewModel
+
+@{
+    ViewBag.Title = "Üye Girişi | Kayıt Ol | Elsa Giyim";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+
+
+<!-- Page Title -->
+<section class="page-title text-center">
+    <div class="container relative clearfix">
+        <div class="title-holder">
+            <div class="title-text">
+                <h1 class="uppercase">Hesabım</h1>
+                @Html.Partial("_PartialValidationResult")
+            </div>
+        </div>
+    </div>
+</section> <!-- end page title -->
+<!-- login -->
+<section class="section-wrap login-register pt-0 pb-40">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-5 col-sm-offset-1 mb-40">
+                @using (Html.BeginForm("SignIn", "Account", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="login">
+                        <h4 class="uppercase">Kullanıcı Girişi</h4>
+                        <p class="form-row form-row-wide">
+                            <label>
+                                Email Adresiniz
+                                <abbr class="required" title="Zorunlu Alan">*</abbr>
+                            </label>
+                            @Html.TextBoxFor(x => x.LoginModel.Email, new { @class = "input-text", placeholder = "Email Adresiniz..." })
+                            <div style="color:red;">
+                                @Html.ValidationMessageFor(x => x.LoginModel.Email)
+                            </div>
+                        </p>
+                        <p class="form-row form-row-wide">
+                            <label>
+                                Şifre
+                                <abbr class="required" title="Zorunlu Alan">*</abbr>
+                            </label>
+                            @Html.PasswordFor(x => x.LoginModel.Password, new { @class = "input-text", placeholder = "Parola..." })
+                            <div style="color:red;">
+                                @Html.ValidationMessageFor(x => x.LoginModel.Password)
+                            </div>
+                        </p>
+                        <input type="submit" value="Giriş Yap" class="btn">
+                        <div class="checkbox checkbox-primary" id="chck1">
+                            <input id="checkbox1" type="checkbox" name="LoginModel.RememberMe">
+                            <label for="checkbox1"> Beni Hatırla</label>
+                        </div>
+                        <br />
+                        <p class="form-row form-row-wide">
+                            <label>
+                                <a class="btn btn-sm btn-orange" data-toggle="modal" data-target="#myModal"><span style="color: white">Şifremi Unuttum!</span></a>
+                            </label>
+                        </p>
+                    </div>
+                }
+
+            </div>
+            <div class="col-sm-5">
+                <div class="register">
+                    <h4 class="uppercase">Kayıt Ol</h4>
+                    @using (Html.BeginForm("SignUp", "Account", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+                        <p class="form-row form-row-wide">
+                            <label>
+                                Ad
+                                <abbr class="required" title="Zorunlu Alan">*</abbr>
+                            </label>
+                            @Html.TextBoxFor(x => x.Customer.Name, new { @class = "input-text", placeholder = "Adınız" })
+                            <div style="color:red;">
+                                @Html.ValidationMessageFor(x => x.Customer.Name)
+                            </div>
+                        </p>
+                        <p class="form-row form-row-wide">
+                            <label>
+                                Soyad
+                                <abbr class="required" title="Zorunlu Alan">*</abbr>
+                            </label>
+                            @Html.TextBoxFor(x => x.Customer.Surname, new { @class = "input-text", placeholder = "Soyadınız" })
+                            <div style="color:red;">
+                                @Html.ValidationMessageFor(x => x.Customer.Surname)
+                            </div>
+                        </p>
+                        <p class="form-row form-row-wide">
+                            <label>
+                                Email
+                                <abbr class="required" title="Zorunlu Alan">*</abbr>
+                            </label>
+                            @Html.TextBoxFor(x => x.Customer.Email, new { @class = "input-text", placeholder = "Email Adresiniz" })
+                            <div style="color:red;">
+                                @Html.ValidationMessageFor(x => x.Customer.Email)
+                            </div>
+                        </p>
+                        <p class="form-row form-row-wide">
+                            <label>
+                                Şifre
+                                <abbr class="required" title="Zorunlu Alan">*</abbr>
+                            </label>
+                            @Html.PasswordFor(x => x.Customer.Password, new { @class = "input-text", placeholder = "Parola" })
+                            <div style="color:red;">
+                                @Html.ValidationMessageFor(x => x.Customer.Password)
+                            </div>
+                        </p>
+                        <p class="form-row form-row-wide">
+                            <label>
+                                Şifre (Tekrar)
+                                <abbr class="required" title="Zorunlu Alan">*</abbr>
+                            </label>
+                            @Html.PasswordFor(x => x.PasswordConfirm, new { @class = "input-text", placeholder = "Parola (Tekrar)" })
+                            <div style="color:red;">
+                                @Html.ValidationMessageFor(x => x.PasswordConfirm)
+                            </div>
+                        </p>
+                        <p class="form-row form-row-wide">
+                            <label>
+                                Doğum Tarihi
+                                <abbr class="required" title="Zorunlu Alan">*</abbr>
+                            </label>
+                            @Html.TextBoxFor(x => x.Customer.DateOfBirth, new { @class = "input-text", placeholder = "dd/mm/yyyy" })
+                            <div style="color:red;">
+                                @Html.ValidationMessageFor(x => x.Customer.DateOfBirth)
+                            </div>
+                        </p>
+                        <input type="submit" value="Üye Ol" class="btn">
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section> <!-- end login -->
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Şifremi Unuttum</h4>
+            </div>
+            <div class="modal-body" id="modal-body">
+                Şifre sıfırlama işlemi için lütfen mail adresinizi giriniz. Şifre sıfırlama linkiniz mail adresinize gönderilecektir.
+                <div class="form-group">
+                    <label for="email-adres" class="control-label">Email Adresi:</label>
+                    <input type="email" class="form-control" id="email-adres">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Kapat</button>
+                <button type="button" class="btn btn-primary" id="confirm">Gönder</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+
+    <script>
+        $("#confirm").click(function () {
+            var dat = $("#email-adres").val();
+            $.ajax({
+                type: "GET",
+                url: '/Account/ForgetPassword?email=' + dat,
+                dataType: 'json',
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    $("#modal-body").prepend(
+                        "<div class='alert fade in alert-dismissible alert-"+response.AlertType+"' role='alert' style='display: none;' id ='validation-result-reset'>" +
+                        "<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>×</span></button>" +
+                        "<strong id ='result-strong'>"+response.Message+"</strong>" +
+                        "</div>");
+                    $("#validation-result-reset").fadeIn("slow");
+                }
+            });
+        });
+        $('#chck1 input[type="checkbox"]').change(function () {
+            if ($(this).is(":checked")) {
+                $(this).val('true');
+            } else {
+                $(this).val('false');
+            }
+        });
+    </script>
+}

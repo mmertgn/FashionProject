@@ -76,12 +76,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\Abstracts\ICookieService.cs" />
+    <Compile Include="Services\Abstracts\IMessaging.cs" />
     <Compile Include="Services\Abstracts\IPictureService.cs" />
     <Compile Include="Services\Abstracts\IEncryptor.cs" />
     <Compile Include="Services\Abstracts\IUploadService.cs" />
     <Compile Include="Services\Abstracts\ISeoUrlMaker.cs" />
     <Compile Include="Services\Concretes\CategoryPictureService.cs" />
+    <Compile Include="Services\Concretes\CookieService.cs" />
     <Compile Include="Services\Concretes\CustomerPictureService.cs" />
+    <Compile Include="Services\Concretes\MailManager.cs" />
     <Compile Include="Services\Concretes\Md5HashProvider.cs" />
     <Compile Include="Services\Concretes\PhotoUploadService.cs" />
     <Compile Include="Services\Concretes\ProductPictureService.cs" />
@@ -94,7 +98,9 @@
     <Compile Include="Validations\CustomerValidations\CustomerAddValidator.cs" />
     <Compile Include="Validations\CustomerValidations\CustomerEditValidator.cs" />
     <Compile Include="Validations\CustomerValidations\CustomerLoginValidator.cs" />
+    <Compile Include="Validations\CustomerValidations\SiteCustomerRegisterValidator.cs" />
     <Compile Include="Validations\FaqValidations\FaqValidator.cs" />
+    <Compile Include="Validations\PasswordValidations\PasswordResetValidator.cs" />
     <Compile Include="Validations\ProductValidations\ProductAddValidator.cs" />
     <Compile Include="Validations\ProductValidations\ProductReviewUpdateValidator.cs" />
     <Compile Include="Validations\ProductValidations\ProductUpdateValidator.cs" />

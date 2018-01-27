@@ -56,6 +56,8 @@ namespace FashionStore.UI.Web
             container.RegisterType<IPictureService, ProductPictureService>("ProductPicture");
             container.RegisterType<ICustomerRepository, CustomerRepository>();
             container.RegisterType<IUploadService, PhotoUploadService>("PhotoUpload");
+            container.RegisterType<ICookieService, CookieService>();
+            container.RegisterType<IMessaging, MailManager>();
         }
     }
 }

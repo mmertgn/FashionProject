@@ -28,7 +28,9 @@ namespace FashionStore.DAL.ORM.EntityFramework.Mappings.Customers
                 .IsRequired()
                 .IsUnicode()
                 .HasMaxLength(50);
-
+            Property(x => x.PasswordResetToken)
+                .IsUnicode();
+                
             Property(u => u.Password)
                 .IsRequired()
                 .IsUnicode()

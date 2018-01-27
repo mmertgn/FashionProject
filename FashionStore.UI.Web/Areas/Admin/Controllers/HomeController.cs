@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace FashionStore.UI.Web.Areas.Admin.Controllers
 {
-    [Authorize]
+    [CustomAuthorization(Roles = "Admin")]
     public class HomeController : BaseController
     {
         public HomeController(IUnitOfWork unitOfWork) : base(unitOfWork)

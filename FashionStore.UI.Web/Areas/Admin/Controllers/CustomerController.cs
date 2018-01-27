@@ -15,7 +15,7 @@ using Unity.Attributes;
 
 namespace FashionStore.UI.Web.Areas.Admin.Controllers
 {
-    [Authorize]
+    [CustomAuthorization(Roles = "Admin")]
     public class CustomerController : BaseController
     {
         private readonly IEncryptor _encryptor;

@@ -9,6 +9,7 @@ namespace FashionStore.UI.Web.Models
     public class HomePageViewModel
     {
         public List<SliderPicture> SliderPictures { get; set; }
-        public List<ProductPicture> NewArrivalsProducts { get; set; }
+        public List<Product> NewArrivalProducts { get; set; }
+        public List<Product> BestSellerProducts { get; set; }
     }
 }

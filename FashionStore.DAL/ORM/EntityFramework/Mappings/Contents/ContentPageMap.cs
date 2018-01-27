@@ -26,6 +26,8 @@ namespace FashionStore.DAL.ORM.EntityFramework.Mappings.Contents
                 .HasColumnName("FooterKolon2GörünmDurumu");
             Property(x => x.ShowOnFooterColumn3)
                 .HasColumnName("FooterKolon3GörünmDurumu");
+            Property(x => x.DisplayOrder)
+                .HasColumnName("Görüntülenme Sırası");
         }
     }
 }

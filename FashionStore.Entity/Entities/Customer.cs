@@ -19,6 +19,7 @@ namespace FashionStore.Entity.Entities
         public DateTime CreatedTime { get; set; }
         public DateTime? LastLoginTime { get; set; }
         public int CustomerRoleId { get; set; }
+        public string PasswordResetToken { get; set; }
 
         public virtual CustomerRole CustomerRole { get; set; }
         public virtual Address BillingAddress { get; set; }

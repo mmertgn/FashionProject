@@ -7,7 +7,8 @@ using System.Web.Mvc;
 
 namespace FashionStore.UI.Web.Areas.Admin.Controllers
 {
-    [Authorize]
+    [CustomAuthorization(Roles = "Admin")]
+
     public class SettingsController : BaseController
     {
         public SettingsController(IUnitOfWork unitOfWork) : base(unitOfWork)

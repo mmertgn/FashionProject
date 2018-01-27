@@ -18,7 +18,9 @@ namespace FashionStore_BLL.Validations.ContentPageValidations
             RuleFor(x => x.Title)
                 .NotEmpty().WithMessage("Sayfa başlığı boş bırakılamaz.")
                 .Must(UniqueNameCheck).WithMessage("Bu isimde bir sayfa zaten var.");
-
+            RuleFor(x => x.DisplayOrder)
+                .GreaterThanOrEqualTo(1).WithMessage("Görüntülenme sırası 1'den küçük olamaz.")
+                .NotEmpty().WithMessage("Görüntülenme sırası alanı boş bırakılamaz");
             RuleFor(x => x.PageDetail)
                 .NotEmpty().WithMessage("Sayfa içeriği boş geçilemez.");
         }

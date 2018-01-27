@@ -1,0 +1,17 @@
+﻿<ul class="col-sm-6 top-bar-acc">
+    @if (User.Identity.IsAuthenticated)
+    {
+        <li class="top-bar-link"><a> @ViewBag.Name </a></li>
+        if (ViewBag.Role == "Admin")
+        {
+            <li class="top-bar-link"><a href="/Admin">Yönetim Paneli</a> </li>
+        }
+        <li class="top-bar-link"><a href="/Account/MyAccount">Hesabım</a></li>
+        <li class="top-bar-link"><a href="/Account/MyWishList">İstek Listem</a></li>
+        <li class="top-bar-link"><a href="/Account/Logout">Çıkış Yap</a></li>
+    }
+    else
+    {
+        <li class="top-bar-link"><a href="/Account/SignIn">Giriş Yap / Kayıt Ol</a></li>
+    }
+</ul>

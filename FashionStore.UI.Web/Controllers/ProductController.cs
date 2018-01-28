@@ -42,6 +42,10 @@ namespace FashionStore.UI.Web.Controllers
             return View(model);
         }
 
+        public ActionResult Cart()
+        {
+            return View();
+        }
         // GET: Product
         public ActionResult Detail(string SeoUrl)
         {

@@ -1,0 +1,75 @@
+﻿@model List<FashionStore.Entity.Entities.Wishlist>
+@{
+    ViewBag.Title = "WishList";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+
+<!-- Page Title -->
+<section class="page-title text-center">
+    <div class="container relative clearfix">
+        <div class="title-holder">
+            <div class="title-text">
+                <h1 class="uppercase">İstek Listesi</h1>
+            </div>
+        </div>
+    </div>
+</section> <!-- end page title -->
+<!-- Cart -->
+<section class="section-wrap shopping-cart pt-0">
+    <div class="container relative">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-wrap mb-30">
+                    <table class="shop_table cart table">
+                        <thead>
+                            <tr>
+                                <th class="product-name" colspan="2">Ürün</th>
+                                <th class="product-price">Kategori</th>
+                                <th class="product-subtotal">Fiyat</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model.Count > 0)
+                            {
+                                foreach (var product in Model)
+                                {
+                                    <tr class="cart_item">
+                                        <td class="product-thumbnail">
+                                            <a href="/urun-detay/@product.Product.SeoUrl">
+                                                <img src="/Uploads/@product.Product.ProductPictures.FirstOrDefault().Picture.PicturePath" alt="@product.Product.ProductPictures.FirstOrDefault().Picture.AltAttribute">
+                                            </a>
+                                        </td>
+                                        <td class="product-name">
+                                            <a href="/urun-detay/@product.Product.SeoUrl">@product.Product.Name</a>
+                                            <ul>
+                                                <li>@product.Product.ShortDescription</li>
+                                            </ul>
+                                        </td>
+                                        <td class="product-price">
+                                            <span class="amount">@product.Product.Category.Name</span>
+                                        </td>
+                                        <td class="product-subtotal">
+                                            <span class="amount">@product.Product.Price ₺</span>
+                                        </td>
+                                        <td class="product-remove">
+                                            <a href="/Product/AddToCart/@product.Product.SeoUrl" class="remove" title="Sepete Ekle">
+                                                <i class="icon icon_plus"></i>
+                                            </a>
+                                            <a href="/Account/WishListDelete/@product.Id" class="remove" title="İstek Listesinden Kaldır">
+                                                <i class="icon icon_close"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <h4>İstek Listenizde Ürün Bulunmamaktadır.</h4>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div> <!-- end col -->
+        </div> <!-- end row -->
+    </div> <!-- end container -->
+</section> <!-- end cart -->

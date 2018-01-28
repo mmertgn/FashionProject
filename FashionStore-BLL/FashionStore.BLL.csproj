@@ -96,6 +96,7 @@
     <Compile Include="Services\Concretes\SeoUrlMaker.cs" />
     <Compile Include="Validations\CategoryValidations\CategoryAddValidator.cs" />
     <Compile Include="Validations\CategoryValidations\CategoryUpdateValidator.cs" />
+    <Compile Include="Validations\ContactUsValidations\ContactUsValidator.cs" />
     <Compile Include="Validations\ContentPageValidations\ContentPageAddValidator.cs" />
     <Compile Include="Validations\ContentPageValidations\ContentPageUpdateValidator.cs" />
     <Compile Include="Validations\CustomerValidations\AddressAddValidator.cs" />

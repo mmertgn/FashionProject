@@ -1,9 +1,11 @@
-﻿using FashionStore.Entity.Entities;
+﻿using System.IO;
+using FashionStore.Entity.Entities;
 using FashionStore.Repository.Repositories.Abstracts;
 using FashionStore.UI.Web.Controllers;
 using FashionStore_BLL.Validations.SettingValidations;
 using System.Linq;
 using System.Web.Mvc;
+using FashionStore_BLL.Services.Abstracts;
 
 namespace FashionStore.UI.Web.Areas.Admin.Controllers
 {
@@ -11,10 +13,70 @@ namespace FashionStore.UI.Web.Areas.Admin.Controllers
 
     public class SettingsController : BaseController
     {
-        public SettingsController(IUnitOfWork unitOfWork) : base(unitOfWork)
+        private readonly IMessaging _messaging;
+        public SettingsController(IUnitOfWork unitOfWork,
+            IMessaging messaging) : base(unitOfWork)
         {
+            _messaging = messaging;
         }
 
+        #region MailBox
+
+        public ActionResult List()
+        {
+            var model = _unitOfWork.GetRepo<Message>().GetAll().OrderBy(x => x.CreatedTime);
+            return View(model);
+        }
+        public ActionResult MessageDetail(int id)
+        {
+            var model = _unitOfWork.GetRepo<Message>().GetObject(x => x.Id == id);
+            model.IsReaded = true;
+            _unitOfWork.GetRepo<Message>().Update(model);
+            _unitOfWork.Commit();
+            return View(model);
+        }
+        [HttpPost, ValidateAntiForgeryToken]
+        public ActionResult SendAnswer(Message model)
+        {
+            if (model.AdminAnswer != null)
+            {
+                var modelEmail = _unitOfWork.GetRepo<EmailAccount>().GetAll().FirstOrDefault();
+                var msg = new MessageTemplate()
+                {
+                    From = modelEmail.Email,
+                    MessageBody = MailTemplateReader(model.Name, model.AdminAnswer),
+                    MessageSubject = "Bizimle İletişime Geçtiğiniz için Teşekkürler!",
+                    To = model.Mail
+                };
+                _messaging.SendMessage(msg);
+                if (_messaging.IsSucceed)
+                {
+                    _unitOfWork.GetRepo<Message>().Update(model);
+                }
+            }
+            var isSuccess = _unitOfWork.Commit();
+            TempData["IsSuccess"] = isSuccess;
+            TempData["ModelState"] = ModelState;
+            TempData["Message"] = isSuccess ? "Mesajınız kullanıcıya başarılı bir şekilde gönderildi." : "Mesaj gönderme işlemi gerçekleştirilemedi lütfen tekrar deneyiniz.";
+            return RedirectToAction("MessageDetail", model.Id);
+        }
+        private string MailTemplateReader(string name, string message)
+        {
+            var modelSite = _unitOfWork.GetRepo<Setting>().GetAll().FirstOrDefault();
+            string body;
+            using (var sr = new StreamReader(Server.MapPath("/App_Data/Templates/") + "MailAnswer.html"))
+            {
+                body = sr.ReadToEnd();
+            }
+            body = body.Replace("{{company_name}}", modelSite.CompanyName);
+            body = body.Replace("{{name}}", name);
+            body = body.Replace("{{message}}", message);
+            body = body.Replace("{{city}}", modelSite.City);
+            body = body.Replace("{{town}}", modelSite.Town);
+
+            return body;
+        }
+        #endregion
         #region SosyalMedyaİşlemleri
         public ActionResult SocialMediaSettings()
         {
@@ -98,7 +160,7 @@ namespace FashionStore.UI.Web.Areas.Admin.Controllers
             TempData["Message"] = isSuccess ? "Site ayarları güncelleme işlemi başarılı bir şekilde gerçekleştirildi." : "Site ayarları güncelleme işlemi gerçekleştirilemedi lütfen tekrar deneyiniz.";
 
             return RedirectToAction("GeneralSettingsEdit");
-        } 
+        }
         #endregion
         #region Emailİşlemleri
         public ActionResult EmailEdit()

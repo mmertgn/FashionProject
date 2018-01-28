@@ -74,7 +74,7 @@
                     </li>
                     <li>
                         <div class="icon-add-to-wishlist left">
-                            <a href="/Account/WishlistAdd"><i class="icon icon_heart_alt"></i></a>
+                            <a href="/Account/WishlistAdd/@Model.Product.Id"><i class="icon icon_heart_alt"></i></a>
                         </div>
                     </li>
                     <li>
@@ -209,7 +209,7 @@
                                 </div>
                             }
                             <div class="product-actions">
-                                <a href="/Account/WishlistAdd" class="product-add-to-wishlist" data-toggle="tooltip" data-placement="bottom" title="İstek Listeme Ekle">
+                                <a href="/Account/WishlistAdd/@product.Id" class="product-add-to-wishlist" data-toggle="tooltip" data-placement="bottom" title="İstek Listeme Ekle">
                                     <i class="fa fa-heart"></i>
                                 </a>
                             </div>

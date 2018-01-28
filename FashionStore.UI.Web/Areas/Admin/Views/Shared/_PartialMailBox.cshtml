@@ -1,0 +1,47 @@
+﻿@model List<FashionStore.Entity.Entities.Message>
+<ul class="nav navbar-top-links navbar-right pull-right">
+    <li class="dropdown">
+        <a class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" href="#">
+            <i class="icon-envelope"></i>
+            <i class="icon-options-vertical"></i>
+            @if (Model.Count > 0)
+            {
+                <div class="notify"><span class="heartbit"></span><span class="point"></span></div>
+            }
+
+        </a>
+        <ul class="dropdown-menu mailbox animated bounceInDown">
+            @if (Model.Count > 0)
+            {
+                <li>
+                    <div class="drop-title">@Model.Count Adet Okunmamış Mesaj</div>
+                </li>
+                <li>
+                    <div class="message-center">
+                        @foreach (var message in Model)
+                        {
+                            <a href="/Admin/Settings/MessageDetail/@message.Id">
+                                <div class="user-img"> <img src="/Uploads/defaultprofil.jpg" alt="user" class="img-circle"> </div>
+                                <div class="mail-contnet">
+                                    <h5>@message.Name</h5>
+                                    <span class="mail-desc">@message.Subject</span> <span class="time">@message.CreatedTime</span>
+                                </div>
+                            </a>
+                        }
+                    </div>
+                </li>
+                <li>
+                    <a class="text-center" href="/Admin/Settings/List"> <strong>Tümünü Görüntüle</strong> <i class="fa fa-angle-right"></i> </a>
+                </li>
+            }
+            else
+            {
+                <li>
+                    <div class="drop-title">Okunmamış Mesajınız Bulunmamaktadır.</div>
+                </li>
+            }
+
+        </ul>
+        <!-- /.dropdown-messages -->
+    </li>
+</ul>

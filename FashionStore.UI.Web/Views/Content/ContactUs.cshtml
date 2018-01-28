@@ -22,24 +22,20 @@
 <section class="section-wrap contact">
     <div class="container">
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-8" id="modal-body">
                 <h5 class="uppercase mb-30">Bize Yazın</h5>
-                @using (Html.BeginForm("", "", FormMethod.Post, new { id = "contact-form" }))
-                {
-                    @Html.AntiForgeryToken()
-                    <div class="contact-name">
-                        <input name="name" id="name" type="text" placeholder="Ad Soyad*">
-                    </div>
-                    <div class="contact-email">
-                        <input name="mail" id="mail" type="email" placeholder="E-mail*">
-                    </div>
-                    <div class="contact-subject">
-                        <input name="subject" id="subject" type="text" placeholder="Konu">
-                    </div>
-                    <textarea name="comment" id="comment" placeholder="Mesajınız" rows="9"></textarea>
-                    <input type="submit" class="btn btn-lg btn-color btn-submit" value="Gönder" id="submit-message">
-                    <div id="msg" class="message"></div>
-                }
+                <div class="contact-name">
+                    <input name="name" id="name" type="text" placeholder="Ad Soyad*">
+                </div>
+                <div class="contact-email">
+                    <input name="mail" id="mail" type="email" placeholder="E-mail*">
+                </div>
+                <div class="contact-subject">
+                    <input name="subject" id="subject" type="text" placeholder="Konu">
+                </div>
+                <textarea name="comment" id="comment" placeholder="Mesajınız" rows="9"></textarea>
+                <input type="button" class="btn btn-lg btn-color btn-submit" value="Gönder" id="submit-message">
+                <div id="msg" class="message"></div>
             </div> <!-- end col -->
             <div class="col-md-4 mb-40 mt-mdm-40 contact-info">
                 <div class="address-wrap">
@@ -65,6 +61,28 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRvXMFNBcdPRzlmXPIwkNa6zqzFyW9bs4" type="text/javascript"></script>
     <script type="text/javascript" src="/MainTemplate/js/gmap3.js"></script>
     <script type="text/javascript">
+        $("#submit-message").click(function () {
+            var name = $("#name").val();
+            var mail = $("#mail").val();
+            var subject = $("#subject").val();
+            var comment = $("#comment").val();
+            $.ajax({
+                type: "GET",
+                url: '/Content/WriteUs?name=' + name + '&mail=' + mail + '&subject=' + subject + '&comment=' + comment,
+                dataType: 'json',
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    $("#modal-body").prepend(
+                        "<div class='alert fade in alert-dismissible alert-" + response.AlertType + "' role='alert' style='display: none;' id ='validation-result-reset'>" +
+                        "<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>×</span></button>" +
+                        "<strong id ='result-strong'>" + response.Message + "</strong>" +
+                        "</div>");
+                    $("#validation-result-reset").fadeIn("slow");
+                }
+            });
+        });
+
         $(document).ready(function () {
 
             var gmapDiv = $("#google-map");

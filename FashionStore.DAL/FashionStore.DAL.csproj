@@ -59,6 +59,7 @@
     <Compile Include="ORM\EntityFramework\Mappings\Customers\CustomerRoleMap.cs" />
     <Compile Include="ORM\EntityFramework\Mappings\EmailAccounts\EmailAccountMap.cs" />
     <Compile Include="ORM\EntityFramework\Mappings\Logs\LogMap.cs" />
+    <Compile Include="ORM\EntityFramework\Mappings\Messages\MessageMap.cs" />
     <Compile Include="ORM\EntityFramework\Mappings\Orders\OrderItemMap.cs" />
     <Compile Include="ORM\EntityFramework\Mappings\Orders\OrderMap.cs" />
     <Compile Include="ORM\EntityFramework\Mappings\Pictures\PictureMap.cs" />
@@ -72,6 +73,7 @@
     <Compile Include="ORM\EntityFramework\Mappings\ShoppingCarts\ShoppingCartMap.cs" />
     <Compile Include="ORM\EntityFramework\Mappings\Sliders\SliderMap.cs" />
     <Compile Include="ORM\EntityFramework\Mappings\Sliders\SliderPictureMap.cs" />
+    <Compile Include="ORM\EntityFramework\Mappings\WishLists\WishListMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

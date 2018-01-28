@@ -28,6 +28,10 @@ namespace FashionStore.UI.Web.Areas.Admin.Controllers
             var model = _unitOfWork.GetRepo<AdminMenuBar>().Where(x=>x.ParentSidebarId==null).OrderBy(x=>x.DisplayOrder).ToList();
             return PartialView("_PartialSidebar",model);
         }
-
+        public PartialViewResult HeaderMessageList()
+        {
+            var model = _unitOfWork.GetRepo<Message>().Where(x => !x.IsReaded).OrderBy(x => x.CreatedTime).ToList();
+            return PartialView("_PartialMailBox", model);
+        }
     }
 }

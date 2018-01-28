@@ -15,6 +15,8 @@ using FashionStore.DAL.ORM.EntityFramework.Mappings.Sliders;
 using FashionStore.Entity.Entities;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
+using FashionStore.DAL.ORM.EntityFramework.Mappings.Messages;
+using FashionStore.DAL.ORM.EntityFramework.Mappings.WishLists;
 
 namespace FashionStore.DAL.ORM.EntityFramework.Context
 {
@@ -48,6 +50,8 @@ namespace FashionStore.DAL.ORM.EntityFramework.Context
         public DbSet<SliderPicture> SliderPictures { get; set; }
         public DbSet<FrequantlyQuestion> Questions { get; set; }
         public DbSet<ContentPage> ContentPages { get; set; }
+        public DbSet<Message> Messages { get; set; }
+        public DbSet<Wishlist> Wishlists { get; set; }
         #endregion
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -77,6 +81,8 @@ namespace FashionStore.DAL.ORM.EntityFramework.Context
             modelBuilder.Configurations.Add(new SliderPictureMap());
             modelBuilder.Configurations.Add(new QuestionMap());
             modelBuilder.Configurations.Add(new ContentPageMap());
+            modelBuilder.Configurations.Add(new MessageMap());
+            modelBuilder.Configurations.Add(new WishListMap());
             modelBuilder.Conventions.Add(new PluralizingTableNameConvention());
             #endregion
         }

@@ -28,6 +28,32 @@ namespace FashionStore.UI.Web.Controllers
             _messaging = messaging;
         }
 
+        [CustomAuthorization(Roles = "Üye,Admin")]
+        public ActionResult WishList()
+        {
+            var user = _unitOfWork.GetRepo<Customer>().GetObject(x => x.Email == User.Identity.Name);
+            var model = _unitOfWork.GetRepo<Wishlist>().Where(x => x.CustomerId == user.Id).ToList();
+            return View(model);
+        }
+        [CustomAuthorization(Roles = "Üye,Admin")]
+        public ActionResult WishListAdd(int id)
+        {
+            var model = new Wishlist
+            {
+                ProductId = id,
+                CustomerId = _unitOfWork.GetRepo<Customer>().GetObject(x => x.Email == User.Identity.Name).Id
+            };
+            _unitOfWork.GetRepo<Wishlist>().Add(model);
+            _unitOfWork.Commit();
+            return RedirectToAction("WishList");
+        }
+        [CustomAuthorization(Roles = "Üye,Admin")]
+        public ActionResult WishListDelete(int id)
+        {
+            _unitOfWork.GetRepo<Wishlist>().Delete(id);
+            _unitOfWork.Commit();
+            return RedirectToAction("WishList");
+        }
         #region Loginİşlemleri
         public ActionResult SignIn()
         {

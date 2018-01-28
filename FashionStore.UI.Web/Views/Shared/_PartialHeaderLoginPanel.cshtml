@@ -1,4 +1,4 @@
-﻿<ul class="col-sm-6 top-bar-acc">
+﻿<ul class="col-sm-10 top-bar-acc">
     @if (User.Identity.IsAuthenticated)
     {
         <li class="top-bar-link"><a id="logged-name"> @ViewBag.Name </a></li>
@@ -7,7 +7,7 @@
             <li class="top-bar-link"><a href="/Admin">Yönetim Paneli</a> </li>
         }
         <li class="top-bar-link"><a href="/Account/MyAccount">Hesabım</a></li>
-        <li class="top-bar-link"><a href="/Account/MyWishList">İstek Listem</a></li>
+        <li class="top-bar-link"><a href="/Account/WishList">İstek Listem</a></li>
         <li class="top-bar-link"><a href="/Account/Logout">Çıkış Yap</a></li>
     }
     else

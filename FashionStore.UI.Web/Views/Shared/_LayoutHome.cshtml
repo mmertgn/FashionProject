@@ -159,7 +159,7 @@
                                     <ul class="nav navbar-nav">
                                         <li id="mobile-search" class="hidden-lg hidden-md">
                                             <form method="get" class="mobile-search relative">
-                                                <input type="search" class="form-control" placeholder="Search...">
+                                                <input type="search" class="form-control" placeholder="Arama...">
                                                 <button type="submit" class="search-button">
                                                     <i class="icon icon_search"></i>
                                                 </button>
@@ -175,17 +175,9 @@
                                             Html.RenderAction("HeaderPages", "Home");
                                         }
                                         <li class="mobile-links">
-                                            <ul>
-                                                <li>
-                                                    <a href="#">Giriş</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">Hesabım</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">İstek Listem</a>
-                                                </li>
-                                            </ul>
+                                            @{
+                                                Html.RenderAction("HeaderLoginPanel", "Home");
+                                            }
                                         </li>
 
                                     </ul> <!-- end menu -->

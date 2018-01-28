@@ -1,7 +1,10 @@
-﻿using FashionStore.Entity.Entities;
+﻿using System;
+using FashionStore.Entity.Entities;
 using FashionStore.Repository.Repositories.Abstracts;
 using System.Linq;
 using System.Web.Mvc;
+using FashionStore_BLL.Services.Concretes;
+using FashionStore_BLL.Validations.ContactUsValidations;
 
 namespace FashionStore.UI.Web.Controllers
 {
@@ -34,5 +37,33 @@ namespace FashionStore.UI.Web.Controllers
             var model = _unitOfWork.GetRepo<Setting>().GetAll().FirstOrDefault();
             return View(model);
         }
+
+        public JsonResult WriteUs(string name, string mail, string subject, string comment)
+        {
+            var result = new ForgetPasswordResult();
+            var model = new Message()
+            {
+                Name = name,
+                Mail = mail,
+                Subject = subject,
+                Comment = comment,
+                CreatedTime = DateTime.Now,
+                IsReaded = false
+                
+            };
+            var validator = new ContactUsValidator().Validate(model);
+            if (validator.IsValid)
+            {
+                _unitOfWork.GetRepo<Message>().Add(model);
+                _unitOfWork.Commit();
+                result.Message = "Mesajınız başarılı bir şekilde iletildi. En kısa zamanda tarafınıza dönüş yapılacaktır.";
+                result.AlertType = "success";
+                return Json(result, JsonRequestBehavior.AllowGet);
+            }
+            result.Message = "Ad,Mail,Konu ve Mesaj alanları boş bırakılamaz.Lütfen tekrar deneyiniz.";
+            result.AlertType = "danger";
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
     }
 }

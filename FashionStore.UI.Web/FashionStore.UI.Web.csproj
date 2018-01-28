@@ -752,6 +752,7 @@
     <Content Include="AdminTemplate\plugins\images\users\salman.jpg" />
     <Content Include="AdminTemplate\plugins\images\users\sonu.jpg" />
     <Content Include="AdminTemplate\plugins\images\users\varun.jpg" />
+    <Content Include="App_Data\Templates\MailAnswer.html" />
     <Content Include="App_Data\Templates\MailTemplate.html" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Global.asax" />
@@ -1002,6 +1003,9 @@
     <Content Include="Areas\Admin\Views\Content\ContentPageList.cshtml" />
     <Content Include="Areas\Admin\Views\Content\ContentPageAdd.cshtml" />
     <Content Include="Areas\Admin\Views\Content\ContentPageEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\Settings\List.cshtml" />
+    <Content Include="Areas\Admin\Views\Settings\MessageDetail.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_PartialMailBox.cshtml" />
     <None Include="bundleconfig.json" />
     <Content Include="MainTemplate\fonts\ElegantIcons.eot" />
     <Content Include="MainTemplate\fonts\ElegantIcons.eot_%2523iefix" />
@@ -1030,6 +1034,8 @@
     <Content Include="Views\Product\Detail.cshtml" />
     <Content Include="Views\Product\List.cshtml" />
     <Content Include="Views\Error\Page404.cshtml" />
+    <Content Include="Views\Account\WishList.cshtml" />
+    <Content Include="Views\Product\Cart.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

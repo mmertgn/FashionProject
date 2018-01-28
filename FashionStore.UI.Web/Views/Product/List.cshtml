@@ -1,0 +1,179 @@
+﻿@using PagedList.Mvc
+@model FashionStore.UI.Web.Models.ProductListViewModel
+@{
+    ViewBag.Title = Model.ChosenCategory.Name + " | Elsa Giyim";
+    ViewBag.SeoDescription = Model.ChosenCategory.MetaDescription;
+    ViewBag.Keywords = Model.ChosenCategory.MetaKeywords;
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+
+<!-- Breadcrumbs -->
+<div class="container">
+    <ol class="breadcrumb">
+        <li>
+            <a href="/">Anasayfa</a>
+        </li>
+        @if (Model.ChosenCategory.ParentCategoryId != null)
+        {
+            <li>
+                <a href="/urunler/@Model.ChosenCategory.ParentCategory.SeoUrl">@Model.ChosenCategory.ParentCategory.Name</a>
+            </li>
+            <li class="active">
+                @Model.ChosenCategory.Name
+            </li>
+        }
+        else
+        {
+            <li class="active">
+                @Model.ChosenCategory.Name
+            </li>
+        }
+
+    </ol> <!-- end breadcrumbs -->
+</div>
+
+<!-- Catalogue -->
+<section class="section-wrap pt-70 pb-40 catalogue">
+    <div class="container relative">
+        <div class="row">
+            <div class="col-md-9 catalogue-col right mb-50">
+                <div class="shop-filter">
+                    <p class="result-count">Toplam Ürün : @ViewBag.Count</p>
+                    <form class="ecommerce-ordering">
+                        <select>
+                            <option value="default-sorting">Sıralama Seçiniz</option>
+                            <option value="price-low-to-high">Fiyata Göre Azalan</option>
+                            <option value="price-high-to-low">Fiyata Göre Artan</option>
+                            <option value="by-popularity">En Çok Satan Ürünler</option>
+                            <option value="date">En Yeni Ürünler</option>
+                        </select>
+                    </form>
+                </div>
+                <div class="shop-catalogue grid-view left">
+                    <div class="row row-10 items-grid">
+                        @foreach (var product in Model.Products)
+                        {
+                            <div class="col-md-4 col-xs-6">
+                                <div class="product-item">
+                                    <div class="product-img">
+                                        <a href="/urun-detay/@product.SeoUrl">
+                                            @{
+                                                var pictures = product.ProductPictures.ToList();
+                                            }
+                                            @if (pictures.Count < 2)
+                                            {
+                                                if (pictures.Count == 0)
+                                                {
+                                                    <img src="/Uploads/defaultproduct.jpg" alt="">
+
+                                                }
+                                                else
+                                                {
+
+                                                    <img src="/Uploads/@pictures[0].Picture.PicturePath" alt="">
+                                                }
+                                            }
+                                            else
+                                            {
+                                                <img src="/Uploads/@pictures[0].Picture.PicturePath" alt="">
+                                                <img src="/Uploads/@pictures[1].Picture.PicturePath" alt="" class="back-img">
+                                            }
+
+                                        </a>
+                                        @if (product.StockQuantity == 0)
+                                        {
+                                            <span class="sold-out valign">Stokta Yok</span>
+                                        }
+                                        @if (product.OldPrice != null)
+                                        {
+                                            <div class="product-label">
+                                                <span class="sale">İndirim</span>
+                                            </div>
+                                        }
+                                        <div class="product-actions">
+                                            <a href="/Account/WishlistAdd" class="product-add-to-wishlist" data-toggle="tooltip" data-placement="bottom" title="İstek Listeme Ekle">
+                                                <i class="fa fa-heart"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="product-details">
+                                        <h3>
+                                            <a class="product-title" href="/urun-detay/@product.SeoUrl">@product.Name</a>
+                                        </h3>
+                                        <span class="price">
+                                            @if (product.OldPrice != null)
+                                            {
+                                                <del>
+                                                    <span>@product.OldPrice ₺</span>
+                                                </del>
+                                            }
+                                            <ins>
+                                                <span class="ammount">@product.Price ₺</span>
+                                            </ins>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div> <!-- end row -->
+                </div> <!-- end grid mode -->
+                <div class="clear"></div>
+                <!-- Pagination -->
+                <div class="pagination-wrap">
+                    <nav class="pagination right clear">
+                        @Html.PagedListPager(Model.Products, pageIndex => Url.Action("List", "Product", new { Model.ChosenCategory.SeoUrl, page = pageIndex }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
+
+                    </nav>
+                </div>
+            </div> <!-- end col -->
+            <!-- Sidebar -->
+            <aside class="col-md-3 sidebar left-sidebar">
+                <!-- Categories -->
+                <div class="widget categories">
+                    <h3 class="widget-title uppercase">Kategoriler</h3>
+                    <ul class="list-no-dividers">
+                        @foreach (var category in Model.ParentCategories)
+                        {
+                            if (category.Id == Model.ChosenCategory.Id || category.Id == Model.ChosenCategory.ParentCategoryId)
+                            {
+                                <li class="active-cat">
+                                    <b><a style="color: firebrick" href="/urunler/@category.SeoUrl">@category.Name</a></b>
+
+                                </li>
+                            }
+                            else
+                            {
+                                <li>
+                                    <a href="/urunler/@category.SeoUrl">@category.Name</a>
+                                </li>
+                            }
+
+                        }
+                    </ul>
+                </div>
+                <div class="widget categories">
+                    <h3 class="widget-title uppercase">Alt Kategoriler</h3>
+                    <ul class="list-no-dividers">
+                        @foreach (var category in Model.ChildCategories)
+                        {
+                            if (category.Id == Model.ChosenCategory.Id)
+                            {
+                                <li class="active-cat">
+                                    <b><a style="color: firebrick" href="/urunler/@category.SeoUrl">@category.Name</a></b>
+
+                                </li>
+                            }
+                            else
+                            {
+                                <li>
+                                    <a href="/urunler/@category.SeoUrl">@category.Name</a>
+                                </li>
+                            }
+
+                        }
+                    </ul>
+                </div>
+            </aside> <!-- end sidebar -->
+        </div> <!-- end row -->
+    </div> <!-- end container -->
+</section> <!-- end catalogue -->

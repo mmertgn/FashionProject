@@ -50,7 +50,16 @@
                                 }
                                 @if (pictures.Count < 2)
                                 {
-                                    <img src="/Uploads/@pictures[0].Picture.PicturePath" alt="">
+                                    if (pictures.Count == 0)
+                                    {
+                                        <img src="/Uploads/defaultproduct.jpg" alt="">
+
+                                    }
+                                    else
+                                    {
+
+                                        <img src="/Uploads/@pictures[0].Picture.PicturePath" alt="">
+                                    }
                                 }
                                 else
                                 {
@@ -87,7 +96,7 @@
                                     </del>
                                 }
                                 <ins>
-                                    <span class="ammount">@product.OldPrice ₺</span>
+                                    <span class="ammount">@product.Price ₺</span>
                                 </ins>
                             </span>
                         </div>
@@ -117,7 +126,16 @@
                                 }
                                 @if (pictures.Count < 2)
                                 {
-                                    <img src="/Uploads/@pictures[0].Picture.PicturePath" alt="">
+                                    if (pictures.Count == 0)
+                                    {
+                                        <img src="/Uploads/defaultproduct.jpg" alt="">
+
+                                    }
+                                    else
+                                    {
+
+                                        <img src="/Uploads/@pictures[0].Picture.PicturePath" alt="">
+                                    }
                                 }
                                 else
                                 {
@@ -153,7 +171,7 @@
                                     </del>
                                 }
                                 <ins>
-                                    <span class="ammount">@product.OldPrice ₺</span>
+                                    <span class="ammount">@product.Price ₺</span>
                                 </ins>
                             </span>
                         </div>

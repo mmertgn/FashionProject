@@ -9,14 +9,14 @@
                     @foreach (var category in Model)
                     {
                         <div class="col-md-3 megamenu-item">
-                            <h6>@category.Name</h6>
+                            <h6><a href="/urunler/@category.SeoUrl">@category.Name</a></h6>
                             <ul class="menu-list">
                                 @{
                                     var child = category.ChildCategories.Where(x => !x.Deleted && x.ShowOnTopMenu).OrderBy(x => x.DisplayOrder).ToList();
                                 }
                                 @foreach (var childCategory in child)
                                 {
-                                    <li><a href="/kategori/@childCategory.SeoUrl">@childCategory.Name</a></li>
+                                    <li><a href="/urunler/@childCategory.SeoUrl">@childCategory.Name</a></li>
                                 }
                             </ul>
                         </div>

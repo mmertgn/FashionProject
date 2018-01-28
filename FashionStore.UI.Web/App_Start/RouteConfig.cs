@@ -11,18 +11,11 @@ namespace FashionStore.UI.Web
 
             routes.MapRoute(
                 name: "CategoryPage",
-                url: "urunler/{SeoUrl}",
-                defaults: new { controller = "Product", action = "List" },
+                url: "urunler/{SeoUrl}/{page}",
+                defaults: new { controller = "Product", action = "List", page = UrlParameter.Optional },
                 namespaces: new[] { "FashionStore.UI.Web.Controllers" }
             );
-
-            //routes.MapRoute(
-            //    name: "ParentCategoryPage",
-            //    url: "urunler1/{SeoUrl}",
-            //    defaults: new { controller = "Product", action = "Detail" },
-            //    namespaces: new[] { "FashionStore.UI.Web.Controllers" }
-            //);
-
+            
             routes.MapRoute(
                 name: "ProductPages",
                 url: "urun-detay/{SeoUrl}",

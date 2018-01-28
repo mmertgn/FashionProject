@@ -1,23 +1,45 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Web;
-using System.Web.Mvc;
-using FashionStore.Entity.Entities;
+﻿using FashionStore.Entity.Entities;
 using FashionStore.Repository.Repositories.Abstracts;
 using FashionStore.UI.Web.Models;
 using FashionStore_BLL.Services.Concretes;
+using PagedList;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace FashionStore.UI.Web.Controllers
 {
     public class ProductController : BaseController
     {
 
-        public ActionResult List(string SeoUrl)
+        public ActionResult List(string SeoUrl, int? page)
         {
-            
-            return View();
+            var pageIndex = page ?? 1;
+            var category = _unitOfWork.GetRepo<Category>().GetObject(x => x.SeoUrl == SeoUrl);
+
+            var modelPaged = category.ParentCategoryId != null
+                ? _unitOfWork.GetRepo<Product>().Where(x => x.CategoryId == category.Id && !x.Deleted && x.Active).OrderBy(x => x.DisplayOrder).ToPagedList(pageIndex, 9)
+                : _unitOfWork.GetRepo<Product>().Where(x => x.Category.ParentCategoryId == category.Id && !x.Deleted && x.Active).OrderBy(x => x.DisplayOrder).ToPagedList(pageIndex, 9);
+
+            ViewBag.Count = category.ParentCategoryId != null
+                ? _unitOfWork.GetRepo<Product>().Where(x => x.CategoryId == category.Id && !x.Deleted && x.Active)
+                    .Count()
+                : _unitOfWork.GetRepo<Product>()
+                    .Where(x => x.Category.ParentCategoryId == category.Id && !x.Deleted && x.Active).Count();
+            var childCat = category.ParentCategoryId != null
+                ? _unitOfWork.GetRepo<Category>()
+                    .Where(x => x.ParentCategoryId == category.ParentCategoryId && !x.Deleted)
+                    .OrderBy(x => x.DisplayOrder).ToList()
+                : category.ChildCategories.OrderBy(x=>x.DisplayOrder).ToList();
+            var model = new ProductListViewModel
+            {
+                Products = modelPaged,
+                ParentCategories = _unitOfWork.GetRepo<Category>().Where(x => x.ParentCategoryId == null && !x.Deleted).OrderBy(x => x.DisplayOrder).ToList(),
+                ChildCategories = childCat,
+                ChosenCategory = category
+            };
+            return View(model);
         }
 
         // GET: Product

@@ -18,7 +18,7 @@ namespace FashionStore.UI.Web.Controllers
             var model = new HomePageViewModel
             {
                 SliderPictures = _unitOfWork.GetRepo<SliderPicture>().GetAll().OrderBy(x => x.Slider.DisplayOrder).ToList(),
-                NewArrivalProducts = _unitOfWork.GetRepo<Product>().Where(x => x.MarkAsNew && x.MarkAsNewStartTime <= DateTime.Now && x.MarkAsNewEndTime >= DateTime.Now && x.Active).Take(8).OrderBy(x => x.DisplayOrder).ToList(),
+                NewArrivalProducts = _unitOfWork.GetRepo<Product>().Where(x => x.MarkAsNew && x.MarkAsNewStartTime <= DateTime.Now && x.MarkAsNewEndTime >= DateTime.Now && x.Active && !x.Deleted).Take(12).OrderBy(x => x.DisplayOrder).ToList(),
                 BestSellerProducts = _unitOfWork.GetRepo<Product>().Where(x => x.IsFeaturedProduct && x.Active && !x.Deleted).Take(12).OrderBy(x => x.DisplayOrder).ToList()
             };
             return View(model);

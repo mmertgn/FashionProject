@@ -14,7 +14,7 @@
             <a href="/">Anasayfa</a>
         </li>
         <li>
-            <a href="/urunler1/@Model.Product.Category.ParentCategory.SeoUrl">@Model.Product.Category.ParentCategory.Name</a>
+            <a href="/urunler/@Model.Product.Category.ParentCategory.SeoUrl">@Model.Product.Category.ParentCategory.Name</a>
         </li>
         <li>
             <a href="/urunler/@Model.Product.Category.SeoUrl">@Model.Product.Category.Name</a>
@@ -64,7 +64,7 @@
                         </del>
                     }
                     <ins>
-                        <span class="ammount">@Model.Product.OldPrice ₺</span>
+                        <span class="ammount">@Model.Product.Price ₺</span>
                     </ins>
                 </span>
                 <p class="product-description">@Model.Product.ShortDescription</p>
@@ -226,7 +226,7 @@
                                     </del>
                                 }
                                 <ins>
-                                    <span class="ammount">@product.OldPrice ₺</span>
+                                    <span class="ammount">@product.Price ₺</span>
                                 </ins>
                             </span>
                         </div>

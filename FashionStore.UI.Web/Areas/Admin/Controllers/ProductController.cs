@@ -66,17 +66,23 @@ namespace FashionStore.UI.Web.Areas.Admin.Controllers
         public ActionResult Add(ProductViewModel model)
         {
             var validator = new ProductAddValidator(_unitOfWork).Validate(model.Product);
-            if (validator.IsValid)
+            if (validator.IsValid && model.PostedPictures[0] != null)
             {
                 model.Product.CategoryId = model.Product.CategoryId != 0 ? model.Product.CategoryId : model.CatId;
                 model.Product.SeoUrl = _seoUrlMaker.MakeSlug(model.Product.Name);
                 model.Product.CreateTime = DateTime.Now;
+                if (model.Product.MarkAsNew)
+                {
+                    model.Product.MarkAsNewStartTime = DateTime.Now;
+                    model.Product.MarkAsNewEndTime = DateTime.Now.AddDays(7);
+
+                }
                 _unitOfWork.GetRepo<Product>().Add(model.Product);
 
                 foreach (var picture in model.PostedPictures)
                 {
                     var pictureModel = new Picture();
-                    var picturePath = _uploadService.Upload(picture,277,350);
+                    var picturePath = _uploadService.Upload(picture, 277, 350);
                     pictureModel.SeoFileName = _seoUrlMaker.MakeSlug(picture.FileName);
                     pictureModel.AltAttribute = _seoUrlMaker.MakeSlug(picture.FileName);
                     pictureModel.TitleAttribute = _seoUrlMaker.MakeSlug(picture.FileName);
@@ -170,7 +176,7 @@ namespace FashionStore.UI.Web.Areas.Admin.Controllers
                 foreach (var picture in httpPostedFileBases)
                 {
                     var pictureModel = new Picture();
-                    var picturePath = _uploadService.Upload(picture,277,350);
+                    var picturePath = _uploadService.Upload(picture, 277, 350);
                     pictureModel.SeoFileName = _seoUrlMaker.MakeSlug(picture.FileName);
                     pictureModel.AltAttribute = _seoUrlMaker.MakeSlug(picture.FileName);
                     pictureModel.TitleAttribute = _seoUrlMaker.MakeSlug(picture.FileName);
@@ -231,7 +237,7 @@ namespace FashionStore.UI.Web.Areas.Admin.Controllers
 
             return View(review);
         }
-        [HttpPost,ValidateAntiForgeryToken]
+        [HttpPost, ValidateAntiForgeryToken]
         public ActionResult ReviewEdit(ProductReview model)
         {
             var validator = new ProductReviewUpdateValidator().Validate(model);

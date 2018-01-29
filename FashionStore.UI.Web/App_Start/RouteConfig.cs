@@ -10,6 +10,13 @@ namespace FashionStore.UI.Web
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "DeleteCartItem",
+                url: "sepet-sil/{SeoUrl}",
+                defaults: new { controller = "Home", action = "DeleteFromCart", page = UrlParameter.Optional },
+                namespaces: new[] { "FashionStore.UI.Web.Controllers" }
+            );
+
+            routes.MapRoute(
                 name: "CategoryPage",
                 url: "urunler/{SeoUrl}/{page}",
                 defaults: new { controller = "Product", action = "List", page = UrlParameter.Optional },

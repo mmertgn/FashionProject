@@ -58,7 +58,7 @@ namespace FashionStore.UI.Web.Areas.Admin.Controllers
             TempData["IsSuccess"] = isSuccess;
             TempData["ModelState"] = ModelState;
             TempData["Message"] = isSuccess ? "Mesajınız kullanıcıya başarılı bir şekilde gönderildi." : "Mesaj gönderme işlemi gerçekleştirilemedi lütfen tekrar deneyiniz.";
-            return RedirectToAction("MessageDetail", model.Id);
+            return RedirectToAction("MessageDetail", "Settings", new { model.Id });
         }
         private string MailTemplateReader(string name, string message)
         {

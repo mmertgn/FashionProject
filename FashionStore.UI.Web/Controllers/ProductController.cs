@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using FashionStore_BLL.Services.Abstracts;
 
 namespace FashionStore.UI.Web.Controllers
 {
@@ -31,7 +32,7 @@ namespace FashionStore.UI.Web.Controllers
                 ? _unitOfWork.GetRepo<Category>()
                     .Where(x => x.ParentCategoryId == category.ParentCategoryId && !x.Deleted)
                     .OrderBy(x => x.DisplayOrder).ToList()
-                : category.ChildCategories.OrderBy(x=>x.DisplayOrder).ToList();
+                : category.ChildCategories.OrderBy(x => x.DisplayOrder).ToList();
             var model = new ProductListViewModel
             {
                 Products = modelPaged,
@@ -41,10 +42,15 @@ namespace FashionStore.UI.Web.Controllers
             };
             return View(model);
         }
-
-        public ActionResult Cart()
+        [CustomAuthorization(Roles = "Admin,Üye")]
+        public ActionResult CartList()
         {
-            return View();
+            var model = new CartViewModel
+            {
+                CartItems = _unitOfWork.GetRepo<ShoppingCart>().Where(x => x.Customer.Email == User.Identity.Name).ToList()
+            };
+            model.SumTotal = model.CartItems.Count > 0 ? model.CartItems.Sum(x => x.Product.Price * x.Quantity/* * 1.18M*/) : 0M;
+            return View(model);
         }
         // GET: Product
         public ActionResult Detail(string SeoUrl)
@@ -53,7 +59,7 @@ namespace FashionStore.UI.Web.Controllers
             var model = new ProductDetailViewModel
             {
                 Product = product,
-                RelatedProducts = _unitOfWork.GetRepo<Product>().Where(x => x.CategoryId == product.CategoryId).ToList()
+                RelatedProducts = _unitOfWork.GetRepo<Product>().Where(x => x.CategoryId == product.CategoryId && !x.Deleted && x.Active).ToList()
             };
             return View(model);
         }
@@ -98,6 +104,7 @@ namespace FashionStore.UI.Web.Controllers
         }
         public ProductController(IUnitOfWork unitOfWork) : base(unitOfWork)
         {
+            
         }
     }
 }

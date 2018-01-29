@@ -4,6 +4,7 @@ using FashionStore.UI.Web.Models;
 using System;
 using System.Linq;
 using System.Web.Mvc;
+using FashionStore_BLL.Services.Abstracts;
 
 namespace FashionStore.UI.Web.Controllers
 {
@@ -62,6 +63,49 @@ namespace FashionStore.UI.Web.Controllers
                 ViewBag.Role = model.CustomerRole.Name;
             }
             return PartialView("_PartialHeaderLoginPanel");
+        }
+        public PartialViewResult Cart()
+        {
+            var model = new CartViewModel
+            {
+                CartItems = _unitOfWork.GetRepo<ShoppingCart>().Where(x => x.Customer.Email == User.Identity.Name).ToList()
+            };
+            model.SumTotal = model.CartItems.Count > 0 ? model.CartItems.Sum(x => x.Product.Price * x.Quantity/* * 1.18M*/) : 0M;
+            return PartialView("_PartialCart", model);
+        }
+        [CustomAuthorization(Roles = "Admin,Üye")]
+        public ActionResult DeleteFromCart(string SeoUrl)
+        {
+            var cartItem = _unitOfWork.GetRepo<ShoppingCart>()
+                .GetObject(x => x.Product.SeoUrl == SeoUrl && x.Customer.Email == User.Identity.Name);
+            _unitOfWork.GetRepo<ShoppingCart>().Delete(cartItem.Id);
+            _unitOfWork.Commit();
+            return RedirectToAction("CartList", "Product");
+        }
+        [CustomAuthorization(Roles = "Admin,Üye")]
+        public ActionResult CartAdd(int Quantity, int ProductId, string returnUrl)
+        {
+            var cartItem = _unitOfWork.GetRepo<ShoppingCart>()
+                .Where(x => x.ProductId == ProductId && x.Customer.Email == User.Identity.Name).FirstOrDefault();
+            if (cartItem != null)
+            {
+                cartItem.Quantity = cartItem.Quantity + Quantity;
+                _unitOfWork.GetRepo<ShoppingCart>().Update(cartItem);
+            }
+            else
+            {
+                var model = new ShoppingCart
+                {
+                    ProductId = ProductId,
+                    Quantity = Quantity,
+                    CustomerId = _unitOfWork.GetRepo<Customer>().GetObject(x => x.Email == User.Identity.Name).Id,
+                    CreateTime = DateTime.Now
+                };
+                _unitOfWork.GetRepo<ShoppingCart>().Add(model);
+            }
+
+            _unitOfWork.Commit();
+            return Redirect(returnUrl);
         }
     }
 }

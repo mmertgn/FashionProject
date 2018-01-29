@@ -94,6 +94,9 @@
                                             <a href="/Account/WishlistAdd/@product.Id" class="product-add-to-wishlist" data-toggle="tooltip" data-placement="bottom" title="İstek Listeme Ekle">
                                                 <i class="fa fa-heart"></i>
                                             </a>
+                                            <a href="@Url.Action("CartAdd", "Home",new{Quantity = 1, ProductId = product.Id, returnUrl = Request.RawUrl})" class="product-add-to-wishlist" data-toggle="tooltip" data-placement="bottom" title="Sepete Ekle">
+                                                <i class="fa fa-shopping-cart"></i>
+                                            </a>
                                         </div>
                                     </div>
                                     <div class="product-details">

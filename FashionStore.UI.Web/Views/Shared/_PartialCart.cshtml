@@ -1,0 +1,64 @@
+﻿@using FashionStore.UI.Web.Models
+@model CartViewModel
+
+<!-- Cart -->
+<div class="nav-cart-wrap hidden-sm hidden-xs">
+    <div class="nav-cart right">
+        <div class="nav-cart-outer">
+            <div class="nav-cart-inner">
+                <a href="/Product/CartList" class="nav-cart-icon">@Model.CartItems.Count</a>
+            </div>
+        </div>
+
+        <div class="nav-cart-container">
+            @if (Model.CartItems.Count > 0)
+            {
+                <div class="nav-cart-items">
+                    @foreach (var item in Model.CartItems)
+                    {
+                        <div class="nav-cart-item clearfix">
+                            <div class="nav-cart-img">
+                                <a href="/urun-detay/@item.Product.SeoUrl">
+                                    <img width="60" height="70" src="/Uploads/@item.Product.ProductPictures.FirstOrDefault().Picture.PicturePath" alt="@item.Product.ProductPictures.FirstOrDefault().Picture.AltAttribute">
+                                </a>
+                            </div>
+                            <div class="nav-cart-title">
+                                <a href="/urun-detay/@item.Product.SeoUrl">
+                                    @item.Product.Name
+                                </a>
+                                <div class="nav-cart-price">
+                                    <span>@item.Quantity x</span>
+                                    <span>@item.Product.Price₺</span>
+                                </div>
+                            </div>
+                            <div class="nav-cart-remove">
+                                <a href="/sepet-sil/@item.Product.SeoUrl"><i class="icon icon_close"></i></a>
+                            </div>
+                        </div>
+                    }
+
+                </div> <!-- end cart items -->
+                <div class="nav-cart-summary">
+                    <span>Sepet Toplamı</span>
+                    <span class="total-price">@Model.SumTotal ₺</span>
+                </div>
+                <div class="nav-cart-actions mt-20">
+                    <a href="/Product/CartList" class="btn btn-md btn-dark"><span>Sepete Git</span></a>
+                    <a href="/Order/Checkout" class="btn btn-md btn-color mt-10"><span>Ödemeyi Tamamla</span></a>
+                </div>
+            }
+            else
+            {
+                <h3>Sepetinizde Ürün Bulunmamaktadır.</h3>
+            }
+        </div>
+
+
+    </div>
+    <div class="menu-cart-amount right">
+        <span>
+            Sepet /
+            <a href="/Home/CartList"> @Model.SumTotal ₺</a>
+        </span>
+    </div>
+</div> <!-- end cart -->

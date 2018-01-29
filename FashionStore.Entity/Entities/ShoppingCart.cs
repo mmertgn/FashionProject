@@ -15,8 +15,8 @@ namespace FashionStore.Entity.Entities
         public DateTime CreateTime { get; set; }
         public DateTime? UpdateTime { get; set; }
 
-        public Customer Customer { get; set; }
-        public Product Product { get; set; }
+        public virtual Customer Customer { get; set; }
+        public virtual Product Product { get; set; }
         
     }
 }

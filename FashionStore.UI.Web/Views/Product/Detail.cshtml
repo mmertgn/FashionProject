@@ -70,7 +70,7 @@
                 <p class="product-description">@Model.Product.ShortDescription</p>
                 <ul class="product-actions clearfix">
                     <li>
-                        <a href="#" class="btn btn-color btn-lg add-to-cart left"><span>Sepete Ekle</span></a>
+                        <a href="@Url.Action("CartAdd", "Home",new{Quantity = 1, ProductId = Model.Product.Id, returnUrl = Request.RawUrl})" class="btn btn-color btn-lg add-to-cart left" id="cart-add"><span>Sepete Ekle</span></a>
                     </li>
                     <li>
                         <div class="icon-add-to-wishlist left">
@@ -79,7 +79,9 @@
                     </li>
                     <li>
                         <div class="quantity buttons_added">
-                            <input type="button" value="-" class="minus" /><input type="number" step="1" min="0" value="1" title="Qty" class="input-text qty text" /><input type="button" value="+" class="plus" />
+                            <input type="button" value="-" class="minus" />
+                            <input type="number" step="1" min="0" value="1" title="Qty" class="input-text qty text" id="quantity" />
+                            <input type="button" value="+" class="plus" />
                         </div>
                     </li>
                 </ul>
@@ -212,6 +214,9 @@
                                 <a href="/Account/WishlistAdd/@product.Id" class="product-add-to-wishlist" data-toggle="tooltip" data-placement="bottom" title="İstek Listeme Ekle">
                                     <i class="fa fa-heart"></i>
                                 </a>
+                                <a href="@Url.Action("CartAdd", "Home",new{Quantity = 1, ProductId = product.Id, returnUrl = Request.RawUrl})" class="product-add-to-wishlist" data-toggle="tooltip" data-placement="bottom" title="Sepete Ekle">
+                                    <i class="fa fa-shopping-cart"></i>
+                                </a>
                             </div>
                         </div>
                         <div class="product-details">
@@ -239,6 +244,21 @@
 @section scripts
 {
     <script>
+        $(".minus").click(function () {
+            var deger = $("#quantity").val();
+            if (deger>1) {
+                $("#quantity").attr("value", parseInt(deger) - 1);
+                $("#cart-add").attr("href",
+                    "/Home/CartAdd?Quantity=" + (parseInt(deger) - 1) + "&ProductId=@Model.Product.Id"+"&returnUrl=@Request.RawUrl");
+            }
+        });
+        $(".plus").click(function () {
+            var deger = $("#quantity").val();
+            $("#quantity").attr("value", parseInt(deger) + 1);
+            $("#cart-add").attr("href",
+                "/Home/CartAdd?Quantity=" + (parseInt(deger) + 1) + "&ProductId=@Model.Product.Id"+"&returnUrl=@Request.RawUrl");
+        });
+
         $("#postReview").click(function () {
             var title = $("#yorumBaslik").val();
             var review = $("#yorum").val();

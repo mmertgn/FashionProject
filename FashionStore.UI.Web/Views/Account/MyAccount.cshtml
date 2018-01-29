@@ -1,0 +1,226 @@
+﻿@model FashionStore.UI.Web.Models.ProfileViewModel
+
+@{
+    ViewBag.Title = "Hesabım | Elsa Giyim";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+
+<!-- Breadcrumbs -->
+<div class="container">
+    <ol class="breadcrumb">
+        <li>
+            <a href="/">Anasayfa</a>
+        </li>
+        <li class="active">
+            Profilim
+        </li>
+    </ol> <!-- end breadcrumbs -->
+</div>
+<!-- Shortcodes -->
+<section class="section-wrap">
+    <div class="container">
+        <div class="row heading-row">
+            <div class="col-md-12 text-center">
+                <h2 class="heading uppercase"><small>Hesabım</small></h2>
+            </div>
+        </div>
+        <div class="row">
+            <!-- Horizontal Tabs -->
+            <div class="col-sm-12 mb-50">
+                <div class="tabs">
+                    <ul class="nav nav-tabs">
+                        <li class="active">
+                            <a href="#tab-one" data-toggle="tab">Profilim</a>
+                        </li>
+                        <li>
+                            <a href="#tab-two" data-toggle="tab">Parola İşlemleri</a>
+                        </li>
+                        <li>
+                            <a href="#tab-three" data-toggle="tab">Kayıtlı Adreslerim</a>
+                        </li>
+                    </ul> <!-- end tabs -->
+                    <!-- tab content -->
+                    <div class="tab-content">
+                        <div class="tab-pane fade in active" id="tab-one">
+                            @Html.Partial("_PartialValidationResult")
+                            @using (Html.BeginForm("ProfileEdit", "Account", FormMethod.Post))
+                            {
+                                @Html.AntiForgeryToken()
+                                <div class="col-md-6">
+                                    <label for="input-label">Ad</label>
+                                    @Html.TextBoxFor(x => x.Customer.Name, new { placeholder = "Adınız", style = "margin-bottom:15px;" })
+                                    <div style="color: red; margin-bottom: 15px;">
+                                        @Html.ValidationMessageFor(x => x.Customer.Name)
+                                    </div>
+                                    <label for="input-label">Soyad</label>
+                                    @Html.TextBoxFor(x => x.Customer.Surname, new { placeholder = "Soyadınız", style = "margin-bottom:15px;" })
+                                    <div style="color: red; margin-bottom: 15px;">
+                                        @Html.ValidationMessageFor(x => x.Customer.Surname)
+                                    </div>
+                                    <label for="input-label">Email</label>
+                                    @Html.TextBoxFor(x => x.Customer.Email, new { placeholder = "Email Adresi", type = "email", style = "margin-bottom:15px;" })
+                                    <div style="color: red; margin-bottom: 15px;">
+                                        @Html.ValidationMessageFor(x => x.Customer.Email)
+                                    </div>
+                                    <label for="input-label">Doğum Tarihi</label>
+                                    @Html.TextBoxFor(x => x.Customer.DateOfBirth, new { placeholder = "Doğum Tarihi", Value = Model.Customer.DateOfBirth.ToShortDateString(), style = "margin-bottom:15px;" })
+                                    <div style="color: red; margin-bottom: 15px;">
+                                        @Html.ValidationMessageFor(x => x.Customer.DateOfBirth)
+                                    </div>
+                                    <input type="submit" class="btn btn-sm btn-green" value="Profili Güncelle" />
+                                </div>
+                                <!-- end col -->
+                                <div class="col-md-6">
+                                    <label for="input-label">Profil Resmi</label>
+                                    <div class="img-responsive">
+                                        <img height="147" width="160" src="/Uploads/@Model.Customer.CustomerPictures.FirstOrDefault().Picture.PicturePath" alt="@Model.Customer.CustomerPictures.FirstOrDefault().Picture.AltAttribute" />
+                                    </div>
+                                    <br />
+                                    <label for="input-label">Kargo Adresi</label>
+                                    @Html.DropDownListFor(x => x.Customer.ShippingAddress.Id, ViewBag.ShippingAdresses as SelectList, "Adres Seçiniz.")
+                                    <label for="input-label">Fatura Adresi</label>
+                                    @Html.DropDownListFor(x => x.Customer.BillingAddress.Id, ViewBag.BillingAdresses as SelectList, "Adres Seçiniz.")
+                                </div>
+                            }
+                        </div>
+                        <div class="tab-pane fade" id="tab-two">
+                            @using (Html.BeginForm("PasswordEdit", "Account", FormMethod.Post))
+                            {
+                                @Html.AntiForgeryToken()
+                                <div class="col-md-6">
+                                    <label for="input-label">Parola</label>
+                                    @Html.PasswordFor(x => x.Password, new { placeholder = "Şifre", style = "margin-bottom:15px;" })
+                                    <div style="color: red; margin-bottom: 15px;">
+                                        @Html.ValidationMessageFor(x => x.Password)
+                                    </div>
+                                    <label for="input-label">Parola Tekrar</label>
+                                    @Html.PasswordFor(x => x.PasswordConfirm, new { placeholder = "Şifre (Tekrar)", style = "margin-bottom:15px;" })
+                                    <div style="color: red; margin-bottom: 15px;">
+                                        @Html.ValidationMessageFor(x => x.PasswordConfirm)
+                                    </div>
+                                    <input type="submit" class="btn btn-sm btn-green" />
+                                </div> <!-- end col -->
+                            }
+                        </div>
+                        <div class="tab-pane fade" id="tab-three">
+                            <div class="col-md-12">
+                                <div class="table-wrap mb-30">
+                                    <table class="shop_table cart table">
+                                        <thead>
+                                            <tr>
+                                                <th class="product-name">Ad Soyad</th>
+                                                <th class="product-price">Email</th>
+                                                <th class="product-price">İlçe / İl</th>
+                                                <th class="product-price">Adres</th>
+                                                <th class="product-price">Posta Kodu</th>
+                                                <th class="product-price">Telefon</th>
+                                                <th class="product-price">Oluşturulma Tarihi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @if (Model.Customer.Addresses.Count > 0)
+                                            {
+                                                foreach (var adres in Model.Customer.Addresses)
+                                                {
+                                                    <tr class="cart_item">
+                                                        <td class="product-price">
+                                                            <span class="amount">@adres.FirstName @adres.LastName</span>
+                                                        </td>
+                                                        <td class="product-price">
+                                                            <span class="amount">@adres.Email</span>
+                                                        </td>
+                                                        <td class="product-price">
+                                                            <span class="amount">@adres.City / @adres.Town</span>
+                                                        </td>
+                                                        <td class="product-subtotal">
+                                                            <span class="amount">@adres.Address1 @adres.Address2</span>
+                                                        </td>
+                                                        <td class="product-subtotal">
+                                                            <span class="amount">@adres.PostalCode</span>
+                                                        </td>
+                                                        <td class="product-subtotal">
+                                                            <span class="amount">@adres.PhoneNumber</span>
+                                                        </td>
+                                                        <td class="product-subtotal">
+                                                            <span class="amount">@adres.CreatedOnUtc</span>
+                                                        </td>
+                                                        <td class="product-remove">
+                                                            <a href="/Account/AddressDelete/@adres.Id" class="remove" title="Adresi Sil">
+                                                                <i class="icon icon_close"></i>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            }
+                                            else
+                                            {
+                                                <h4>Kayıtlı Adresiniz Bulunmamaktadır.</h4>
+                                            }
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                                <h4>Adres Ekle</h4>
+                                @using (Html.BeginForm("AddressAdd", "Account", FormMethod.Post))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <div class="col-md-6">
+                                        <label for="input-label">Ad</label>
+                                        @Html.TextBoxFor(x => x.Address.FirstName, new { placeholder = "Adınız", style = "margin-bottom:15px;" })
+                                        <div style="color: red; margin-bottom: 15px;">
+                                            @Html.ValidationMessageFor(x => x.Address.FirstName)
+                                        </div>
+                                        <label for="input-label">Email</label>
+                                        @Html.TextBoxFor(x => x.Address.Email, new { placeholder = "Email Adresi", type = "email", style = "margin-bottom:15px;" })
+                                        <div style="color: red; margin-bottom: 15px;">
+                                            @Html.ValidationMessageFor(x => x.Address.Email)
+                                        </div>
+                                        <label for="input-label">İl</label>
+                                        @Html.TextBoxFor(x => x.Address.Town, new { placeholder = "İl", style = "margin-bottom:15px;" })
+                                        <div style="color: red; margin-bottom: 15px;">
+                                            @Html.ValidationMessageFor(x => x.Address.Town)
+                                        </div>
+                                        <label for="input-label">Adres</label>
+                                        @Html.TextBoxFor(x => x.Address.Address1, new { placeholder = "Adres", style = "margin-bottom:15px;" })
+                                        <div style="color: red; margin-bottom: 15px;">
+                                            @Html.ValidationMessageFor(x => x.Address.Address1)
+                                        </div>
+                                        <label for="input-label">Posta Kodu</label>
+                                        @Html.TextBoxFor(x => x.Address.PostalCode, new { placeholder = "Posta Kodu", style = "margin-bottom:15px;" })
+                                        <div style="color: red; margin-bottom: 15px;">
+                                            @Html.ValidationMessageFor(x => x.Address.PostalCode)
+                                        </div>
+                                        <input type="submit" class="btn btn-sm btn-green" value="Adres Ekle" />
+                                    </div> <!-- end col -->
+                                    <div class="col-md-6">
+                                        <label for="input-label">Soyad</label>
+                                        @Html.TextBoxFor(x => x.Address.LastName, new { placeholder = "Soyadınız", style = "margin-bottom:15px;" })
+                                        <div style="color: red; margin-bottom: 15px;">
+                                            @Html.ValidationMessageFor(x => x.Address.LastName)
+                                        </div>
+                                        <label for="input-label">Telefon</label>
+                                        @Html.TextBoxFor(x => x.Address.PhoneNumber, new { placeholder = "Telefon", style = "margin-bottom:15px;" })
+                                        <div style="color: red; margin-bottom: 15px;">
+                                            @Html.ValidationMessageFor(x => x.Address.PhoneNumber)
+                                        </div>
+                                        <label for="input-label">İlçe</label>
+                                        @Html.TextBoxFor(x => x.Address.City, new { placeholder = "İlçe", style = "margin-bottom:15px;" })
+                                        <div style="color: red; margin-bottom: 15px;">
+                                            @Html.ValidationMessageFor(x => x.Address.City)
+                                        </div>
+                                        <label for="input-label">Adres (Devamı)</label>
+                                        @Html.TextBoxFor(x => x.Address.Address2, new { placeholder = "Adres (Devamı)", style = "margin-bottom:15px;" })
+                                        <div style="color: red; margin-bottom: 15px;">
+                                            @Html.ValidationMessageFor(x => x.Address.Address2)
+                                        </div>
+                                    </div>
+                                }
+                            </div> <!-- end col -->
+                        </div>
+                    </div> <!-- end tab content -->
+                </div>
+            </div> <!-- end horizontal tabs -->
+            <!-- Border bottom tabs -->
+        </div> <!-- end row -->
+    </div>
+</section> <!-- end shortcodes -->

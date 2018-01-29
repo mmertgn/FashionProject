@@ -888,9 +888,11 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModel.cs" />
+    <Compile Include="Models\CartViewModel.cs" />
     <Compile Include="Models\HomePageViewModel.cs" />
     <Compile Include="Models\ProductDetailViewModel.cs" />
     <Compile Include="Models\ProductListViewModel.cs" />
+    <Compile Include="Models\ProfileViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -1035,7 +1037,9 @@
     <Content Include="Views\Product\List.cshtml" />
     <Content Include="Views\Error\Page404.cshtml" />
     <Content Include="Views\Account\WishList.cshtml" />
-    <Content Include="Views\Product\Cart.cshtml" />
+    <Content Include="Views\Product\CartList.cshtml" />
+    <Content Include="Views\Account\MyAccount.cshtml" />
+    <Content Include="Views\Shared\_PartialCart.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -1,0 +1,116 @@
+﻿
+@{
+    ViewBag.Title = "Sepet | Elsa Giyim";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+@model FashionStore.UI.Web.Models.CartViewModel
+<!-- Page Title -->
+<section class="page-title text-center">
+    <div class="container relative clearfix">
+        <div class="title-holder">
+            <div class="title-text">
+                <h1 class="uppercase">Sepetim</h1>
+            </div>
+        </div>
+    </div>
+</section> <!-- end page title -->
+<!-- Cart -->
+<section class="section-wrap shopping-cart pt-0">
+    <div class="container relative">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-wrap mb-30">
+                    <table class="shop_table cart table">
+                        <thead>
+                            <tr>
+                                <th class="product-name" colspan="2">Ürün</th>
+                                <th class="product-price">Fiyat</th>
+                                <th class="product-quantity">Adet</th>
+                                <th class="product-subtotal">Toplam</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.CartItems)
+                            {
+                                <tr class="cart_item">
+                                    <td class="product-thumbnail">
+                                        <a href="/urun-detay/@item.Product.SeoUrl">
+                                            <img src="/Uploads/@item.Product.ProductPictures.FirstOrDefault().Picture.PicturePath" alt="@item.Product.ProductPictures.FirstOrDefault().Picture.AltAttribute">
+                                        </a>
+                                    </td>
+                                    <td class="product-name">
+                                        <a href="/urun-detay/@item.Product.SeoUrl"> @item.Product.Name</a>
+                                    </td>
+                                    <td class="product-price">
+                                        <span class="amount">@item.Product.Price₺</span>
+                                    </td>
+                                    <td class="product-quantity">
+                                        <div class="quantity buttons_added">
+                                            <input type="button" value="-" class="minus" /><input type="number" step="1" min="0" value="@item.Quantity" title="Qty" class="input-text qty text" /><input type="button" value="+" class="plus">
+                                        </div>
+                                    </td>
+                                    <td class="product-subtotal">
+                                        <span class="amount">@(item.Product.Price*item.Quantity)</span>
+                                    </td>
+                                    <td class="product-remove">
+                                        <a href="/sepet-sil/@item.Product.SeoUrl" class="remove" title="Sepetten Kaldır">
+                                            <i class="icon icon_close"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row mb-50">
+                    <div class="col-md-5 col-sm-12">
+                        <div class="coupon">
+                            <input type="text" name="coupon_code" id="coupon_code" class="input-text form-control" value placeholder="İndirim Kuponu">
+                            <input type="submit" name="apply_coupon" class="btn btn-md btn-dark" value="Onayla">
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="actions right">
+                            <input type="submit" name="update_cart" value="Sepeti Güncelle" class="btn btn-md btn-dark">
+                            <div class="wc-proceed-to-checkout">
+                                <a href="/Order/Checkout" class="btn btn-md btn-color"><span>Ödemeyi Tamamla</span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- end col -->
+        </div> <!-- end row -->
+        <div class="row">
+            <div class="col-md-6 shipping-calculator-form">
+            </div> <!-- end col shipping calculator -->
+            <div class="col-md-4 col-md-offset-2">
+                <div class="cart_totals">
+                    <h2 class="heading relative heading-small uppercase mb-30">Sepet Toplamı</h2>
+                    <table class="table shop_table">
+                        <tbody>
+                            <tr class="cart-subtotal">
+                                <th>Sepet Toplam</th>
+                                <td>
+                                    <span class="amount">@Model.SumTotal ₺</span>
+                                </td>
+                            </tr>
+                            <tr class="shipping">
+                                <th>Kargo</th>
+                                <td>
+                                    <span>Ücretsiz Kargo</span>
+                                </td>
+                            </tr>
+                            <tr class="order-total">
+                                <th><strong>Sipariş Toplam Tutar</strong></th>
+                                <td>
+                                    <strong><span class="amount">@Model.SumTotal ₺</span></strong>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div> <!-- end col cart totals -->
+        </div> <!-- end row -->
+
+    </div> <!-- end container -->
+</section> <!-- end cart -->

@@ -6,6 +6,7 @@ using System.Data.Entity;
 using FashionStore_BLL.Services.Abstracts;
 using FashionStore_BLL.Services.Concretes;
 using Unity;
+using FashionStore.Entity.Entities;
 
 namespace FashionStore.UI.Web
 {

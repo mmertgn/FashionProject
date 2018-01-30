@@ -28,6 +28,7 @@ namespace FashionStore.UI.Web.Controllers
                     .Count()
                 : _unitOfWork.GetRepo<Product>()
                     .Where(x => x.Category.ParentCategoryId == category.Id && !x.Deleted && x.Active).Count();
+
             var childCat = category.ParentCategoryId != null
                 ? _unitOfWork.GetRepo<Category>()
                     .Where(x => x.ParentCategoryId == category.ParentCategoryId && !x.Deleted)

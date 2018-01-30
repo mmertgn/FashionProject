@@ -1,0 +1,201 @@
+﻿@model FashionStore.UI.Web.Models.OrderViewModel
+@{
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+
+<!-- Page Title -->
+<section class="page-title text-center">
+    <div class="container relative clearfix">
+        <div class="title-holder">
+            <div class="title-text">
+                <h1 class="uppercase">Ödeme İşlemi</h1>
+            </div>
+        </div>
+    </div>
+</section> <!-- end page title -->
+<!-- Checkout -->
+<section class="section-wrap checkout pt-0 pb-50">
+    <div class="container relative">
+        <div class="row">
+            <div class="ecommerce col-xs-12">
+                @* Kayıtlı adreslerden seçme seçeneği koy, kayıtlı adresi yoksa adres ekleme seçeneği koy *@
+                <form name="checkout" class="checkout ecommerce-checkout row">
+                    <div class="col-md-8" id="customer_details">
+                        <div>
+                            <h2 class="heading uppercase mb-30">Kayıtlı Adreslerim</h2>
+                            <p>Adresinizi kayıtlı adresleriniz arasından seçebilirsiniz. Yada aşağıdaki formdan yeni bir adres ekleyerek de siparişinizi tamamlayabilirsiniz.</p>
+                            <p class="form-row form-row-first validate-required ecommerce-invalid ecommerce-invalid-required-field" id="billing_first_name_field">
+                                <label for="billing_shipaddress">
+                                    Kayıtlı Kargo Adreslerim
+                                    <abbr class="required" title="required">*</abbr>
+                                </label>
+                                @Html.DropDownListFor(x => x.Customer.ShippingAddress.Id, ViewBag.ShippingAdresses as SelectList, "Adres Seçiniz.", new { id = "billing_shipaddress" })
+                            </p>
+                            <p class="form-row form-row-first validate-required ecommerce-invalid ecommerce-invalid-required-field" id="billing_first_name_field">
+                                <label for="billing_address">
+                                    Kayıtlı Fatura Adreslerim
+                                    <abbr class="required" title="required">*</abbr>
+                                </label>
+                                @Html.DropDownListFor(x => x.Customer.BillingAddress.Id, ViewBag.ShippingAdresses as SelectList, "Adres Seçiniz.", new { id = "billing_address" })
+                            </p>
+                            <h2 class="heading uppercase mb-30">Yeni Adres Ekle</h2>
+                            <p class="form-row form-row-last validate-required ecommerce-invalid ecommerce-invalid-required-field" id="billing_first_name_field">
+                                <label for="billing_first_name">
+                                    Ad
+                                    <abbr class="required" title="required">*</abbr>
+                                </label>
+                                @Html.TextBoxFor(x => x.Address.FirstName, new { placeholder = "Adınız", @class = "input-text", id = "billing_first_name" })
+                                <div style="color: red; margin-bottom: 15px;">
+                                    @Html.ValidationMessageFor(x => x.Address.FirstName)
+                                </div>
+                            </p>
+                            <p class="form-row form-row-last validate-required ecommerce-invalid ecommerce-invalid-required-field" id="billing_last_name_field">
+                                <label for="billing_last_name">
+                                    Soyad
+                                    <abbr class="required" title="required">*</abbr>
+                                </label>
+                                @Html.TextBoxFor(x => x.Address.LastName, new { placeholder = "Soyadınız", @class = "input-text", id = "billing_last_name" })
+                                <div style="color: red; margin-bottom: 15px;">
+                                    @Html.ValidationMessageFor(x => x.Address.LastName)
+                                </div>
+                            </p>
+                            <p class="form-row form-row-first validate-required validate-email" id="billing_email_field">
+                                <label for="billing_email">
+                                    Email
+                                    <abbr class="required" title="required">*</abbr>
+                                </label>
+                                @Html.TextBoxFor(x => x.Address.Email, new { placeholder = "Email Adresi", type = "email", @class = "input-text", id = "billing_email" })
+                                <div style="color: red; margin-bottom: 15px;">
+                                    @Html.ValidationMessageFor(x => x.Address.Email)
+                                </div>
+                            </p>
+                            <p class="form-row form-row-last validate-required validate-phone" id="billing_phone_field">
+                                <label for="billing_phone">
+                                    Telefon
+                                    <abbr class="required" title="required">*</abbr>
+                                </label>
+                                @Html.TextBoxFor(x => x.Address.PhoneNumber, new { placeholder = "Telefon", @class = "input-text" , id = "billing_phone" })
+                                <div style="color: red; margin-bottom: 15px;">
+                                    @Html.ValidationMessageFor(x => x.Address.PhoneNumber)
+                                </div>
+                            </p>
+                            <p class="form-row form-row-wide address-field validate-required" id="billing_city_field" data-o_class="form-row form-row-wide address-field validate-required">
+                                <label for="billing_city">
+                                    İl
+                                    <abbr class="required" title="required">*</abbr>
+                                </label>
+                                @Html.TextBoxFor(x => x.Address.Town, new { placeholder = "İl", @class = "input-text", id = "billing_city" })
+                                <div style="color: red; margin-bottom: 15px;">
+                                    @Html.ValidationMessageFor(x => x.Address.Town)
+                                </div>
+                            </p>
+                            <p class="form-row form-row-wide address-field validate-required" id="billing_city_field" data-o_class="form-row form-row-wide address-field validate-required">
+                                <label for="billing_city">
+                                    İlçe
+                                    <abbr class="required" title="required">*</abbr>
+                                </label>
+                                @Html.TextBoxFor(x => x.Address.City, new { placeholder = "İlçe", @class = "input-text", id = "billing_city" })
+                                <div style="color: red; margin-bottom: 15px;">
+                                    @Html.ValidationMessageFor(x => x.Address.City)
+                                </div>
+                            </p>
+                            <p class="form-row form-row-wide address-field validate-required ecommerce-invalid ecommerce-invalid-required-field" id="billing_address_1_field">
+                                <label for="billing_address_1">
+                                    Adres
+                                    <abbr class="required" title="required">*</abbr>
+                                </label>
+                                @Html.TextBoxFor(x => x.Address.Address1, new { placeholder = "Adres", @class = "input-text", id = "billing_address_1" })
+                                <div style="color: red; margin-bottom: 15px;">
+                                    @Html.ValidationMessageFor(x => x.Address.Address1)
+                                </div>
+                            </p>
+                            <p class="form-row form-row-wide address-field validate-required ecommerce-invalid ecommerce-invalid-required-field" id="billing_address_2_field">
+                                <label for="billing_address_2">
+                                    Adres (Devamı)
+                                    <abbr class="required" title="required">*</abbr>
+                                </label>
+                                @Html.TextBoxFor(x => x.Address.Address2, new { placeholder = "Adres (Devamı)", @class = "input-text" , id = "billing_address_2" })
+                                <div style="color: red; margin-bottom: 15px;">
+                                    @Html.ValidationMessageFor(x => x.Address.Address2)
+                                </div>
+                            </p>
+                            <p class="form-row form-row-last address-field validate-required validate-postcode ecommerce-invalid ecommerce-invalid-required-field" id="billing_postcode_field" data-o_class="form-row form-row-last address-field validate-required validate-postcode">
+                                <label for="billing_postcode">
+                                    Posta Kodu
+                                    <abbr class="required" title="required">*</abbr>
+                                </label>
+                                @Html.TextBoxFor(x => x.Address.PostalCode, new { placeholder = "Posta Kodu", @class = "input-text", id = "billing_postcode" })
+                                <div style="color: red; margin-bottom: 15px;">
+                                    @Html.ValidationMessageFor(x => x.Address.PostalCode)
+                                </div>
+                            </p>
+                            <div class="clear"></div>
+                            <input type="submit" name="ecommerce_checkout_place_order" class="btn btn-lg" id="place_order" value="Adresi Kaydet">
+
+                        </div>
+                        <div class="clear"></div>
+                    </div> <!-- end col -->
+
+                    <div class="col-md-4">
+                        <div class="order-review-wrap ecommerce-checkout-review-order" id="order_review">
+                            <h2 class="heading uppercase mb-30">Siparişiniz</h2>
+                            <table class="table shop_table ecommerce-checkout-review-order-table">
+                                <tbody>
+                                    @foreach (var item in Model.CartItems) //Sepeti içeriği çek
+                                    {
+                                        <tr>
+                                            <th>@item.Product.Name<span class="count"> x @item.Quantity</span></th>
+                                            <td>
+                                                <span class="amount">@item.Product.Price</span>
+                                            </td>
+                                        </tr>
+                                    }
+                                    <tr class="cart-subtotal">
+                                        <th>Sepet Toplamı</th>
+                                        <td>
+                                            <span class="amount">@Model.SumTotal</span>
+                                        </td>
+                                    </tr>
+                                    <tr class="shipping">
+                                        <th>Kargo</th>
+                                        <td>
+                                            <span>Ücretsiz Kargo</span>
+                                        </td>
+                                    </tr>
+                                    <tr class="order-total">
+                                        <th><strong>Genel Toplam</strong></th>
+                                        <td>
+                                            <strong><span class="amount">@Model.SumTotal</span></strong>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div id="payment" class="ecommerce-checkout-payment">
+                                <h2 class="heading uppercase mb-30">Ödeme Yöntemi</h2>
+                                <ul class="payment_methods methods">
+                                    <li class="payment_method_bacs">
+                                        <input id="payment_method_bacs" type="radio" class="input-radio" name="payment_method" value="bacs" checked="checked">
+                                        <label for="payment_method_bacs">Kredi Kartı</label>
+                                        <div class="payment_box payment_method_bacs">
+                                            <p>Anlaşmalı banka kartları ile 3-9 taksitli alışveriş yapabilirsiniz.</p>
+                                        </div>
+                                    </li>
+                                    <li class="payment_method_cheque">
+                                        <input id="payment_method_cheque" type="radio" class="input-radio" name="payment_method" value="cheque">
+                                        <label for="payment_method_cheque">Kapıda Ödeme</label>
+                                        <div class="payment_box payment_method_cheque">
+                                            <p>Sipariş onayınız ardından ürünleriniz kargoya verilecektir. Ödemeyi kargo görevlisine yapabilirsiniz.</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <div class="form-row place-order">
+                                    <input type="submit" name="ecommerce_checkout_place_order" class="btn btn-lg" id="place_order" value="Siparişi Tamamla">
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- end order review -->
+                </form>
+            </div> <!-- end ecommerce -->
+        </div> <!-- end row -->
+    </div> <!-- end container -->
+</section> <!-- end checkout -->

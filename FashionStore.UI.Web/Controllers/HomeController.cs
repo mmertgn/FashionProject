@@ -5,6 +5,7 @@ using System;
 using System.Linq;
 using System.Web.Mvc;
 using FashionStore_BLL.Services.Abstracts;
+using PagedList;
 
 namespace FashionStore.UI.Web.Controllers
 {
@@ -106,6 +107,24 @@ namespace FashionStore.UI.Web.Controllers
 
             _unitOfWork.Commit();
             return Redirect(returnUrl);
+        }
+
+        public ActionResult SearchBox(string Text, int? page)
+        {
+            Text = Text ?? "";
+            var pageIndex = page ?? 1;
+            var productList = _unitOfWork.GetRepo<Product>().Where(x => x.Name.Contains(Text) && !x.Deleted && x.Active).OrderBy(x => x.DisplayOrder).ToPagedList(pageIndex, 12);
+            ViewBag.Count = _unitOfWork.GetRepo<Product>().Where(x => x.Name.Contains(Text) && !x.Deleted && x.Active).Count();
+            ViewBag.SearchedText = Text;
+            var model = new ProductListViewModel
+            {
+                Products = productList
+            };
+            const bool isSuccess = true;
+            TempData["IsSuccess"] = isSuccess;
+            TempData["ModelState"] = ModelState;
+            TempData["Message"] = "Aranılan kelime '"+Text+"'. Arama sonucu "+ productList.Count() + " ürün bulunmuştur.";
+            return View(model);
         }
     }
 }

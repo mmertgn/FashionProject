@@ -7,6 +7,7 @@ using FashionStore_BLL.Validations.PasswordValidations;
 using System;
 using System.IO;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using FashionStore_BLL.Services.Concretes;
@@ -20,15 +21,34 @@ namespace FashionStore.UI.Web.Controllers
         private readonly IEncryptor _encryptor;
         private readonly IPictureService _customerPictureService;
         private readonly IMessaging _messaging;
+        private readonly IUploadService _uploadService;
         // GET: Account
         public AccountController(IUnitOfWork unitOfWork,
             [Dependency("MD5")]IEncryptor encryptor,
             IMessaging messaging,
-            [Dependency("CustomerPicture")]IPictureService customerPictureService) : base(unitOfWork)
+            [Dependency("CustomerPicture")]IPictureService customerPictureService, [Dependency("PhotoUpload")]IUploadService uploadService) : base(unitOfWork)
         {
             _encryptor = encryptor;
             _messaging = messaging;
             _customerPictureService = customerPictureService;
+            _uploadService = uploadService;
+        }
+
+        #region Hesabımİşlemleri
+
+        public JsonResult ProfilPhotoUpload(HttpPostedFileBase profilphoto)
+        {
+            if (profilphoto == null) return Json("");
+
+            var model = _unitOfWork.GetRepo<CustomerPicture>().Where(x => x.Customer.Email == HttpContext.User.Identity.Name).FirstOrDefault();
+            var picturePath = _uploadService.Upload(profilphoto, 1920, 1080);
+            model.Picture.PicturePath = picturePath;
+            _unitOfWork.GetRepo<CustomerPicture>().Update(model);
+
+            var isSuccess = _unitOfWork.Commit();
+            ViewBag.IsSuccess = isSuccess;
+            ViewBag.Message = isSuccess ? "Profil resmi başarılı bir şekilde güncelleştirildi." : "Profil resmi güncelleştirilemedi, lütfen tekrar deneyiniz.";
+            return Json(picturePath);
         }
         [CustomAuthorization(Roles = "Üye,Admin")]
         public ActionResult MyAccount()
@@ -61,7 +81,7 @@ namespace FashionStore.UI.Web.Controllers
             user.DateOfBirth = model.Customer.DateOfBirth;
             user.BillingAddress =
                 _unitOfWork.GetRepo<Address>().GetObject(x => x.Id == model.Customer.BillingAddress.Id);
-                user.ShippingAddress = _unitOfWork.GetRepo<Address>().GetObject(x => x.Id == model.Customer.ShippingAddress.Id);
+            user.ShippingAddress = _unitOfWork.GetRepo<Address>().GetObject(x => x.Id == model.Customer.ShippingAddress.Id);
             var validator = new ProfilUpdateValidator(_unitOfWork).Validate(user);
             if (validator.IsValid)
             {
@@ -71,7 +91,7 @@ namespace FashionStore.UI.Web.Controllers
             TempData["IsSuccess"] = isSuccess;
             validator.Errors.ToList().ForEach(a =>
             {
-                ModelState.AddModelError("Customer."+a.PropertyName, a.ErrorMessage);
+                ModelState.AddModelError("Customer." + a.PropertyName, a.ErrorMessage);
             });
             TempData["ModelState"] = ModelState;
             TempData["Message"] = isSuccess ? "Kullanıcı bilgileri güncelleme işlemi başarılı bir şekilde gerçekleştirildi." : "Kullanıcı bilgileri güncelleme işlemi gerçekleştirilemedi lütfen tekrar deneyiniz.";
@@ -125,13 +145,12 @@ namespace FashionStore.UI.Web.Controllers
             TempData["IsSuccess"] = isSuccess;
             validator.Errors.ToList().ForEach(a =>
             {
-                ModelState.AddModelError("Address."+a.PropertyName, a.ErrorMessage);
+                ModelState.AddModelError("Address." + a.PropertyName, a.ErrorMessage);
             });
             TempData["ModelState"] = ModelState;
             TempData["Message"] = isSuccess ? "Adres ekleme işlemi başarılı bir şekilde gerçekleştirildi." : "Adres ekleme işlemi gerçekleştirilemedi lütfen tekrar deneyiniz.";
             return RedirectToAction("MyAccount");
         }
-
         public ActionResult AddressDelete(int id)
         {
             _unitOfWork.GetRepo<Address>().Delete(id);
@@ -141,6 +160,10 @@ namespace FashionStore.UI.Web.Controllers
             TempData["Message"] = isSuccess ? "Adres silme işlemi başarılı bir şekilde gerçekleştirildi." : "Adres silme işlemi gerçekleştirilemedi lütfen tekrar deneyiniz.";
             return RedirectToAction("MyAccount");
         }
+
+        #endregion
+
+        #region İstekListesi
         [CustomAuthorization(Roles = "Üye,Admin")]
         public ActionResult WishList()
         {
@@ -166,7 +189,9 @@ namespace FashionStore.UI.Web.Controllers
             _unitOfWork.GetRepo<Wishlist>().Delete(id);
             _unitOfWork.Commit();
             return RedirectToAction("WishList");
-        }
+        } 
+        #endregion
+
         #region Loginİşlemleri
         public ActionResult SignIn()
         {

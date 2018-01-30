@@ -70,18 +70,18 @@
                                 <div class="header-wrap-holder">
                                     <!-- Search -->
                                     <div class="nav-search hidden-sm hidden-xs">
-                                        <form method="get">
-                                            <input type="search" class="form-control" placeholder="Arama...">
+                                        @using (Html.BeginForm("SearchBox", "Home", FormMethod.Post, new { @class = "mobile-search relative" }))
+                                        {
+                                            <input type="search" class="form-control" name="Text" placeholder="Arama...">
                                             <button type="submit" class="search-button">
                                                 <i class="icon icon_search"></i>
                                             </button>
-                                        </form>
+                                        }
                                     </div>
                                     <!-- Logo -->
                                     <div class="logo-container">
                                         <div class="logo-wrap text-center">
                                             <a href="/">
-                                                @*<img class="" src="/Uploads/9970526f-7a9b-4e7f-a102-04ce62b97589.png" alt="logo">*@
                                                 <img class="" src="/Uploads/logo.png" alt="logo">
                                             </a>
                                         </div>
@@ -95,12 +95,13 @@
                                 <div class="collapse navbar-collapse" id="navbar-collapse">
                                     <ul class="nav navbar-nav">
                                         <li id="mobile-search" class="hidden-lg hidden-md">
-                                            <form method="get" class="mobile-search relative">
-                                                <input type="search" class="form-control" placeholder="Arama...">
+                                            @using (Html.BeginForm("SearchBox", "Home", FormMethod.Post, new { @class = "mobile-search relative" }))
+                                            {
+                                                <input type="search" class="form-control" name="Text" placeholder="Arama...">
                                                 <button type="submit" class="search-button">
                                                     <i class="icon icon_search"></i>
                                                 </button>
-                                            </form>
+                                            }
                                         </li>
                                         <li class="dropdown">
                                             <a href="/">Anasayfa</a>

@@ -71,15 +71,22 @@
                                 </div>
                                 <!-- end col -->
                                 <div class="col-md-6">
-                                    <label for="input-label">Profil Resmi</label>
-                                    <div class="img-responsive">
-                                        <img height="147" width="160" src="/Uploads/@Model.Customer.CustomerPictures.FirstOrDefault().Picture.PicturePath" alt="@Model.Customer.CustomerPictures.FirstOrDefault().Picture.AltAttribute" />
+                                    <div class="img-responsive col-md-12" style="margin-bottom: 30px; margin-top: 15px;">
+                                        <div class="col-md-6">
+                                            <img id="profilephoto" height="147" width="160" src="/Uploads/@Model.Customer.CustomerPictures.FirstOrDefault().Picture.PicturePath" alt="@Model.Customer.CustomerPictures.FirstOrDefault().Picture.AltAttribute" />
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="file" name="PostedPicture" id="profilphoto" />
+                                            <a class="btn btn-sm btn-orange" id="upload-image"><span>Resim Yükle</span></a>
+                                        </div>
                                     </div>
-                                    <br />
-                                    <label for="input-label">Kargo Adresi</label>
-                                    @Html.DropDownListFor(x => x.Customer.ShippingAddress.Id, ViewBag.ShippingAdresses as SelectList, "Adres Seçiniz.")
-                                    <label for="input-label">Fatura Adresi</label>
-                                    @Html.DropDownListFor(x => x.Customer.BillingAddress.Id, ViewBag.BillingAdresses as SelectList, "Adres Seçiniz.")
+                                    <div class="col-md-12">
+                                        <label for="input-label">Kargo Adresi</label>
+                                        @Html.DropDownListFor(x => x.Customer.ShippingAddress.Id, ViewBag.ShippingAdresses as SelectList, "Adres Seçiniz.")
+                                        <label for="input-label">Fatura Adresi</label>
+                                        @Html.DropDownListFor(x => x.Customer.BillingAddress.Id, ViewBag.BillingAdresses as SelectList, "Adres Seçiniz.")
+                                    </div>
+
                                 </div>
                             }
                         </div>
@@ -224,3 +231,31 @@
         </div> <!-- end row -->
     </div>
 </section> <!-- end shortcodes -->
+@section scripts
+{
+    <script>
+        $("#upload-image").click(function () {
+            var formData = new FormData();
+            var totalFiles = document.getElementById("profilphoto").files.length;
+            for (var i = 0; i < totalFiles; i++) {
+                var file = document.getElementById("profilphoto").files[i];
+                formData.append("profilphoto", file);
+            }
+            $.ajax({
+                type: "POST",
+                url: '/Account/ProfilPhotoUpload',
+                data: formData,
+                dataType: 'json',
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    if (response != null) {
+                        $("img#profilephoto").attr("src", "/Uploads/" + response);
+                    }
+
+                }
+            });
+        });
+    </script>
+
+}

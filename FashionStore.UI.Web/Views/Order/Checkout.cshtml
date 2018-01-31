@@ -19,25 +19,60 @@
         <div class="row">
             <div class="ecommerce col-xs-12">
                 @* Kayıtlı adreslerden seçme seçeneği koy, kayıtlı adresi yoksa adres ekleme seçeneği koy *@
-                <form name="checkout" class="checkout ecommerce-checkout row">
                     <div class="col-md-8" id="customer_details">
                         <div>
-                            <h2 class="heading uppercase mb-30">Kayıtlı Adreslerim</h2>
-                            <p>Adresinizi kayıtlı adresleriniz arasından seçebilirsiniz. Yada aşağıdaki formdan yeni bir adres ekleyerek de siparişinizi tamamlayabilirsiniz.</p>
-                            <p class="form-row form-row-first validate-required ecommerce-invalid ecommerce-invalid-required-field" id="billing_first_name_field">
-                                <label for="billing_shipaddress">
-                                    Kayıtlı Kargo Adreslerim
-                                    <abbr class="required" title="required">*</abbr>
-                                </label>
-                                @Html.DropDownListFor(x => x.Customer.ShippingAddress.Id, ViewBag.ShippingAdresses as SelectList, "Adres Seçiniz.", new { id = "billing_shipaddress" })
-                            </p>
-                            <p class="form-row form-row-first validate-required ecommerce-invalid ecommerce-invalid-required-field" id="billing_first_name_field">
-                                <label for="billing_address">
-                                    Kayıtlı Fatura Adreslerim
-                                    <abbr class="required" title="required">*</abbr>
-                                </label>
-                                @Html.DropDownListFor(x => x.Customer.BillingAddress.Id, ViewBag.ShippingAdresses as SelectList, "Adres Seçiniz.", new { id = "billing_address" })
-                            </p>
+                            @using (Html.BeginForm("OrderComplete", "Order", FormMethod.Post,new{@class="checkout ecommerce-checkout row"}))
+                            {
+                                @Html.AntiForgeryToken()
+                                <h2 class="heading uppercase mb-30">Kayıtlı Adreslerim</h2>
+                                <p>Adresinizi kayıtlı adresleriniz arasından seçebilirsiniz. Yada aşağıdaki formdan yeni bir adres ekleyerek de siparişinizi tamamlayabilirsiniz.</p>
+                                <p>
+                                    <label for="billing_shipaddress">
+                                        Kayıtlı Kargo Adreslerim
+                                        <abbr class="required" title="required">*</abbr>
+                                    </label>
+                                    @Html.DropDownListFor(x => x.Customer.ShippingAddress.Id, ViewBag.ShippingAdresses as SelectList, "Adres Seçiniz.", new { id = "billing_shipaddress" })
+                                    <div class="col-md-12" id="ship-ajax">
+                                        <div class="col-md-6"><b>Ad Soyad :</b> @Model.Customer.ShippingAddress.FirstName @Model.Customer.ShippingAddress.LastName</div>
+                                        <div class="col-md-6"><b>Email :</b> @Model.Customer.ShippingAddress.Email</div>
+
+                                        <div class="col-md-6"><b>Telefon :</b> @Model.Customer.ShippingAddress.PhoneNumber</div>
+                                        <div class="col-md-6"><b>İlçe / İl :</b> @Model.Customer.ShippingAddress.City / @Model.Customer.ShippingAddress.Town</div>
+
+                                        <div class="col-md-6"><b>Adres :</b> @Model.Customer.ShippingAddress.Address1</div>
+                                        <div class="col-md-6"><b>Adres (Devam) :</b> @Model.Customer.ShippingAddress.Address2</div>
+
+                                        <div class="col-md-6"><b>Posta Kodu :</b> @Model.Customer.ShippingAddress.PostalCode</div>
+                                    </div>
+                                </p>
+                                <div class="clear"></div>
+                                <br /><br />
+                                <p>
+                                    <label for="billing_address">
+                                        Kayıtlı Fatura Adreslerim
+                                        <abbr class="required" title="required">*</abbr>
+                                    </label>
+                                    @Html.DropDownListFor(x => x.Customer.BillingAddress.Id, ViewBag.BillingAdresses as SelectList, "Adres Seçiniz.", new { id = "billing_address" })
+                                    <div class="col-md-12" id="bil-ajax">
+                                        <div class="col-md-6"><b>Ad Soyad :</b> @Model.Customer.BillingAddress.FirstName @Model.Customer.BillingAddress.LastName</div>
+                                        <div class="col-md-6"><b>Email :</b> @Model.Customer.BillingAddress.Email</div>
+
+                                        <div class="col-md-6"><b>Telefon :</b> @Model.Customer.BillingAddress.PhoneNumber</div>
+                                        <div class="col-md-6"><b>İlçe / İl :</b> @Model.Customer.BillingAddress.City / @Model.Customer.BillingAddress.Town</div>
+
+                                        <div class="col-md-6"><b>Adres :</b> @Model.Customer.BillingAddress.Address1</div>
+                                        <div class="col-md-6"><b>Adres (Devam) :</b> @Model.Customer.BillingAddress.Address2</div>
+
+                                        <div class="col-md-6"><b>Posta Kodu :</b> @Model.Customer.BillingAddress.PostalCode</div>
+                                    </div>
+                                </p>
+                                <div class="clear"></div>
+                                <br /><br />
+                                <input type="submit" name="ecommerce_checkout_place_order" class="btn btn-lg" id="place_order" value="Seçili Adresler İle Siparişi Tamamla">
+                                <div class="clear"></div>
+                                <br /><br />
+                            }
+
                             <h2 class="heading uppercase mb-30">Yeni Adres Ekle</h2>
                             <p class="form-row form-row-last validate-required ecommerce-invalid ecommerce-invalid-required-field" id="billing_first_name_field">
                                 <label for="billing_first_name">
@@ -74,7 +109,7 @@
                                     Telefon
                                     <abbr class="required" title="required">*</abbr>
                                 </label>
-                                @Html.TextBoxFor(x => x.Address.PhoneNumber, new { placeholder = "Telefon", @class = "input-text" , id = "billing_phone" })
+                                @Html.TextBoxFor(x => x.Address.PhoneNumber, new { placeholder = "Telefon", @class = "input-text", id = "billing_phone" })
                                 <div style="color: red; margin-bottom: 15px;">
                                     @Html.ValidationMessageFor(x => x.Address.PhoneNumber)
                                 </div>
@@ -114,7 +149,7 @@
                                     Adres (Devamı)
                                     <abbr class="required" title="required">*</abbr>
                                 </label>
-                                @Html.TextBoxFor(x => x.Address.Address2, new { placeholder = "Adres (Devamı)", @class = "input-text" , id = "billing_address_2" })
+                                @Html.TextBoxFor(x => x.Address.Address2, new { placeholder = "Adres (Devamı)", @class = "input-text", id = "billing_address_2" })
                                 <div style="color: red; margin-bottom: 15px;">
                                     @Html.ValidationMessageFor(x => x.Address.Address2)
                                 </div>
@@ -193,9 +228,62 @@
                                 </div>
                             </div>
                         </div>
-                    </div> <!-- end order review -->
-                </form>
+                    </div> <!-- end order review -->    
             </div> <!-- end ecommerce -->
         </div> <!-- end row -->
     </div> <!-- end container -->
 </section> <!-- end checkout -->
+@section scripts
+{
+    <script>
+        $("#billing_shipaddress").change(function () {
+            var shipId = $("#billing_shipaddress option:selected").val();
+            $.ajax({
+                type: "GET",
+                url: '/Order/GetShipAddress?ShipId=' + shipId,
+                dataType: 'json',
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    if (response != null) {
+                        $("#ship-ajax").empty();
+                        $("#ship-ajax").prepend(
+                            "<div class='col-md-6'><b>Ad Soyad :</b>" + response.FullName + "</div>"
+                            + "<div class='col-md-6'><b>Email :</b>" + response.Email + "</div>"
+                            + "<div class='col-md-6'><b>Telefon :</b>" + response.PhoneNumber + "</div>"
+                            + "<div class='col-md-6'><b>İlçe / İl :</b>" + response.CityTown + "</div>"
+                            + "<div class='col-md-6'><b>Adres :</b> " + response.Address1 + "</div>"
+                            + "<div class='col-md-6'><b>Adres (Devam) :</b> " + response.Address2 + "</div>"
+                            + "<div class='col-md-6'><b>Posta Kodu :</b> " + response.PostalCode + "</div>"
+                        );
+                    }
+                }
+            });
+        });
+        $("#billing_address").change(function () {
+            var shipId = $("#billing_address option:selected").val();
+            $.ajax({
+                type: "GET",
+                url: '/Order/GetShipAddress?ShipId=' + shipId,
+                dataType: 'json',
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    if (response != null) {
+                        $("#bil-ajax").empty();
+                        $("#bil-ajax").prepend(
+                            "<div class='col-md-6'><b>Ad Soyad :</b>" + response.FullName + "</div>"
+                            + "<div class='col-md-6'><b>Email :</b>" + response.Email + "</div>"
+                            + "<div class='col-md-6'><b>Telefon :</b>" + response.PhoneNumber + "</div>"
+                            + "<div class='col-md-6'><b>İlçe / İl :</b>" + response.CityTown + "</div>"
+                            + "<div class='col-md-6'><b>Adres :</b> " + response.Address1 + "</div>"
+                            + "<div class='col-md-6'><b>Adres (Devam) :</b> " + response.Address2 + "</div>"
+                            + "<div class='col-md-6'><b>Posta Kodu :</b> " + response.PostalCode + "</div>"
+                        );
+                    }
+                }
+            });
+        });
+    </script>
+
+}

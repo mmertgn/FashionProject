@@ -65,7 +65,8 @@ namespace FashionStore.UI.Web.Controllers
             ViewBag.BillingAdresses = new SelectList(adresses, "Id", "Address1", billAddressId);
             var model = new ProfileViewModel
             {
-                Customer = _unitOfWork.GetRepo<Customer>().GetObject(x => x.Email == User.Identity.Name)
+                Customer = _unitOfWork.GetRepo<Customer>().GetObject(x => x.Email == User.Identity.Name),
+                MyOrders = _unitOfWork.GetRepo<Order>().Where(x => x.Customer.Email == User.Identity.Name).ToList()
             };
             return View(model);
         }
@@ -189,7 +190,7 @@ namespace FashionStore.UI.Web.Controllers
             _unitOfWork.GetRepo<Wishlist>().Delete(id);
             _unitOfWork.Commit();
             return RedirectToAction("WishList");
-        } 
+        }
         #endregion
 
         #region Loginİşlemleri

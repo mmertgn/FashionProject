@@ -13,5 +13,6 @@ namespace FashionStore.UI.Web.Models
         public Address Address { get; set; }
         public string Password { get; set; }
         public string PasswordConfirm { get; set; }
+        public List<Order> MyOrders { get; set; }
     }
 }

@@ -1,0 +1,196 @@
+﻿@model FashionStore.UI.Web.Areas.Admin.Models.OrderDetailViewModel
+@{
+    ViewBag.Title = "Sipariş Detayı";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row bg-title">
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+            <h4 class="page-title">Sipariş Detayi</h4>
+            <a href="/Admin/Order/OrderApprove/@Model.Order.Id" class="btn btn-primary waves-effect waves-light" type="button"><span class="btn-label"><i class="fa fa-shopping-bag"></i></span>Ödeme Onayı Ver</a>
+            <a href="/Admin/Order/OrderShipped/@Model.Order.Id" class="btn btn-warning waves-effect waves-light" type="button"><span class="btn-label"><i class="fa fa-plus-circle"></i></span>Kargoya Verildi İşaretle</a>
+
+
+        </div>
+        <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+            <ol class="breadcrumb">
+                <li><a href="/Admin/Home">Dashboard</a></li>
+                <li><a href="/Admin/Order/OrderList">Sipariş Yönetimi</a></li>
+                <li class="active">Sipariş Detay</li>
+            </ol>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-info">
+                <div class="panel-heading"> Sipariş Bilgileri</div>
+                <div class="panel-wrapper collapse in" aria-expanded="true">
+                    <div class="panel-body">
+                        <div class="form-body">
+                            <h3 class="box-title">Sipariş</h3>
+                            <hr class="m-t-0 m-b-40">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Sipariş Verilen Ürünler:</label>
+                                        <div class="col-md-9">
+                                            <table class="shop_table cart table">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="product-name" colspan="2">Ürün</th>
+                                                        <th class="product-price">Fiyat</th>
+                                                        <th class="product-quantity">Adet</th>
+                                                        <th class="product-subtotal">Toplam</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach (var item in Model.Order.OrderItems)
+                                                    {
+                                                        <tr class="cart_item">
+                                                            <td class="product-thumbnail">
+                                                                <a href="/urun-detay/@item.Product.SeoUrl">
+                                                                    <img width="50" height="50" src="/Uploads/@item.Product.ProductPictures.FirstOrDefault().Picture.PicturePath" alt="@item.Product.ProductPictures.FirstOrDefault().Picture.AltAttribute">
+                                                                </a>
+                                                            </td>
+                                                            <td class="product-name">
+                                                                <a href="/urun-detay/@item.Product.SeoUrl"> @item.Product.Name</a>
+                                                            </td>
+                                                            <td class="product-price">
+                                                                <span class="amount">@item.Product.Price₺</span>
+                                                            </td>
+                                                            <td class="product-quantity">
+                                                                <div class="quantity buttons_added">
+                                                                    <b>@item.Quantity</b>
+                                                                </div>
+                                                            </td>
+                                                            <td class="product-subtotal">
+                                                                <span class="amount">@(item.Product.Price * item.Quantity)</span>
+                                                            </td>
+                                                            <td class="product-remove"></td>
+                                                        </tr>
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Müşteri Ad Soyad:</label>
+                                        <div class="col-md-9">
+                                            <p class="form-control-static"> @Model.Order.Customer.Name @Model.Order.Customer.Surname </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Sipariş Toplam Tutar:</label>
+                                        <div class="col-md-9">
+                                            <p class="form-control-static"> @Model.Order.OrderTotal ₺ </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                            </div>
+                            <!--/row-->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Kargo Adresi:</label>
+                                        <div class="col-md-9">
+                                            <div class="col-md-6"><b>Ad Soyad :</b> @Model.ShipAddress.FirstName @Model.ShipAddress.LastName</div>
+                                            <div class="col-md-6"><b>Email :</b> @Model.ShipAddress.Email</div>
+
+                                            <div class="col-md-6"><b>Telefon :</b> @Model.ShipAddress.PhoneNumber</div>
+                                            <div class="col-md-6"><b>İlçe / İl :</b> @Model.ShipAddress.City / @Model.ShipAddress.Town</div>
+
+                                            <div class="col-md-6"><b>Adres :</b> @Model.ShipAddress.Address1</div>
+                                            <div class="col-md-6"><b>Adres (Devam) :</b> @Model.ShipAddress.Address2</div>
+
+                                            <div class="col-md-6"><b>Posta Kodu :</b> @Model.ShipAddress.PostalCode</div>
+                                            </div>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Fatura Adresi:</label>
+                                        <div class="col-md-9">
+                                            <div class="col-md-6"><b>Ad Soyad :</b> @Model.BillAddress.FirstName @Model.BillAddress.LastName</div>
+                                            <div class="col-md-6"><b>Email :</b> @Model.BillAddress.Email</div>
+
+                                            <div class="col-md-6"><b>Telefon :</b> @Model.BillAddress.PhoneNumber</div>
+                                            <div class="col-md-6"><b>İlçe / İl :</b> @Model.BillAddress.City / @Model.BillAddress.Town</div>
+
+                                            <div class="col-md-6"><b>Adres :</b> @Model.BillAddress.Address1</div>
+                                            <div class="col-md-6"><b>Adres (Devam) :</b> @Model.BillAddress.Address2</div>
+
+                                            <div class="col-md-6"><b>Posta Kodu :</b> @Model.BillAddress.PostalCode</div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                            </div>
+                            <!--/row-->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Kargo Şirketi:</label>
+                                        <div class="col-md-9">
+                                            <p class="form-control-static"> @Model.Order.ShippingMethod </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Ödeme Onayı:</label>
+                                        <div class="col-md-9">
+                                            @{
+                                                var onay = Model.Order.IsApproved ? "Ödeme Onay Verildi." : "Henüz Ödeme Alınmadı.";
+                                            }
+                                            <p class="form-control-static">@onay</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                            </div><div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Kargo Durumu:</label>
+                                        <div class="col-md-9">
+                                            @{
+                                                var kargo = Model.Order.IsShipped ? "Kargoya Verildi." : "Kargoya henüz teslim edilmedi.";
+                                            }
+                                            <p class="form-control-static"> @kargo </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Sipariş Tarihi:</label>
+                                        <div class="col-md-9">
+                                            <p class="form-control-static">@Model.Order.CreateTime</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                            </div>
+                            <!--/row-->
+                            <br />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

@@ -868,11 +868,13 @@
     <Compile Include="Areas\Admin\Controllers\ErrorController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
+    <Compile Include="Areas\Admin\Controllers\OrderController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
     <Compile Include="Areas\Admin\Controllers\SettingsController.cs" />
     <Compile Include="Areas\Admin\Models\CustomerDetailViewModel.cs" />
     <Compile Include="Areas\Admin\Models\CustomerEditViewModel.cs" />
     <Compile Include="Areas\Admin\Models\LoginModel.cs" />
+    <Compile Include="Areas\Admin\Models\OrderDetailViewModel.cs" />
     <Compile Include="Areas\Admin\Models\PasswordChangeModel.cs" />
     <Compile Include="Areas\Admin\Models\ProductViewModel.cs" />
     <Compile Include="Areas\Admin\Models\ProfileEditViewModel.cs" />
@@ -1010,6 +1012,8 @@
     <Content Include="Areas\Admin\Views\Settings\List.cshtml" />
     <Content Include="Areas\Admin\Views\Settings\MessageDetail.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_PartialMailBox.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\OrderList.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\Detail.cshtml" />
     <None Include="bundleconfig.json" />
     <Content Include="MainTemplate\fonts\ElegantIcons.eot" />
     <Content Include="MainTemplate\fonts\ElegantIcons.eot_%2523iefix" />
@@ -1044,6 +1048,7 @@
     <Content Include="Views\Shared\_PartialCart.cshtml" />
     <Content Include="Views\Home\SearchBox.cshtml" />
     <Content Include="Views\Order\Checkout.cshtml" />
+    <Content Include="Views\Order\OrderResult.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -11,7 +11,7 @@
         <li>
             <a href="@menu.ControllerActionName" class="waves-effect"><i data-icon="@menu.DataIcon" class="@menu.IconPath"></i> <span class="hide-menu">@menu.Name<span class="fa arrow"></span></span></a>
             <ul class="nav nav-second-level">
-                @foreach (var childSidebar in menu.ChildSidebars)
+                @foreach (var childSidebar in menu.ChildSidebars.OrderBy(x=>x.DisplayOrder))
                 {
                     <li>
                         <a href="@childSidebar.ControllerActionName">@childSidebar.Name</a>

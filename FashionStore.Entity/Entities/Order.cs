@@ -16,9 +16,12 @@ namespace FashionStore.Entity.Entities
         public decimal OrderTax { get; set; }
         public decimal OrderTotal { get; set; }
         public string ShippingMethod { get; set; }
+        public bool IsShipped { get; set; }
+        public bool IsApproved { get; set; }
         public bool Deleted { get; set; }
         public DateTime CreateTime { get; set; }
 
+        
         public virtual Customer Customer { get; set; }
         public virtual ICollection<OrderItem> OrderItems { get; set; }
         public virtual ICollection<Shipment> Shipments { get; set; }

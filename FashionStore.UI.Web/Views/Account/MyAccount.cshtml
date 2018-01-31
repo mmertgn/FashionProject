@@ -36,6 +36,9 @@
                             <a href="#tab-two" data-toggle="tab">Parola İşlemleri</a>
                         </li>
                         <li>
+                            <a href="#tab-four" data-toggle="tab">Siparişlerim</a>
+                        </li>
+                        <li>
                             <a href="#tab-three" data-toggle="tab">Kayıtlı Adreslerim</a>
                         </li>
                     </ul> <!-- end tabs -->
@@ -109,6 +112,66 @@
                                 </div> <!-- end col -->
                             }
                         </div>
+                        <div class="tab-pane fade" id="tab-four">
+                            <div class="toggle">
+                                @foreach (var order in Model.MyOrders)
+                                {
+
+                                    string onay;
+                                    string kargo;
+                                    {
+                                        onay = order.IsApproved ? "Onaylandı" : "Onay Bekleniyor";
+                                        kargo = order.IsShipped ? "Kargoya Verildi" : "Kargoya Verilmek İçin Bekleniyor.";
+                                    };
+                                    <div class="acc-panel">
+                                        <a href="#" style="font-weight: bold;" class="bold">Sipariş No: 423@(order.Id) &emsp; &emsp; Sipariş Tarihi : @order.CreateTime &emsp; &emsp; Toplam Tutar: @order.OrderTotal₺</a>
+                                    </div>
+                                    <div class="panel-content">
+                                        <h5>
+                                            <b style="color: red">Sipariş Durumu : @onay - @kargo</b>
+                                        </h5>
+                                        <table class="shop_table cart table">
+                                            <thead>
+                                            <tr>
+                                                <th class="product-name" colspan="2">Ürün</th>
+                                                <th class="product-price">Fiyat</th>
+                                                <th class="product-quantity">Adet</th>
+                                                <th class="product-subtotal">Toplam</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            @foreach (var item in order.OrderItems)
+                                            {
+                                                <tr class="cart_item">
+                                                    <td class="product-thumbnail">
+                                                        <a href="/urun-detay/@item.Product.SeoUrl">
+                                                            <img src="/Uploads/@item.Product.ProductPictures.FirstOrDefault().Picture.PicturePath" alt="@item.Product.ProductPictures.FirstOrDefault().Picture.AltAttribute">
+                                                        </a>
+                                                    </td>
+                                                    <td class="product-name">
+                                                        <a href="/urun-detay/@item.Product.SeoUrl"> @item.Product.Name</a>
+                                                    </td>
+                                                    <td class="product-price">
+                                                        <span class="amount">@item.Product.Price₺</span>
+                                                    </td>
+                                                    <td class="product-quantity">
+                                                        <div class="quantity buttons_added">
+                                                            <b><input type="number" step="1" min="0" value="@item.Quantity" title="Qty" class="input-text qty text"/></b>
+                                                        </div>
+                                                    </td>
+                                                    <td class="product-subtotal">
+                                                        <span class="amount">@(item.Product.Price * item.Quantity)</span>
+                                                    </td>
+                                                    <td class="product-remove"></td>
+                                                </tr>
+                                            }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+
                         <div class="tab-pane fade" id="tab-three">
                             <div class="col-md-12">
                                 <div class="table-wrap mb-30">

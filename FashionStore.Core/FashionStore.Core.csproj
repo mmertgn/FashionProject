@@ -51,9 +51,7 @@
     <Compile Include="Database\RepositoryBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Infrastructure\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\FashionStore.Entity\FashionStore.Entity.csproj">
       <Project>{9FBE41A4-73E7-4629-B34C-327C999E2851}</Project>

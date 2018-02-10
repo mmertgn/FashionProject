@@ -87,7 +87,7 @@
 
             var gmapDiv = $("#google-map");
             var gmapMarker = gmapDiv.attr("data-address");
-            var center = [41.019961, 29.010970];
+            var center = [@Model.MapXCoordinate, @Model.MapYCoordinate];
 
             gmapDiv.gmap3({
                 zoom: 16,
